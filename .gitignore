@@ -10,3 +10,14 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+/public/adminer.php
+
+.idea/*
+.composer/
+.idea
+error.log
+composer.phar
+storage/proxies/*
+docker/mysql-data/
+docker/redis-data/
