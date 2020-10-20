@@ -7,8 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-![Laravel check](https://github.com/rooftopdev/lacade/workflows/Laravel%20check/badge.svg)
-
 # Trabajo práctico final - Laboratorio III
 
 # Instrucciones de Instalación
