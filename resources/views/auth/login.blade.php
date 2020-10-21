@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::auth.login')
+
+@section('title','Ingresar')
 
 @section('content')
 <div class="container">

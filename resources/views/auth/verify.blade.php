@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('adminlte::auth.verify')
+
+@section('title','Verify')
 
 @section('content')
 <div class="container">
