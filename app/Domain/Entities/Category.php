@@ -8,9 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    private string $name;
-    private string $description;
-
     /**
      * @return string
      */

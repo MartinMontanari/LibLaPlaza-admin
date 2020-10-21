@@ -259,6 +259,7 @@ return [
                 [
                     'text' => 'Crear nueva',
                     'route'  => 'new_category',
+                    'icon' => 'fas fa-plus-circle'
                 ]
             ],
         ],
