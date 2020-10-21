@@ -1,5 +1,7 @@
 @extends('adminlte::auth.verify')
 
+@section('title','Verify')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

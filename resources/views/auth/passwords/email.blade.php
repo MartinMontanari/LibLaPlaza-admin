@@ -1,5 +1,7 @@
 @extends('adminlte::auth.passwords.email')
 
+@section('title','Recuperar cuenta')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

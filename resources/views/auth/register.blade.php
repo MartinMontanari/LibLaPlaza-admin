@@ -1,5 +1,7 @@
 @extends('adminlte::auth.register')
 
+@section('title','Registrarse')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
