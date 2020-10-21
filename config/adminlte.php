@@ -257,8 +257,8 @@ return [
             'icon'    => 'fas fa-tags',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Crear nueva',
+                    'route'  => 'new_category',
                 ]
             ],
         ],

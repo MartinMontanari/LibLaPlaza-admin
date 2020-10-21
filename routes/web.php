@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//categories routes
+Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category');
