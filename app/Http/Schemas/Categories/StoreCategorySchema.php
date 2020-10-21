@@ -6,6 +6,9 @@ namespace App\Http\Schemas\Categories;
 
 class StoreCategorySchema
 {
+    /**
+     * @return string[]
+     */
     public static function getRules()
     {
      return [
@@ -14,6 +17,9 @@ class StoreCategorySchema
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public static function getMessages()
     {
         return [
