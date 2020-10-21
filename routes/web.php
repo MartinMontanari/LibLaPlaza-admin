@@ -14,9 +14,19 @@ use \Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::user()!=null){
+        return redirect(route('home'));
+    }
+    else{
+        return view('welcome');
+    }
 });
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//categories routes
+Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category');
+Route::post('/categories/new',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('storeCategory');
