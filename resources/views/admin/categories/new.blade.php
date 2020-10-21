@@ -17,10 +17,10 @@
                     @csrf
                     <div class="form-group-sm">
                         <label>Nombre:</label>
-                        <input type="text" class="form-control" name="name" min="1" max="50" placeholder="Nombre"
+                        <input type="text" class="form-control" name="name" min="3" max="50" placeholder="Nombre"
                                value="{{old('name')}}" required><br>
                         <label>Descripción:</label>
-                        <input type="text" class="form-control" name="description" min="1" max="250"
+                        <input type="text" class="form-control" name="description" min="15" max="250"
                                placeholder="Descripción"
                                value="{{old('description')}}" required><br>
                         <input type="submit" class="btn btn-primary btn-block" value="Guardar">

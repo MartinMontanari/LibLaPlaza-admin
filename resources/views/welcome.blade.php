@@ -8,10 +8,9 @@
         <title></title>
     </head>
     <body>
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-center">
-            <p>¡Bienvenido! <br> Si aún no es un usuario regístrese en la plataforma para comenzar.</p>
-        </div>
-
+    <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-center">
+        <p>¡Bienvenido! <br> Si aún no es un usuario regístrese en la plataforma para comenzar.</p>
+    </div>
 
     </body>
     </html>
