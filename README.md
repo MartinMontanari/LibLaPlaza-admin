@@ -127,7 +127,10 @@ DB_PASSWORD=test
 5. Listo ya podemos salir del comandante.
 
 ### Ultimos pasos.
-1. Ya podemos entrar al sitio `localhost`
+
+1. Ya podemos entrar al sitio `localhost` pero aún falta instalar y compilar las dependencias necesarias para una correcta visualización de los componentes de las vistas.
+
+2. Para ello, dentro de la carpeta raíz `TrabajoFinal-LabIII/` ejecutar los comandos `npm install` y `npm run prod`
 
 2. Deberíamos visualizar correctamente la página de inicio.
 
