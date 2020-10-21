@@ -12,13 +12,21 @@
             Complete los campos a continuación
         </div>
         <div class="card-body">
-            <form>
-                <div class="form-group-sm">
-                    <label>Nombre:</label>
-                    <input type="text" class="form-control" name="categoryName" min="1" max="50" placeholder="Nombre"
-                           value="{{old('categoryName')}}" required><br>
-                </div>
-            </form>
+            <div class="form-group-sm">
+                <form action="{{route('storeCategory')}}" method="POST">
+                    @csrf
+                    <div class="form-group-sm">
+                        <label>Nombre:</label>
+                        <input type="text" class="form-control" name="name" min="1" max="50" placeholder="Nombre"
+                               value="{{old('name')}}" required><br>
+                        <label>Descripción:</label>
+                        <input type="text" class="form-control" name="description" min="1" max="250"
+                               placeholder="Descripción"
+                               value="{{old('description')}}" required><br>
+                        <input type="submit" class="btn btn-primary btn-block" value="Guardar">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 @endsection
