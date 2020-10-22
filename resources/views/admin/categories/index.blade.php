@@ -14,7 +14,7 @@
                     No hay categorías registradas.
                 </div>
             @else
-                <table class="table">
+                <table class="table table-hover">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -27,14 +27,15 @@
                         <tr>
                             <th scope="col"> {{$category->getName()}}</th>
                             <th scope="col"> {{$category->getDescription()}}</th>
-                            <th scope="col" class="">
-                                <a href="#">Editar</a>
-                                <a href="#">Eliminar</a>
+                            <th scope="col" class="text-center">
+                                <a href="#" class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
+                                <a href="#" class="btn btn-danger btn-sm d-inline-block" role="button">Eliminar</a>
                             </th>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+                {{$categories->links("pagination::bootstrap-4")}}
             @endif
         </div>
     </div>
