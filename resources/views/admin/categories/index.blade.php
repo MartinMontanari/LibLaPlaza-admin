@@ -25,9 +25,12 @@
                     <tbody class="table-bordered">
                     @foreach($categories as $category)
                         <tr>
-                            <th> {{$category->getName()}}</th>
-                            <th> {{$category->getDescription()}}</th>
-                            <th> tercera columna</th>
+                            <th scope="col"> {{$category->getName()}}</th>
+                            <th scope="col"> {{$category->getDescription()}}</th>
+                            <th scope="col">
+                                <a href="#">Editar</a>
+                                <a href="#">Eliminar</a>
+                            </th>
                         </tr>
                     @endforeach
                     </tbody>
