@@ -21,10 +21,16 @@ class IndexCategoriesHandler
 
     /**
      * @param IndexCategoryQuery $query
-     * @return array
+     * @return \App\Domain\Entities\Category[]|string
      */
     public function handle(IndexCategoryQuery $query)
     {
-        return $this->repository->findAll($query->getPage(), $query->getSize());
+        if($this->repository->findAll($query->getPage(), $query->getSize())!=null){
+            return $this->repository->findAll($query->getPage(), $query->getSize());
+        }
+        else{
+            return 'No hay categorías registradas.';
+        }
+
     }
 }
