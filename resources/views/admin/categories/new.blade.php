@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <div class="card col-6">
+    <div class="card col-6 block">
         <div class="card-header">
             Complete los campos a continuación
         </div>
@@ -29,4 +29,15 @@
             </div>
         </div>
     </div>
+    @if($errors->any())
+        <div class="card col-6 alert alert-danger block">
+            <div class="row justify-content-center">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
 @endsection
