@@ -2,7 +2,6 @@
 
 @section('title', 'Dashboard')
 
-@section('plugins.Sweetalert2', true)
 
 @section('content_header')
     <h1>Dashboard</h1>
@@ -10,15 +9,4 @@
 
 @section('content')
     <h1>ACÁ TRAER UN DIV CON ALGO, QUEDA CHOTO VACÍO</h1>
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> Swal.fire(
-            'success'
-        )
-    </script>
 @stop

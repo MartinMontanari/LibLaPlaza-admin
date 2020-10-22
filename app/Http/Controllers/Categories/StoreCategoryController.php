@@ -33,7 +33,7 @@ class StoreCategoryController extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return view('admin.categories.new');
+            return redirect()->route('new_category')->with('status','Categoría creada correctamente.');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
