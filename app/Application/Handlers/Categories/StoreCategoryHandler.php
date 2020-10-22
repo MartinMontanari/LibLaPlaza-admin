@@ -17,7 +17,11 @@ class StoreCategoryHandler
         $this->repository = $repository;
     }
 
-    public function handle(StoreCategoryCommand $command){
+    /**
+     * @param StoreCategoryCommand $command
+     */
+    public function handle(StoreCategoryCommand $command) : void
+    {
 
         $category = new Category();
         $category->setName($command->getName());

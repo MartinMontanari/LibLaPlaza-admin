@@ -260,7 +260,12 @@ return [
                     'text' => 'Crear nueva',
                     'route'  => 'new_category',
                     'icon' => 'fas fa-plus-circle'
-                ]
+                ],
+                [
+                    'text' => 'Ver todas',
+                    'route'  => 'findAllCategories',
+                    'icon' => 'fas fa-bars'
+                ],
             ],
         ],
         [
@@ -366,7 +371,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

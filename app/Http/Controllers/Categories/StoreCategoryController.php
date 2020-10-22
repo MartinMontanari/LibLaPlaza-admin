@@ -13,6 +13,7 @@ class StoreCategoryController extends Controller
 {
     private StoreCategoryAdapter $adapter;
     private StoreCategoryHandler $handler;
+
     public function __construct
     (
         StoreCategoryAdapter $storeCategoryAdapter,
@@ -29,14 +30,12 @@ class StoreCategoryController extends Controller
      */
     public function __invoke(Request $request)
     {
-        try{
+        try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect('home');
-        }
-        catch (InvalidBodyException $errors){
+            return redirect()->route('new_category')->with('status','Categoría creada correctamente.');
+        } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
-
     }
 }

@@ -27,7 +27,8 @@ class StoreCategorySchema
             'name.min' => 'El nombre de la categoría es muy corto.',
             'name.max' => 'El nombre de la categoría debe tener como máximo 50 caracteres.',
             'description.required' => 'Debe ingresar una descripción para la categoría.',
-            'description.min' => 'La descripción ingresada es m'
+            'description.min' => 'La descripción ingresada es muy corta.',
+            'description.max' => 'La descripción ingresada es muy larga, máximo 250 caracteres.'
         ];
     }
 }
