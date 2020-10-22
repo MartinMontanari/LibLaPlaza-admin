@@ -18,7 +18,7 @@ class StoreCategoryAdapter
      * @return StoreCategoryCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : StoreCategoryCommand
     {
         $validate = Validator::make($request->all(), StoreCategorySchema::getRules(), StoreCategorySchema::getMessages());
 

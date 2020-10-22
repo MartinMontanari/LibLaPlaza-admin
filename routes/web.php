@@ -30,3 +30,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //categories routes
 Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category');
 Route::post('/categories/new',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('storeCategory');
+Route::get('/categories',[\App\Http\Controllers\Categories\IndexCategoriesController::class,'__invoke'])->name('findAllCategories');

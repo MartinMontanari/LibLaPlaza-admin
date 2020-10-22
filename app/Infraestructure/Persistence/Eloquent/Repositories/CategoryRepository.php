@@ -19,4 +19,9 @@ class CategoryRepository
     {
         $category->save();
     }
+
+    public function findAll(Category $category) : void
+    {
+    //TODO terminar
+    }
 }

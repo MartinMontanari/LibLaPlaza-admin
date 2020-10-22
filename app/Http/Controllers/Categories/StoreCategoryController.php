@@ -33,10 +33,9 @@ class StoreCategoryController extends Controller
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
             return redirect('home');
-        }
+        }//TODO no muestra los errores pero se cachea bien la excepción porque no se parte al medio
         catch (InvalidBodyException $errors){
             return redirect()->back()->withErrors($errors->getMessages());
         }
-
     }
 }
