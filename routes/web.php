@@ -18,7 +18,7 @@ Route::get('/', function () {
         return redirect(route('home'));
     }
     else{
-        return view('welcome');
+        return redirect(route('login'));
     }
 });
 
