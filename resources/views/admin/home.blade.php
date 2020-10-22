@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1>Dashboard</h1>
 @stop
@@ -15,5 +17,8 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> Swal.fire(
+            'success'
+        )
+    </script>
 @stop
