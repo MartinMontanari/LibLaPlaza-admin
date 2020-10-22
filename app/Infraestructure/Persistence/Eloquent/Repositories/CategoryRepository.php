@@ -31,6 +31,6 @@ class CategoryRepository
         return Category::query()
             ->take($page)
             ->limit($size)
-            ->get();
+            ->paginate(10);
     }
 }

@@ -27,7 +27,7 @@
                         <tr>
                             <th scope="col"> {{$category->getName()}}</th>
                             <th scope="col"> {{$category->getDescription()}}</th>
-                            <th scope="col">
+                            <th scope="col" class="">
                                 <a href="#">Editar</a>
                                 <a href="#">Eliminar</a>
                             </th>
