@@ -23,9 +23,8 @@ class IndexCategoriesHandler
      * @param IndexCategoryQuery $query
      * @return array
      */
-    public function handle(IndexCategoryQuery $query) : array
+    public function handle(IndexCategoryQuery $query)
     {
-        //TODO Finish
-        return $this->repository->findAll($query);
+        return $this->repository->findAll($query->getPage(), $query->getSize());
     }
 }

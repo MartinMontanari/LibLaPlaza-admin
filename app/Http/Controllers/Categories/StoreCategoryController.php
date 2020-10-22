@@ -13,6 +13,7 @@ class StoreCategoryController extends Controller
 {
     private StoreCategoryAdapter $adapter;
     private StoreCategoryHandler $handler;
+
     public function __construct
     (
         StoreCategoryAdapter $storeCategoryAdapter,
@@ -29,12 +30,11 @@ class StoreCategoryController extends Controller
      */
     public function __invoke(Request $request)
     {
-        try{
+        try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect('home');
-        }//TODO no muestra los errores pero se cachea bien la excepción porque no se parte al medio
-        catch (InvalidBodyException $errors){
+            return view('admin.categories.new')->with($message = 'Categoría creada correctamente.');
+        } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }

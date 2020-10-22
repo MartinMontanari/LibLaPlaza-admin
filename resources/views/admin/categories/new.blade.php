@@ -29,6 +29,11 @@
             </div>
         </div>
     </div>
+    @if($message ?? '')
+        <div class="alert alert-success">
+            <p>{{value($message ?? '')}}</p>
+        </div>
+    @endif
     @if($errors->any())
         <div class="card col-6 alert alert-danger block">
             <div class="row justify-content-center">

@@ -29,9 +29,10 @@ class IndexCategoriesController extends Controller
     {
         try {
             $query = $this->adapter->adapt($request);
-        }
-        catch(InvalidBodyException $errors){
-        //TODO finish controller
+            $result = $this->handler->handle($query);
+            return view('admin.categories.index',['categories' => $result]);
+        } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
         }
     }
 }

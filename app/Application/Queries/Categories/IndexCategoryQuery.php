@@ -6,10 +6,10 @@ namespace App\Application\Queries\Categories;
 
 class IndexCategoryQuery
 {
-    private int $page;
-    private int $size;
+    private ?int $page;
+    private ?int $size;
 
-    public function __construct(int $page, int $size)
+    public function __construct(?int $page, ?int $size)
     {
         $this->page = $page;
         $this->size = $size;
@@ -18,7 +18,7 @@ class IndexCategoryQuery
     /**
      * @return int|null
      */
-    public function getPage(): int
+    public function getPage(): ?int
     {
         return $this->page;
     }
@@ -26,7 +26,7 @@ class IndexCategoryQuery
     /**
      * @return int|null
      */
-    public function getSize(): int
+    public function getSize(): ?int
     {
         return $this->size;
     }

@@ -20,8 +20,17 @@ class CategoryRepository
         $category->save();
     }
 
-    public function findAll(Category $category) : void
+    /**
+     *
+     * @param int|null $page
+     * @param int|null $size
+     * @return Category[]
+     */
+    public function findAll(?int $page = 0, ?int $size = 10)
     {
-    //TODO terminar
+        return Category::query()
+            ->take($page)
+            ->limit($size)
+            ->get();
     }
 }
