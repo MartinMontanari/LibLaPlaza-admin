@@ -22,12 +22,14 @@ Route::get('/', function () {
     }
 });
 
-
+//Auth routes
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//------------------------------ ADMIN ROUTES ------------------------------
+//Home dashboard route
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');;
 
 //categories routes
-Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category');
-Route::post('/categories/new',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('storeCategory');
-Route::get('/categories',[\App\Http\Controllers\Categories\IndexCategoriesController::class,'__invoke'])->name('findAllCategories');
+Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category')->middleware('auth');
+Route::post('/categories/new',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('storeCategory')->middleware('auth');
+Route::get('/categories',[\App\Http\Controllers\Categories\IndexCategoriesController::class,'__invoke'])->name('findAllCategories')->middleware('auth');
