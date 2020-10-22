@@ -258,12 +258,12 @@ return [
             'submenu' => [
                 [
                     'text' => 'Crear nueva',
-                    'route'  => 'new_category',
+                    'route'  => 'new-category',
                     'icon' => 'fas fa-plus-circle'
                 ],
                 [
                     'text' => 'Ver todas',
-                    'route'  => 'findAllCategories',
+                    'route'  => 'find-all-categories',
                     'icon' => 'fas fa-bars'
                 ],
             ],

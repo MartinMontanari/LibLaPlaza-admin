@@ -14,6 +14,7 @@ class DeleteCategoryController extends Controller
 {
     private DeleteCategoryAdapter $adapter;
     private DeleteCategoryHandler $handler;
+
     public function __construct
     (
         DeleteCategoryAdapter $adapter,
@@ -26,10 +27,11 @@ class DeleteCategoryController extends Controller
 
     public function __invoke(Request $request)
     {
-        try{
+        try {
             $command = $this->adapter->adapt($request);
-
-        }catch (InvalidBodyException $errors){
+            $this->handler->handle($command);
+            return redirect()->route('newCategory')
+        } catch (InvalidBodyException $errors) {
 
         }
     }
