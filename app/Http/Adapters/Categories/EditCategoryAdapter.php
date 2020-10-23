@@ -24,7 +24,7 @@ class EditCategoryAdapter
             throw new InvalidBodyException($validate->errors()->getMessages());
         } else{
             return new EditCategoryCommand(
-                $request->input('id'),
+                $request->route('id'),
                 $request->input('name'),
                 $request->input('description')
             );

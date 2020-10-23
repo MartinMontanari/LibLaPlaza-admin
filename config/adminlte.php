@@ -263,7 +263,7 @@ return [
                 ],
                 [
                     'text' => 'Ver todas',
-                    'route'  => 'find-all-categories',
+                    'route'  => 'list-categories',
                     'icon' => 'fas fa-bars'
                 ],
             ],

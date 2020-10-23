@@ -14,7 +14,14 @@
                     No hay categorías registradas.
                 </div>
             @else
-                <table class="table table-hover">
+                @if(session('status'))
+                    <div class="card col-6 alert alert-success">
+                        <div class="row justify-content-center">
+                            Categoría eliminada correctamente.
+                        </div>
+                    </div>
+                @endif
+                <table class="table table-hover fixed">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -25,10 +32,10 @@
                     <tbody class="table-bordered">
                     @foreach($categories as $category)
                         <tr>
-                            <th scope="col"> {{$category->getName()}}</th>
-                            <th scope="col"> {{$category->getDescription()}}</th>
-                            <th scope="col" class="text-center">
-                                <a href="{{route('edit-category',['id'=>$category->getId()])}}"
+                            <th scope="row">{{$category->getName()}}</th>
+                            <th scope="row" class="col-3"> {{$category->getDescription()}}</th>
+                            <th scope="row" class="col-3">
+                                <a href="{{route('edit-category',['id' => $category->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"
                                       action="{{route('delete-category', ['id'=>$category->getId()]) }}">

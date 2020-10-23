@@ -15,18 +15,18 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-                        <form id="form" action="{{route('edit-category')}}" method="POST">
-                            @csrf
+                        <form id="form" action="{{route('update-category',['id'=>$category->getId()])}}" method="POST">
+                            @csrf @method('PUT')
                             <div class="form-group-sm">
                                 <label>Nombre:</label>
                                 <input type="text" class="form-control" name="name" min="3" max="50"
-                                       placeholder="Nombre"
+                                       placeholder="{{$category->getName()}}"
                                        value="{{old('name')}}" required><br>
                                 <label>Descripción:</label>
-                                <input type="text" class="form-control" name="description" min="15" max="250"
-                                       placeholder="Descripción"
-                                       value="{{old('description')}}" required><br>
-                                <input type="submit" class="btn btn-primary btn-block" value="Guardar">
+                                <textarea type="text" rows="3" class="form-control" name="description" min="15" max="250" maxlength="250"
+                                       placeholder="{{$category->getDescription()}}"
+                                          value="{{old('description')}}" required></textarea><br>
+                                <input type="submit" data-toggle="modal" data-target="#success" class="btn btn-primary btn-block" value="Guardar cambios">
                             </div>
                         </form>
                     </div>
@@ -45,13 +45,32 @@
                     </div>
                 </div>
             @endif
-            @if(session('status'))
-                <div class="card col-6 alert alert-success">
-                    <div class="row justify-content-center">
-                        Categoría editada correctamente.
+                @if(session('status'))
+                    <div class="card col-6 alert alert-success">
+                        <div class="row justify-content-center">
+                            Categoría editada correctamente.
+                        </div>
                     </div>
+                @endif
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            @endif
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
         </div>
     </div>
 

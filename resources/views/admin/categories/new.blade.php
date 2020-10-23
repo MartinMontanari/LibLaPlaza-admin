@@ -23,9 +23,9 @@
                                        placeholder="Nombre"
                                        value="{{old('name')}}" required><br>
                                 <label>Descripción:</label>
-                                <input type="text" class="form-control" name="description" min="15" max="250"
+                                <textarea type="text" rows="3" class="form-control" name="description" min="15" max="250"
                                        placeholder="Descripción"
-                                       value="{{old('description')}}" required><br>
+                                          value="{{old('description')}}" required></textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
                             </div>
                         </form>
