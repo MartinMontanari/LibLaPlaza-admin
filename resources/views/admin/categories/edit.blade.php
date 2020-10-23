@@ -19,14 +19,16 @@
                             @csrf @method('PUT')
                             <div class="form-group-sm">
                                 <label>Nombre:</label>
-                                <input type="text" class="form-control" name="name" min="3" max="50"
-                                       placeholder="{{$category->getName()}}"
-                                       value="{{old('name')}}" required><br>
+                                <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
+                                       placeholder="Nombre"
+                                       value="{{$category->getName()}}" required><br>
                                 <label>Descripción:</label>
-                                <textarea type="text" rows="3" class="form-control" name="description" min="15" max="250" maxlength="250"
-                                       placeholder="{{$category->getDescription()}}"
-                                          value="{{old('description')}}" required></textarea><br>
-                                <input type="submit" data-toggle="modal" data-target="#success" class="btn btn-primary btn-block" value="Guardar cambios">
+                                <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90"
+                                          maxlength="90"
+                                          placeholder="Descripción"
+                                          required>{{$category->getDescription()}}</textarea><br>
+                                <input type="submit" data-toggle="modal" data-target="#success"
+                                       class="btn btn-primary btn-block" value="Guardar cambios">
                             </div>
                         </form>
                     </div>
@@ -45,16 +47,17 @@
                     </div>
                 </div>
             @endif
-                @if(session('status'))
-                    <div class="card col-6 alert alert-success">
-                        <div class="row justify-content-center">
-                            Categoría editada correctamente.
-                        </div>
+            @if(session('status'))
+                <div class="card col-6 alert alert-success">
+                    <div class="row justify-content-center">
+                        Categoría editada correctamente.
                     </div>
-                @endif
+                </div>
+            @endif
         </div>
     </div>
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">

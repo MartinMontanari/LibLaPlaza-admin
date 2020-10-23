@@ -19,11 +19,11 @@
                             @csrf
                             <div class="form-group-sm">
                                 <label>Nombre:</label>
-                                <input type="text" class="form-control" name="name" min="3" max="50"
+                                <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
                                        placeholder="Nombre"
                                        value="{{old('name')}}" required><br>
                                 <label>Descripción:</label>
-                                <textarea type="text" rows="3" class="form-control" name="description" min="15" max="250"
+                                <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                        placeholder="Descripción"
                                           value="{{old('description')}}" required></textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
