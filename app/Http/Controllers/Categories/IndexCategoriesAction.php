@@ -10,7 +10,7 @@ use App\Http\Adapters\Categories\IndexCategoriesAdapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class IndexCategoriesController extends Controller
+class IndexCategoriesAction extends Controller
 {
     private IndexCategoriesAdapter $adapter;
     private IndexCategoriesHandler $handler;

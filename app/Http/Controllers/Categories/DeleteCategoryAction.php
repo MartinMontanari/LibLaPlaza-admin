@@ -10,7 +10,7 @@ use App\Http\Adapters\Categories\DeleteCategoryAdapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DeleteCategoryController extends Controller
+class DeleteCategoryAction extends Controller
 {
     private DeleteCategoryAdapter $adapter;
     private DeleteCategoryHandler $handler;

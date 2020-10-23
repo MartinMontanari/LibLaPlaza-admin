@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Nueva categoría')
+@section('title', 'Editar categoría')
 
 @section('content_header')
-    <h1>Crear nueva categoría</h1>
+    <h1>Editar categoría</h1>
 @stop
 
 @section('content')
@@ -11,11 +11,11 @@
         <div class="row justify-content-md-center">
             <div class="card col-6 block">
                 <div class="card-header">
-                    Complete los campos debajo
+                    Edite los campos debajo
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-                        <form id="form" action="{{route('store-category')}}" method="POST">
+                        <form id="form" action="{{route('edit-category')}}" method="POST">
                             @csrf
                             <div class="form-group-sm">
                                 <label>Nombre:</label>
@@ -48,7 +48,7 @@
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
-                        Categoría creada correctamente.
+                        Categoría editada correctamente.
                     </div>
                 </div>
             @endif
