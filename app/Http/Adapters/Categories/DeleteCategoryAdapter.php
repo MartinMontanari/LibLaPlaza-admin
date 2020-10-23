@@ -23,7 +23,7 @@ class DeleteCategoryAdapter
         if (!$validate->fails()) {
             throw new InvalidBodyException($validate->errors()->getMessages());
         } else {
-            return new DeleteCategoryCommand($request->input('id'));
+            return new DeleteCategoryCommand($request->route('id'));
         }
     }
 }
