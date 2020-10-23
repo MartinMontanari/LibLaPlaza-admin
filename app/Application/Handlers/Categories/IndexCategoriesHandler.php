@@ -31,6 +31,5 @@ class IndexCategoriesHandler
         else{
             return 'No hay categorías registradas.';
         }
-
     }
 }

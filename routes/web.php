@@ -30,6 +30,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');;
 
 //categories routes
-Route::view('/dashboard/category/new', '/admin/categories/new')->name('new_category')->middleware('auth');
-Route::post('/categories/new',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('storeCategory')->middleware('auth');
-Route::get('/categories',[\App\Http\Controllers\Categories\IndexCategoriesController::class,'__invoke'])->name('findAllCategories')->middleware('auth');
+Route::view('/dashboard/category/new', '/admin/categories/new')->name('new-category')->middleware('auth');
+Route::post('/dashboard/categories',[\App\Http\Controllers\Categories\StoreCategoryController::class,'__invoke'])->name('store-category')->middleware('auth');
+Route::get('/dashboard/categories',[\App\Http\Controllers\Categories\IndexCategoriesController::class,'__invoke'])->name('find-all-categories')->middleware('auth');
+Route::delete('/dashboard/categories/{id}', [\App\Http\Controllers\Categories\DeleteCategoryController::class,'__invoke'])->name('delete-category')->middleware('auth');
