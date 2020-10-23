@@ -11,7 +11,7 @@
         <div class="row justify-content-md-center">
             <div class="card col-6 block">
                 <div class="card-header">
-                    Complete los campos a continuación
+                    Complete los campos debajo
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
@@ -19,13 +19,13 @@
                             @csrf
                             <div class="form-group-sm">
                                 <label>Nombre:</label>
-                                <input type="text" class="form-control" name="name" min="3" max="50"
+                                <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
                                        placeholder="Nombre"
                                        value="{{old('name')}}" required><br>
                                 <label>Descripción:</label>
-                                <input type="text" class="form-control" name="description" min="15" max="250"
+                                <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                        placeholder="Descripción"
-                                       value="{{old('description')}}" required><br>
+                                          value="{{old('description')}}" required></textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
                             </div>
                         </form>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="row justify-content-md-center">
-        @if($errors->any())
+            @if($errors->any())
                 <div class="card col-6 alert alert-danger">
                     <div class="row justify-content-center">
                         <ul>

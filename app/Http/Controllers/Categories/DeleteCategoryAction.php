@@ -10,7 +10,7 @@ use App\Http\Adapters\Categories\DeleteCategoryAdapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DeleteCategoryController extends Controller
+class DeleteCategoryAction extends Controller
 {
     private DeleteCategoryAdapter $adapter;
     private DeleteCategoryHandler $handler;
@@ -34,7 +34,7 @@ class DeleteCategoryController extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect()->route('find-all-categories')->with('status','La categoría se ha eliminado correctamente.');
+            return redirect()->route('list-categories')->with('status','La categoría se ha eliminado correctamente.');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }

@@ -9,7 +9,7 @@ use App\Http\Adapters\Categories\StoreCategoryAdapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StoreCategoryController extends Controller
+class StoreCategoryAction extends Controller
 {
     private StoreCategoryAdapter $adapter;
     private StoreCategoryHandler $handler;

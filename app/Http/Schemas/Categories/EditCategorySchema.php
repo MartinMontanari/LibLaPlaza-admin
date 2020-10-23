@@ -4,22 +4,16 @@
 namespace App\Http\Schemas\Categories;
 
 
-class StoreCategorySchema
+class EditCategorySchema
 {
-    /**
-     * @return string[]
-     */
     public static function getRules()
     {
-     return [
+        return [
             'name' => 'bail|required|min:3|max:30',
             'description' => 'bail|required|min:15|max:90'
         ];
     }
 
-    /**
-     * @return string[]
-     */
     public static function getMessages()
     {
         return [
