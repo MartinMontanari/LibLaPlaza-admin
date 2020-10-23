@@ -35,7 +35,8 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::view('category/new', '/admin/categories/new')->name('new-category');
         Route::post('categories',[\App\Http\Controllers\Categories\StoreCategoryAction::class,'__invoke'])->name('store-category');
         Route::get('categories',[\App\Http\Controllers\Categories\IndexCategoriesAction::class,'__invoke'])->name('find-all-categories');
-        Route::put('categories/{id}',[])->name('edit-category');
+        Route::put('categories/{id}',[\App\Http\Controllers\Categories\EditCategoryAction::class,'__invoke'])->name('update-category');
+        Route::view('category/edit','/admin/categories/edit')->name('edit-category');
         Route::delete('categories/{id}', [\App\Http\Controllers\Categories\DeleteCategoryAction::class,'__invoke'])->name('delete-category');
     }
 );
