@@ -15,7 +15,7 @@ class CategoryRepository
         $this->category = $category;
     }
 
-    public function persist(Category $category) : void
+    public function persist(Category $category): void
     {
         $category->save();
     }
@@ -32,5 +32,13 @@ class CategoryRepository
             ->take($page)
             ->limit($size)
             ->paginate(10);
+    }
+
+    /**
+     * @param int $id
+     */
+    public function deleteOne(int $id)
+    {
+        Category::destroy($id);
     }
 }

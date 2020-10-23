@@ -25,6 +25,10 @@ class DeleteCategoryController extends Controller
         $this->handler = $handler;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function __invoke(Request $request)
     {
         try {

@@ -40,4 +40,11 @@ class Category extends Model
         $this->description = $description;
     }
 
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }
