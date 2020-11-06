@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Actions\Categories;
+namespace App\Http\Controllers\Categories;
 
 
 use App\Application\Handlers\Categories\UpdateCategoryHandler;

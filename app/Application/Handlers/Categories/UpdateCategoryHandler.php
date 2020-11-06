@@ -27,6 +27,7 @@ class UpdateCategoryHandler
     {
         $category = $this->repository->getOneByIdOrFail($command->getId());
         $category->setName($command->getName());
+
         $category->setDescription($command->getDescription());
 
         $this->repository->persist($category);

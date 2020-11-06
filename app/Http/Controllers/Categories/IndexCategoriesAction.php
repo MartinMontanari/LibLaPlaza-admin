@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Http\Actions\Categories;
+namespace App\Http\Controllers\Categories;
 
 
 use App\Application\Handlers\Categories\IndexCategoriesHandler;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\IndexCategoriesAdapter;
-use App\Http\Actions\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class IndexCategoriesAction extends Controller

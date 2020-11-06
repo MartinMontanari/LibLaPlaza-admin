@@ -41,9 +41,9 @@ class CategoryRepository
      * @param int $id
      * @return Category
      */
-    public function getOneByIdOrFail(int $id) : Category
+    public function getOneByIdOrFail(int $id): Category
     {
-        Category::query()->findOrFail($id);
+        return Category::query()->findOrFail($id);
     }
 
     /**
