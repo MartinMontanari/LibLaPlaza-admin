@@ -1,23 +1,23 @@
 <?php
 
 
-namespace App\Http\Controllers\Categories;
+namespace App\Http\Actions\Categories;
 
 
-use App\Application\Handlers\Categories\EditCategoryHandler;
+use App\Application\Handlers\Categories\UpdateCategoryHandler;
 use App\Domain\Entities\Category;
 use App\Exceptions\InvalidBodyException;
-use App\Http\Adapters\Categories\EditCategoryAdapter;
+use App\Http\Adapters\Categories\UpdateCategoryAdapter;
 use Illuminate\Http\Request;
 
-class EditCategoryAction
+class UpdateCategoryAction
 {
-    private EditCategoryHandler $handler;
-    private EditCategoryAdapter $adapter;
+    private UpdateCategoryHandler $handler;
+    private UpdateCategoryAdapter $adapter;
     public function __construct
     (
-        EditCategoryHandler $handler,
-        EditCategoryAdapter $adapter
+        UpdateCategoryHandler $handler,
+        UpdateCategoryAdapter $adapter
     )
     {
         $this->handler = $handler;

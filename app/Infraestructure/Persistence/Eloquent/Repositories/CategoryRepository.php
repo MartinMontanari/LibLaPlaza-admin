@@ -15,6 +15,9 @@ class CategoryRepository
         $this->category = $category;
     }
 
+    /**
+     * @param Category $category
+     */
     public function persist(Category $category): void
     {
         $category->save();
@@ -32,6 +35,15 @@ class CategoryRepository
             ->take($page)
             ->limit($size)
             ->paginate(10);
+    }
+
+    /**
+     * @param int $id
+     * @return Category
+     */
+    public function getOneByIdOrFail(int $id) : Category
+    {
+        Category::query()->findOrFail($id);
     }
 
     /**

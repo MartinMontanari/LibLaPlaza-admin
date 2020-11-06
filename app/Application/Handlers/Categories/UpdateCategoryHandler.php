@@ -8,7 +8,7 @@ use App\Application\Commands\Categories\EditCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
 
-class EditCategoryHandler
+class UpdateCategoryHandler
 {
     private CategoryRepository $repository;
 
@@ -25,7 +25,7 @@ class EditCategoryHandler
      */
     public function handle(EditCategoryCommand $command)
     {
-        $category = Category::query()->findOrFail($command->getId());
+        $category = $repository->getOneByIdOrFail($command->getId());
         $category->setName($command->getName());
         $category->setDescription($command->getDescription());
 

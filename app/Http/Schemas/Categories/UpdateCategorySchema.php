@@ -4,7 +4,7 @@
 namespace App\Http\Schemas\Categories;
 
 
-class EditCategorySchema
+class UpdateCategorySchema
 {
     public static function getRules()
     {

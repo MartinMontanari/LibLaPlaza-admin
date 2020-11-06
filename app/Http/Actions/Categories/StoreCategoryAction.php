@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Http\Controllers\Categories;
+namespace App\Http\Actions\Categories;
 
 use App\Application\Handlers\Categories\StoreCategoryHandler;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\StoreCategoryAdapter;
-use App\Http\Controllers\Controller;
+use App\Http\Actions\Controller;
 use Illuminate\Http\Request;
 
 class StoreCategoryAction extends Controller
