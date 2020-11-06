@@ -25,7 +25,7 @@ class UpdateCategoryHandler
      */
     public function handle(EditCategoryCommand $command)
     {
-        $category = $repository->getOneByIdOrFail($command->getId());
+        $category = $this->repository->getOneByIdOrFail($command->getId());
         $category->setName($command->getName());
         $category->setDescription($command->getDescription());
 
