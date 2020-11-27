@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Categories;
 
 use App\Application\Handlers\Categories\StoreCategoryHandler;
+use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\StoreCategoryAdapter;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,7 @@ class StoreCategoryAction extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Request $request)
     {
@@ -35,6 +36,10 @@ class StoreCategoryAction extends Controller
             $this->handler->handle($command);
             return redirect()->route('new-category')->with('status','Categoría creada correctamente.');
         } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
+        catch (AlreadyExistsException $errors)
+        {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }
