@@ -116,6 +116,25 @@ DB_USERNAME=test
 DB_PASSWORD=test
 ```
 
+1. Luego seguimos con la configuración de las variables para el correcto functionamiento del despacho de correos electrónicos desde la aplicación:
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME="mail de gmail"
+MAIL_PASSWORD="pass de gmail"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="mail de gmail"
+MAIL_FROM_NAME="TP-Final-Lab III"
+```
+- Reemplazar los campos por las credenciales de una cuenta de gmail válida.
+- También tiene que tener activado el acceso a aplicaicones poco seguras activado (si no sabe como hacerlo puede consultar la documentación oficial de google https://support.google.com/a/answer/6260879?hl=es )
+```
+MAIL_USERNAME="mail de gmail"
+MAIL_PASSWORD="pass de gmail"
+MAIL_FROM_ADDRESS="mail de gmail"
+```
 1. Entramos al `bash nginx` del Lord Commander ubicados en `TrabajoFinal-LabIII/docker/` ejecutar: `./webapp`.
 
 2. Ejecutamos dentro del bash `php artisan migrate`
