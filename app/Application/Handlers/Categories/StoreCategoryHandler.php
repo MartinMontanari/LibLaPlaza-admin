@@ -26,7 +26,7 @@ class StoreCategoryHandler
     {
 
         $category = new Category();
-        $searchedByName = $this->repository->getOneByName($command->getName());
+        $searchedByName = $this->repository->getOneByName   ($command->getName());
 
         if(isset($searchedByName))
         {

@@ -38,5 +38,9 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::put('categories/{id}',[\App\Http\Controllers\Categories\UpdateCategoryAction::class,'__invoke'])->name('update-category');
         Route::get('category/edit',[\App\Http\Controllers\Categories\UpdateCategoryAction::class,'index'])->name('edit-category');
         Route::delete('categories/{id}', [\App\Http\Controllers\Categories\DeleteCategoryAction::class,'__invoke'])->name('delete-category');
+
+        //providers routes
+        Route::view('provider/new', '/admin/providers/new')->name('new-provider');
+        Route::post('providers',[\App\Http\Controllers\Providers\StoreProviderAction::class,'__invoke'])->name('store-provider');
     }
 );

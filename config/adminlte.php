@@ -101,12 +101,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
-    'classes_auth_header' => '',
+    'classes_auth_card' => 'card-outline card-info',
+    'classes_auth_header' => 'bg-info',
     'classes_auth_body' => '',
     'classes_auth_footer' => '',
     'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_btn' => 'btn-flat btn-info',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +121,7 @@ return [
     */
 
     'classes_body' => '',
-    'classes_brand' => 'bg-white',
+    'classes_brand' => 'bg-info',
     'classes_brand_text' => '',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
@@ -238,7 +238,7 @@ return [
         ],
         ['header' => 'Menú de opciones'],
         [
-            'text' => 'Dar de alta una venta',
+            'text' => 'Registrar venta',
             'icon' => 'fas fa-cash-register',
             'url' => '#'
         ],
@@ -273,8 +273,9 @@ return [
             'icon'    => 'fas fa-truck',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Registrar nuevo',
+                    'route'  => 'new-provider',
+                    'icon' => 'fas fa-plus-circle'
                 ]
             ],
         ],
