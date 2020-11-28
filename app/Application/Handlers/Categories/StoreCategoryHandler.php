@@ -28,14 +28,15 @@ class StoreCategoryHandler
         $category = new Category();
         $searchedByName = $this->repository->getOneByeNameOrFail($command->getName());
 
+        if(isset($searchedByName))
+        {
+            throw new AlreadyExistsException(["La categoría {$searchedByName->getName()} ya existe."]);
+        }
+
         $category->setName($command->getName());
         $category->setDescription($command->getDescription());
 
         $this->repository->persist($category);
-        if(isset($searchedByName))
-        {
-            throw new AlreadyExistsException('La categoría ya existe.');
-        }
     }
 
 }

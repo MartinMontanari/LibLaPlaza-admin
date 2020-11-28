@@ -12,7 +12,7 @@ class AlreadyExistsException extends \Exception implements Throwable
     public function __construct($message = [], $code = HttpCodes::CONFLICT)
     {
         $this->messages = $message;
-        parent::__construct($message, $code);
+        parent::__construct('', $code);
     }
 
     /**
