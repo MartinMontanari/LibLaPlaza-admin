@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Providers;
 
 
 use App\Application\Handlers\Providers\StoreProviderHandler;
+use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Providers\StoreProviderAdapter;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,16 @@ class StoreProviderAction
 
     public function __invoke(Request $request)
     {
-        $this->adapter->adapt($request);
+        try
+        {
+            $command = $this->adapter->adapt($request);
+            $this->handler->handle($command);
+            return redirect()->route('new-provider')->with('status','El proveedor se ha creado correctamente.');
+        }
+        catch (InvalidBodyException $errors)
+        {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
+
     }
 }

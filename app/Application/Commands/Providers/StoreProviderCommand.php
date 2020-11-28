@@ -8,9 +8,9 @@ class StoreProviderCommand
 {
         private string $code;
         private string $name;
-        private string $description;
+        private ?string $description;
 
-        public function __construct(string $code, string $name, string $description)
+        public function __construct(string $code, string $name, ?string $description)
         {
             $this->code = $code;
             $this->name = $name;
