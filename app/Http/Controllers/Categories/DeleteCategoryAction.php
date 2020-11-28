@@ -34,7 +34,7 @@ class DeleteCategoryAction extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect()->route('list-categories')->with('status','La categoría se ha eliminado correctamente.');
+            return redirect()->route('list-categories')->with('status',"La categoría se ha eliminado correctamente.");
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }

@@ -52,7 +52,7 @@ class CategoryRepository
      * @param string $name
      * @return Category
      */
-    public function getOneByeNameOrFail(string $name) : Category
+    public function getOneByName(string $name) : ?Category
     {
         return Category::query()
             ->where('name','=',$name)
