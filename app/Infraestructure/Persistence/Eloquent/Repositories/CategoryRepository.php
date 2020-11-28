@@ -43,7 +43,20 @@ class CategoryRepository
      */
     public function getOneByIdOrFail(int $id): Category
     {
-        return Category::query()->findOrFail($id);
+        return Category::query()
+            ->where('id','=',$id)
+            ->firstOrFail();
+    }
+
+    /**
+     * @param string $name
+     * @return Category
+     */
+    public function getOneByeNameOrFail(string $name) : Category
+    {
+        return Category::query()
+            ->where('name','=',$name)
+            ->first();
     }
 
     /**
@@ -51,6 +64,8 @@ class CategoryRepository
      */
     public function deleteOne(int $id)
     {
-        Category::destroy($id);
+        Category::query()
+            ->where('id', '=', $id)
+            ->delete();
     }
 }
