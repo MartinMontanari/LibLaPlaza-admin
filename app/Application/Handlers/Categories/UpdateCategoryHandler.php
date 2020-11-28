@@ -20,6 +20,11 @@ class UpdateCategoryHandler
         $this->repository = $categoryRepository;
     }
 
+    public function index(int $id) : Category
+    {
+        return $category = $this->repository->getOneByIdOrFail($id);
+    }
+
     /**
      * @param EditCategoryCommand $command
      */
@@ -31,6 +36,5 @@ class UpdateCategoryHandler
         $category->setDescription($command->getDescription());
 
         $this->repository->persist($category);
-
     }
 }
