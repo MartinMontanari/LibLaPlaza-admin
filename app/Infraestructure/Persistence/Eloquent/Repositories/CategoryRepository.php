@@ -44,7 +44,8 @@ class CategoryRepository
     public function getOneByIdOrFail(int $id): Category
     {
         return Category::query()
-            ->findOrFail($id);
+            ->where('id','=',$id)
+            ->firstOrFail();
     }
 
     /**
@@ -54,8 +55,8 @@ class CategoryRepository
     public function getOneByeNameOrFail(string $name) : Category
     {
         return Category::query()
-            ->where('id','=',$name)
-            ->firstOrFail();
+            ->where('name','=',$name)
+            ->first();
     }
 
     /**
