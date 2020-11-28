@@ -22,7 +22,7 @@ class UpdateCategoryHandler
 
     public function index(int $id) : Category
     {
-        return $category = $this->repository->getOneByIdOrFail($id);
+        return $this->repository->getOneByIdOrFail($id);
     }
 
     /**
