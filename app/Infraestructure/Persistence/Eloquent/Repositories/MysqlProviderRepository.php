@@ -27,4 +27,17 @@ class MysqlProviderRepository implements ProviderRepository
             ->where('code', '=', $code)
             ->first();
     }
+
+    /**
+     * @param int|null $page
+     * @param int|null $size
+     * @return mixed
+     */
+    public function findAll(?int $page = 0, ?int $size = 10)
+    {
+        return Provider::query()
+            ->take($page)
+            ->limit($size)
+            ->paginate(10);
+    }
 }
