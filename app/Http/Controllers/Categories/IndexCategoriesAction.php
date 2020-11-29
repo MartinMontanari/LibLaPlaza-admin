@@ -30,6 +30,10 @@ class IndexCategoriesAction
         $this->handler = $handler;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function __invoke(Request $request)
     {
         try {

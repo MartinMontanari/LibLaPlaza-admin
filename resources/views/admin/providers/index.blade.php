@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            @if($categories->count() == 0)
+            @if($providers->count() == 0)
                 <div class="card col-6 alert alert-danger text-center">
                     No hay proveedores registrados.
                 </div>
@@ -37,10 +37,14 @@
                             <th scope="col"> {{$provider->getName()}}</th>
                             <th scope="col"> {{$provider->getDescription()}}</th>
                             <th scope="col" class="text-center">
-                                <a href="{{route('edit-category',['id' => $provider->getId()])}}"
+{{--                                <a href="{{route('edit-provider',['id' => $provider->getId()])}}"--}}
+{{--                                //TODO hacer edit--}}
+                                <a href="#"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"
-                                      action="{{route('delete-category', ['id'=>$provider->getId()]) }}">
+                                      action="#">
+{{--                                      action="{{route('delete-provider', ['id'=>$provider->getId()]) }}">--}}
+{{--                                //TODO hacer delete--}}
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
                                             onclick="return confirm('¿Está seguro que desea borrar el proveedor?');">
@@ -52,7 +56,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                {{$provider->links("pagination::bootstrap-4")}}
+                {{$providers->links("pagination::bootstrap-4")}}
             @endif
         </div>
     </div>

@@ -18,17 +18,6 @@ class MysqlProviderRepository implements ProviderRepository
     }
 
     /**
-     * @param int $code
-     * @return Provider
-     */
-    public function getOneByCode(string $code): ?Provider
-    {
-        return Provider::query()
-            ->where('code', '=', $code)
-            ->first();
-    }
-
-    /**
      * @param int|null $page
      * @param int|null $size
      * @return mixed
@@ -39,5 +28,16 @@ class MysqlProviderRepository implements ProviderRepository
             ->take($page)
             ->limit($size)
             ->paginate(10);
+    }
+
+    /**
+     * @param int $code
+     * @return Provider
+     */
+    public function getOneByCode(string $code): ?Provider
+    {
+        return Provider::query()
+            ->where('code', '=', $code)
+            ->first();
     }
 }
