@@ -19,10 +19,10 @@ interface ProviderRepository
      */
     public function getOneByCode(string $code) : ?Provider;
 
-//    /**
-//     * @param int $page
-//     * @param int $size
-//     * @return mixed
-//     */
-//    public function findAll(int $page, int $size);
+    /**
+     * @param int $page
+     * @param int $size
+     * @return mixed
+     */
+    public function findAll(int $page, int $size);
 }
