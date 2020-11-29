@@ -10,7 +10,7 @@ use App\Http\Adapters\Categories\StoreCategoryAdapter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StoreCategoryAction extends Controller
+class StoreCategoryAction
 {
     private StoreCategoryAdapter $adapter;
     private StoreCategoryHandler $handler;
@@ -34,7 +34,7 @@ class StoreCategoryAction extends Controller
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect()->route('new-category')->with('status','Categoría creada correctamente.');
+            return redirect()->route('new-category')->with('status','la categoría se ha creado correctamente.');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }

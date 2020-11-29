@@ -5,7 +5,7 @@ namespace App\Application\Handlers\Categories;
 
 
 use App\Application\Commands\Categories\DeleteCategoryCommand;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Domain\Interfaces\CategoryRepository;
 
 class DeleteCategoryHandler
 {

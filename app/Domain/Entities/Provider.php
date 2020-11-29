@@ -6,9 +6,33 @@ namespace App\Domain\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Provider extends Model
 {
-    protected $table = 'categories';
+    protected $table = 'providers';
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode(): string
+    {
+        return $this->code;
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setCode(string $code): void
+    {
+        $this->code = $code;
+    }
+
     /**
      * @return string
      */
@@ -41,11 +65,4 @@ class Category extends Model
         $this->description = $description;
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 }

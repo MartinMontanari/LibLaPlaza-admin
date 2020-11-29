@@ -6,9 +6,8 @@ namespace App\Application\Handlers\Categories;
 
 use App\Application\Commands\Categories\StoreCategoryCommand;
 use App\Domain\Entities\Category;
+use App\Domain\Interfaces\CategoryRepository;
 use App\Exceptions\AlreadyExistsException;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
-
 class StoreCategoryHandler
 {
     private CategoryRepository $repository;

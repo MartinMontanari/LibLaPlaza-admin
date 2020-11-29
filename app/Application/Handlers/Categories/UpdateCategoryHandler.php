@@ -6,7 +6,7 @@ namespace App\Application\Handlers\Categories;
 
 use App\Application\Commands\Categories\EditCategoryCommand;
 use App\Domain\Entities\Category;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Domain\Interfaces\CategoryRepository;
 
 class UpdateCategoryHandler
 {

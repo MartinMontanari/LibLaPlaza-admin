@@ -5,7 +5,7 @@ namespace App\Application\Handlers\Categories;
 
 
 use App\Application\Queries\Categories\IndexCategoryQuery;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Domain\Interfaces\CategoryRepository;
 
 class IndexCategoriesHandler
 {
