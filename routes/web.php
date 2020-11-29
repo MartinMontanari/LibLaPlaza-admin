@@ -27,7 +27,7 @@ Auth::routes();
 
 //------------------------------ ADMIN ROUTES ------------------------------
 //Home dashboard route
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');;
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');;
 
 Route::middleware('auth')->prefix('dashboard')->group(
     function(){
