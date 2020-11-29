@@ -42,9 +42,7 @@
                                 <a href="#"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"
-                                      action="#">
-{{--                                      action="{{route('delete-provider', ['id'=>$provider->getId()]) }}">--}}
-{{--                                //TODO hacer delete--}}
+                                      action="{{route('delete-provider', ['id'=>$provider->getId()]) }}">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
                                             onclick="return confirm('¿Está seguro que desea borrar el proveedor?');">

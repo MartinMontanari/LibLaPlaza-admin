@@ -21,7 +21,7 @@
                                 <label>Código:</label>
                                 <input type="text" class="form-control" name="code" min="1" max="6" maxlength="6"
                                        placeholder="Código"
-                                       value="{{old('name')}}" required><br>
+                                       value="{{old('code')}}" required><br>
                                 <label>Nombre:</label>
                                 <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
                                        placeholder="Nombre"
