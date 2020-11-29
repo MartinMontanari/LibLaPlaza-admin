@@ -19,7 +19,7 @@
                             @csrf
                             <div class="form-group-sm">
                                 <label>Código:</label>
-                                <input type="text" class="form-control" name="code" min="3" max="30" maxlength="30"
+                                <input type="text" class="form-control" name="code" min="1" max="6" maxlength="6"
                                        placeholder="Código"
                                        value="{{old('name')}}" required><br>
                                 <label>Nombre:</label>
@@ -29,7 +29,7 @@
                                 <label>Descripción:</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                           placeholder="Descripción"
-                                          value="{{old('description')}}" required></textarea><br>
+                                          value="{{old('description')}}"></textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
                             </div>
                         </form>

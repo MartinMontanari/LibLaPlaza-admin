@@ -28,7 +28,7 @@ class StoreProviderAdapter
         return new StoreProviderCommand(
             $request->input('code'),
             $request->input('name'),
-            array_key_exists('description',$request->all() ? $request->input('description') : null)
+            array_key_exists('description', $request->all()) ? $request->input('description') : null,
         );
     }
 }

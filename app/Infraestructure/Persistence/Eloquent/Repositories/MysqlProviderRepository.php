@@ -4,7 +4,16 @@
 namespace App\Infraestructure\Persistence\Eloquent\Repositories;
 
 
-class MysqlProviderRepository
+use App\Domain\Entities\Provider;
+use App\Domain\Interfaces\ProviderRepository;
+
+class MysqlProviderRepository implements ProviderRepository
 {
-    //TODO hacer toda la manganeta
+    /**
+     * @param Provider $provider
+     */
+    public function persist(Provider $provider): void
+    {
+        $provider->save();
+    }
 }
