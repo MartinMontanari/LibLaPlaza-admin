@@ -29,13 +29,16 @@ class DeleteProviderAction
         $this->adapter = $deleteProviderAdapter;
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function __invoke(Request $request)
     {
         try{
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-
+            return redirect()->route('list-providers')->with('status',"El proveedor se ha eliminado correctamente.");
         }catch (InvalidBodyException $errors)
         {
             return redirect()->back()->withErrors($errors->getMessages());

@@ -36,5 +36,5 @@ interface CategoryRepository
      * @param int $id
      * @return mixed
      */
-    public function deleteOne(int $id);
+    public function deleteOneById(int $id);
 }

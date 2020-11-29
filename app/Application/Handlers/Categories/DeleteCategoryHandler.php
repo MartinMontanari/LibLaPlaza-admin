@@ -25,6 +25,6 @@ class DeleteCategoryHandler
      */
     public function handle(DeleteCategoryCommand $command)
     {
-        $this->repository->deleteOne($command->getId());
+        $this->repository->deleteOneById($command->getId());
     }
 }

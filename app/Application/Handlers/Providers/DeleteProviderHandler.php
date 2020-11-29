@@ -25,6 +25,6 @@ class DeleteProviderHandler
 
     public function handle(DeleteProviderCommand $command)
     {
-
+        $this->repository->deleteOneById($command->getId());
     }
 }

@@ -40,4 +40,15 @@ class MysqlProviderRepository implements ProviderRepository
             ->where('code', '=', $code)
             ->first();
     }
+
+    /**
+     * @param int $id
+     */
+    public function deleteOneById(int $id) : void
+    {
+        Provider::query()
+            ->where('id','=',$id)
+            ->delete();
+    }
+
 }

@@ -25,4 +25,9 @@ interface ProviderRepository
      * @return mixed
      */
     public function findAll(int $page, int $size);
+
+    /**
+     * @param int $id
+     */
+    public function deleteOneById(int $id) : void;
 }
