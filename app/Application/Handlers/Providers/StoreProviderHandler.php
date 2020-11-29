@@ -26,9 +26,13 @@ class StoreProviderHandler
         $provider = new Provider();
 
         $searchedByCode = $this->repository->getOneByCode($command->getCode());
-        if(isset($searchedByCode))
+        if (isset($searchedByCode))
         {
-            throw new AlreadyExistsException(["El código {$searchedByCode->getCode()} ya existe. Corresponde al proveedor {$searchedByCode->getName()}. Ingrese otro."]);
+            throw new AlreadyExistsException(
+                ["El código {$searchedByCode->getCode()} ya existe.",
+                    "Corresponde al proveedor {$searchedByCode->getName()}.",
+                    "Ingrese otro."]
+            );
         }
         $provider->setCode($command->getCode());
         $provider->setName($command->getName());

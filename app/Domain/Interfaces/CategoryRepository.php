@@ -18,7 +18,7 @@ interface CategoryRepository
      * @param int|null $size
      * @return mixed
      */
-    public function findAll(?int $page = 0, ?int $size = 10);
+    public function findAll(?int $page, ?int $size);
 
     /**
      * @param int $id
