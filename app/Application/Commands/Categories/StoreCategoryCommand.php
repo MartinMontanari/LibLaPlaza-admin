@@ -9,6 +9,11 @@ class StoreCategoryCommand
     private string $name;
     private string $description;
 
+    /**
+     * StoreCategoryCommand constructor.
+     * @param string $name
+     * @param string $description
+     */
     public function __construct(string $name, string $description)
     {
         $this->name=$name;

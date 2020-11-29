@@ -11,6 +11,10 @@ class IndexCategoriesHandler
 {
     private CategoryRepository $repository;
 
+    /**
+     * IndexCategoriesHandler constructor.
+     * @param CategoryRepository $repository
+     */
     public function __construct
     (
         CategoryRepository $repository

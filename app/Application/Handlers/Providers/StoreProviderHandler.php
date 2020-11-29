@@ -13,6 +13,10 @@ class StoreProviderHandler
 {
     private ProviderRepository $repository;
 
+    /**
+     * StoreProviderHandler constructor.
+     * @param ProviderRepository $providerRepository
+     */
     public function __construct
     (
         ProviderRepository $providerRepository
@@ -21,6 +25,10 @@ class StoreProviderHandler
         $this->repository = $providerRepository;
     }
 
+    /**
+     * @param StoreProviderCommand $command
+     * @throws AlreadyExistsException
+     */
     public function handle(StoreProviderCommand $command): void
     {
         $provider = new Provider();

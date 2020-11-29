@@ -15,6 +15,11 @@ class StoreCategoryAction
     private StoreCategoryAdapter $adapter;
     private StoreCategoryHandler $handler;
 
+    /**
+     * StoreCategoryAction constructor.
+     * @param StoreCategoryAdapter $storeCategoryAdapter
+     * @param StoreCategoryHandler $storeCategoryHandler
+     */
     public function __construct
     (
         StoreCategoryAdapter $storeCategoryAdapter,

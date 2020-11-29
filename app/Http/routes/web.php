@@ -42,5 +42,6 @@ Route::middleware('auth')->prefix('dashboard')->group(
         //providers routes
         Route::view('provider/new', '/admin/providers/new')->name('new-provider');
         Route::post('providers',[\App\Http\Controllers\Providers\StoreProviderAction::class,'__invoke'])->name('store-provider');
+        Route::get('providers',[\App\Http\Controllers\Providers\IndexProvidersAction::class,'__invoke'])->name('list-providers');
     }
 );

@@ -15,6 +15,11 @@ class DeleteCategoryAction
     private DeleteCategoryAdapter $adapter;
     private DeleteCategoryHandler $handler;
 
+    /**
+     * DeleteCategoryAction constructor.
+     * @param DeleteCategoryAdapter $adapter
+     * @param DeleteCategoryHandler $handler
+     */
     public function __construct
     (
         DeleteCategoryAdapter $adapter,

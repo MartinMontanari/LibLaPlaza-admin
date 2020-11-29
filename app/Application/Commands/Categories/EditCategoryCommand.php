@@ -10,6 +10,12 @@ class EditCategoryCommand
     private string $name;
     private string $description;
 
+    /**
+     * EditCategoryCommand constructor.
+     * @param int $id
+     * @param string $name
+     * @param string $description
+     */
     public function __construct(int $id, string $name, string $description)
     {
         $this->id = $id;

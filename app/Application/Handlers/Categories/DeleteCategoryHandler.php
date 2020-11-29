@@ -11,6 +11,10 @@ class DeleteCategoryHandler
 {
     private CategoryRepository $repository;
 
+    /**
+     * DeleteCategoryHandler constructor.
+     * @param CategoryRepository $repository
+     */
     public function __construct(CategoryRepository $repository)
     {
         $this->repository = $repository;

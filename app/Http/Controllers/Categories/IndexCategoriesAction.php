@@ -15,6 +15,11 @@ class IndexCategoriesAction
     private IndexCategoriesAdapter $adapter;
     private IndexCategoriesHandler $handler;
 
+    /**
+     * IndexCategoriesAction constructor.
+     * @param IndexCategoriesAdapter $adapter
+     * @param IndexCategoriesHandler $handler
+     */
     public function __construct
     (
         IndexCategoriesAdapter $adapter,

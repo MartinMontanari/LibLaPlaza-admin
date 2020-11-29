@@ -12,6 +12,10 @@ class UpdateCategoryHandler
 {
     private CategoryRepository $repository;
 
+    /**
+     * UpdateCategoryHandler constructor.
+     * @param CategoryRepository $categoryRepository
+     */
     public function __construct
     (
         CategoryRepository $categoryRepository
@@ -20,6 +24,10 @@ class UpdateCategoryHandler
         $this->repository = $categoryRepository;
     }
 
+    /**
+     * @param int $id
+     * @return Category
+     */
     public function index(int $id) : Category
     {
         return $this->repository->getOneByIdOrFail($id);
