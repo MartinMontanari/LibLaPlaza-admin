@@ -16,4 +16,15 @@ class MysqlProviderRepository implements ProviderRepository
     {
         $provider->save();
     }
+
+    /**
+     * @param int $code
+     * @return Provider
+     */
+    public function getOneByCode(string $code): ?Provider
+    {
+        return Provider::query()
+            ->where('code', '=', $code)
+            ->first();
+    }
 }

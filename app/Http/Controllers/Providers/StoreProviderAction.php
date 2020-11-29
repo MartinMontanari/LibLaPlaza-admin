@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Providers;
 
 
 use App\Application\Handlers\Providers\StoreProviderHandler;
+use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Providers\StoreProviderAdapter;
 use Illuminate\Http\Request;
@@ -42,6 +43,9 @@ class StoreProviderAction
         {
             return redirect()->back()->withErrors($errors->getMessages());
         }
-
+        catch (AlreadyExistsException $errors)
+        {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
     }
 }

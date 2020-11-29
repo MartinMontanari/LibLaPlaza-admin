@@ -8,7 +8,6 @@ use App\Application\Commands\Categories\StoreCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Exceptions\AlreadyExistsException;
-
 class StoreCategoryHandler
 {
     private CategoryRepository $repository;
@@ -26,7 +25,7 @@ class StoreCategoryHandler
     {
 
         $category = new Category();
-        $searchedByName = $this->repository->getOneByName   ($command->getName());
+        $searchedByName = $this->repository->getOneByName($command->getName());
 
         if(isset($searchedByName))
         {
