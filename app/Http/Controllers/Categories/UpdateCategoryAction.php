@@ -14,6 +14,11 @@ class UpdateCategoryAction
     private UpdateCategoryHandler $handler;
     private UpdateCategoryAdapter $adapter;
 
+    /**
+     * UpdateCategoryAction constructor.
+     * @param UpdateCategoryHandler $handler
+     * @param UpdateCategoryAdapter $adapter
+     */
     public function __construct
     (
         UpdateCategoryHandler $handler,

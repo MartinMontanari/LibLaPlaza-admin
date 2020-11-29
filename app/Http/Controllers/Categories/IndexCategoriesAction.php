@@ -15,6 +15,11 @@ class IndexCategoriesAction
     private IndexCategoriesAdapter $adapter;
     private IndexCategoriesHandler $handler;
 
+    /**
+     * IndexCategoriesAction constructor.
+     * @param IndexCategoriesAdapter $adapter
+     * @param IndexCategoriesHandler $handler
+     */
     public function __construct
     (
         IndexCategoriesAdapter $adapter,
@@ -25,6 +30,10 @@ class IndexCategoriesAction
         $this->handler = $handler;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function __invoke(Request $request)
     {
         try {

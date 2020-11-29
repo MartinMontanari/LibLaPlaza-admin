@@ -12,6 +12,10 @@ class StoreCategoryHandler
 {
     private CategoryRepository $repository;
 
+    /**
+     * StoreCategoryHandler constructor.
+     * @param CategoryRepository $repository
+     */
     public function __construct(CategoryRepository $repository)
     {
         $this->repository = $repository;

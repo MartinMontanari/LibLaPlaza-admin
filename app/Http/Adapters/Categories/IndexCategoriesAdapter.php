@@ -17,7 +17,7 @@ class IndexCategoriesAdapter
      * @return IndexCategoryQuery
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request) : IndexCategoryQuery
+    public function adapt(Request $request): IndexCategoryQuery
     {
         $validate = Validator::make($request->all(), IndexCategoriesSchema::getRules());
 
@@ -26,8 +26,8 @@ class IndexCategoriesAdapter
         } else {
             return new IndexCategoryQuery
             (
-              $request->input('page'),
-              $request->input('size')
+                $request->input('page'),
+                $request->input('size')
             );
         }
     }

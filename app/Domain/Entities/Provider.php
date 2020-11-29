@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Provider extends Model
 {
     protected $table = 'providers';
+
     /**
      * @return int
      */
@@ -50,17 +51,17 @@ class Provider extends Model
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }

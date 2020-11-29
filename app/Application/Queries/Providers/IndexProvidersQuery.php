@@ -1,16 +1,16 @@
 <?php
 
 
-namespace App\Application\Queries\Categories;
+namespace App\Application\Queries\Providers;
 
 
-class IndexCategoryQuery
+class IndexProvidersQuery
 {
     private ?int $page;
     private ?int $size;
 
     /**
-     * IndexCategoryQuery constructor.
+     * IndexProvidersQuery constructor.
      * @param int|null $page
      * @param int|null $size
      */

@@ -276,7 +276,12 @@ return [
                     'text' => 'Registrar nuevo',
                     'route'  => 'new-provider',
                     'icon' => 'fas fa-plus-circle'
-                ]
+                ],
+                [
+                    'text' => 'Ver todos',
+                    'route'  => 'list-providers',
+                    'icon' => 'fas fa-bars'
+                ],
             ],
         ],
         [
