@@ -36,6 +36,7 @@ class DeleteProviderAction
     public function __invoke(Request $request)
     {
         try{
+            //TODO ver por que no elimina. Algo se parte.
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
             return redirect()->route('list-providers')->with('status',"El proveedor se ha eliminado correctamente.");
