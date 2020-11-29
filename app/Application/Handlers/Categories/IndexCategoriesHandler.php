@@ -5,15 +5,15 @@ namespace App\Application\Handlers\Categories;
 
 
 use App\Application\Queries\Categories\IndexCategoryQuery;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
 
 class IndexCategoriesHandler
 {
-    private CategoryRepository $repository;
+    private MysqlCategoryRepository $repository;
 
     public function __construct
     (
-        CategoryRepository $repository
+        MysqlCategoryRepository $repository
     )
     {
         $this->repository = $repository;

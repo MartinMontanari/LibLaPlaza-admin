@@ -4,7 +4,7 @@
 namespace App\Infraestructure\Persistence\Eloquent\Repositories;
 
 
-class EloquentProviderRepository
+class MysqlProviderRepository
 {
     //TODO hacer toda la manganeta
 }

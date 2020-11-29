@@ -7,13 +7,13 @@ namespace App\Application\Handlers\Categories;
 use App\Application\Commands\Categories\StoreCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Exceptions\AlreadyExistsException;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
 
 class StoreCategoryHandler
 {
-    private CategoryRepository $repository;
+    private MysqlCategoryRepository $repository;
 
-    public function __construct(CategoryRepository $repository)
+    public function __construct(MysqlCategoryRepository $repository)
     {
         $this->repository = $repository;
     }

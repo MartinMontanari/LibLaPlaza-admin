@@ -5,13 +5,13 @@ namespace App\Application\Handlers\Categories;
 
 
 use App\Application\Commands\Categories\DeleteCategoryCommand;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
 
 class DeleteCategoryHandler
 {
-    private CategoryRepository $repository;
+    private MysqlCategoryRepository $repository;
 
-    public function __construct(CategoryRepository $repository)
+    public function __construct(MysqlCategoryRepository $repository)
     {
         $this->repository = $repository;
     }

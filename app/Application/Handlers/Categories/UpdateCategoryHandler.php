@@ -6,15 +6,15 @@ namespace App\Application\Handlers\Categories;
 
 use App\Application\Commands\Categories\EditCategoryCommand;
 use App\Domain\Entities\Category;
-use App\Infraestructure\Persistence\Eloquent\Repositories\CategoryRepository;
+use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
 
 class UpdateCategoryHandler
 {
-    private CategoryRepository $repository;
+    private MysqlCategoryRepository $repository;
 
     public function __construct
     (
-        CategoryRepository $categoryRepository
+        MysqlCategoryRepository $categoryRepository
     )
     {
         $this->repository = $categoryRepository;

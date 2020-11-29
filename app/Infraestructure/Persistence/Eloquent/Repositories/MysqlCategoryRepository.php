@@ -6,7 +6,7 @@ namespace App\Infraestructure\Persistence\Eloquent\Repositories;
 
 use App\Domain\Entities\Category;
 
-class CategoryRepository
+class MysqlCategoryRepository
 {
     private Category $category;
 
