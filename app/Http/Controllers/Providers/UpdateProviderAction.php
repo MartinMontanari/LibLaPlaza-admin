@@ -30,6 +30,7 @@ class UpdateProviderAction
         $this->adapter = $providerAdapter;
     }
 
+
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

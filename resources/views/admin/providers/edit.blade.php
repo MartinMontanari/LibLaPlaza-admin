@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <div class="form-group-sm">
                         <form id="form" action="{{route('update-provider',['id'=>$provider->getId()])}}" method="POST">
-                            @csrf
+                            @csrf @method('PUT')
                             <div class="form-group-sm">
                                 <label>Código:</label>
                                 <input type="text" class="form-control" name="code" min="1" max="6" maxlength="6"
@@ -28,11 +28,11 @@
                                        value="{{$provider->getName()}}" required><br>
                                 <label>Descripción:</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
-                                          placeholder="Descripción"
-                                          value="{{$provider->getDescription()}}"></textarea><br>
-                                <input type="submit" class="btn btn-primary btn-block" value="Guardar">
+                                          placeholder="Descripción">{{$provider->getDescription()}}</textarea><br>
+                                <input type="submit" data-toggle="modal" data-target="#success"
+                                       class="btn btn-primary btn-block" value="Guardar cambios">
                             </div>
-                        </form></form>
+                        </form>
                     </div>
                 </div>
             </div>

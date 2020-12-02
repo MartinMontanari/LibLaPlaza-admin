@@ -41,7 +41,7 @@
                                       action="{{route('delete-category', ['id'=>$category->getId()]) }}">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
-                                            onclick="return confirm('¿Está seguro que desea borrar la categoría?');">
+                                            onclick="return confirm('¿Está seguro que desea borrar la categoría {{$category->getName()}}?');">
                                         Eliminar
                                     </button>
                                 </form>
