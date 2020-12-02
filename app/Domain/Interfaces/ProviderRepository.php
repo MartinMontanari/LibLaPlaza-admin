@@ -30,4 +30,10 @@ interface ProviderRepository
      * @param int $id
      */
     public function deleteOneById(int $id) : void;
+
+    /**
+     * @param int $id
+     * @return Provider
+     */
+    public function getOneByIdOrFail(int $id) : Provider;
 }
