@@ -21,7 +21,7 @@ class DeleteProviderAdapter
     {
         $validate = Validator::make([$request->route('id')],DeleteProviderSchema::getRules(),DeleteProviderSchema::getMessages());
 
-        if($validate->fails())
+        if(!$validate->fails())
         {
             throw new InvalidBodyException($validate->errors()->getMessages());
         }
