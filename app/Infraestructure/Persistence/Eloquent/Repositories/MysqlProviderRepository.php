@@ -57,7 +57,7 @@ class MysqlProviderRepository implements ProviderRepository
      */
     public function getOneByIdOrFail(int $id): Provider
     {
-        Provider::query()
+       return Provider::query()
             ->where('id', '=', $id)
             ->firstOrFail();
     }
