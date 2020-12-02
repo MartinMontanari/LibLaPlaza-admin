@@ -63,7 +63,7 @@ class MysqlCategoryRepository implements CategoryRepository
     /**
      * @param int $id
      */
-    public function deleteOne(int $id)
+    public function deleteOneById(int $id)
     {
         Category::query()
             ->where('id', '=', $id)
