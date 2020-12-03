@@ -30,7 +30,10 @@ class StoreProviderAction
         $this->adapter = $storeProviderAdapter;
     }
 
-
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function __invoke(Request $request)
     {
         try

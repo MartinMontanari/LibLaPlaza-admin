@@ -4,7 +4,7 @@
 namespace App\Application\Handlers\Categories;
 
 
-use App\Application\Commands\Categories\EditCategoryCommand;
+use App\Application\Commands\Categories\UpdateCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Domain\Interfaces\CategoryRepository;
 
@@ -34,9 +34,9 @@ class UpdateCategoryHandler
     }
 
     /**
-     * @param EditCategoryCommand $command
+     * @param UpdateCategoryCommand $command
      */
-    public function handle(EditCategoryCommand $command)
+    public function handle(UpdateCategoryCommand $command)
     {
         $category = $this->repository->getOneByIdOrFail($command->getId());
         $category->setName($command->getName());

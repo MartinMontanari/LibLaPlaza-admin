@@ -4,7 +4,7 @@
 namespace App\Http\Adapters\Categories;
 
 
-use App\Application\Commands\Categories\EditCategoryCommand;
+use App\Application\Commands\Categories\UpdateCategoryCommand;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Schemas\Categories\UpdateCategorySchema;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class UpdateCategoryAdapter
         if($validate->fails()){
             throw new InvalidBodyException($validate->errors()->getMessages());
         } else{
-            return new EditCategoryCommand(
+            return new UpdateCategoryCommand(
                 $request->route('id'),
                 $request->input('name'),
                 $request->input('description')

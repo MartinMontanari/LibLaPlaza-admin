@@ -4,23 +4,34 @@
 namespace App\Application\Commands\Providers;
 
 
-class StoreProviderCommand
+class UpdateProviderCommand
 {
+    private int $id;
     private string $code;
     private string $name;
     private ?string $description;
 
     /**
-     * StoreProviderCommand constructor.
+     * UpdateProviderCommand constructor.
+     * @param int $id
      * @param string $code
      * @param string $name
      * @param string|null $description
      */
-    public function __construct(string $code, string $name, ?string $description)
+    public function __construct(int $id, string $code, string $name, ?string $description)
     {
+        $this->id = $id;
         $this->code = $code;
         $this->name = $name;
         $this->description = $description;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     /**
@@ -40,7 +51,7 @@ class StoreProviderCommand
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDescription(): ?string
     {

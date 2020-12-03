@@ -51,4 +51,14 @@ class MysqlProviderRepository implements ProviderRepository
             ->delete();
     }
 
+    /**
+     * @param int $id
+     * @return Provider
+     */
+    public function getOneByIdOrFail(int $id): Provider
+    {
+       return Provider::query()
+            ->where('id', '=', $id)
+            ->firstOrFail();
+    }
 }

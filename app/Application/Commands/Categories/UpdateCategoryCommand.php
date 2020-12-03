@@ -4,14 +4,14 @@
 namespace App\Application\Commands\Categories;
 
 
-class EditCategoryCommand
+class UpdateCategoryCommand
 {
     private int $id;
     private string $name;
     private string $description;
 
     /**
-     * EditCategoryCommand constructor.
+     * UpdateCategoryCommand constructor.
      * @param int $id
      * @param string $name
      * @param string $description
