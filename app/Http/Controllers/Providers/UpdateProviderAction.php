@@ -51,7 +51,7 @@ class UpdateProviderAction
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect()->route("edit-provider")->with('status','Los datos del proveedor ha sido editado correctamente.');
+            return redirect()->back()->with('status','Los datos del proveedor ha sido editado correctamente.');
         }
         catch (InvalidBodyException $errors)
         {

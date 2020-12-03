@@ -52,7 +52,7 @@
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
-                        Categoría editada correctamente.
+                        Los datos del proveedor ha sido editado correctamente.
                     </div>
                 </div>
             @endif
