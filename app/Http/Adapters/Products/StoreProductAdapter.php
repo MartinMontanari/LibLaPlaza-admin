@@ -14,6 +14,7 @@ class StoreProductAdapter
 {
     /**
      * @param Request $request
+     * @return StoreProductCommand
      * @throws InvalidBodyException
      */
     public function adapt(Request $request)
@@ -26,7 +27,12 @@ class StoreProductAdapter
 
         return new StoreProductCommand
         (
-
+            $request->input('code'),
+            $request->input('name'),
+            array_key_exists('description', $request->all()) ? $request->input('description') : null,
+            $request->input('price'),
+            $request->input('provider_id'),
+            $request->input('category_id'),
         );
     }
 }
