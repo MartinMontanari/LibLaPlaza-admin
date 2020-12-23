@@ -46,5 +46,9 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::put('providers/{id}',[\App\Http\Controllers\Providers\UpdateProviderAction::class,'__invoke'])->name('update-provider');
         Route::get('provider/edit',[\App\Http\Controllers\Providers\UpdateProviderAction::class,'index'])->name('edit-provider');
         Route::delete('providers/{id}',[\App\Http\Controllers\Providers\DeleteProviderAction::class,'__invoke'])->name('delete-provider');
+
+        //products routes
+        Route::view('products/new', 'admin/products/new')->name('new-product');
+
     }
 );
