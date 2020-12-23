@@ -9,4 +9,5 @@
 
 @section('content')
     <h1>// 404 form not found //</h1>
+{{--    //TODO hacer formulario y terminar vista, integrar endpoint --}}
 @stop
