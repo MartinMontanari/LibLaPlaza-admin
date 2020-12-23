@@ -49,6 +49,6 @@ Route::middleware('auth')->prefix('dashboard')->group(
 
         //products routes
         Route::view('products/new', 'admin/products/new')->name('new-product');
-
+        Route::post('products',[SotreProductAction::class,'__invoke'])->name('store-product');
     }
 );
