@@ -86,35 +86,45 @@ class Product extends Model
     }
 
     /**
-     * @return int
+     * @return Provider
      */
-    public function getProviderId(): int
+    public function getProvider() : Provider
     {
-        return $this->providerId;
+        return $this->provider;
     }
 
     /**
-     * @param int $providerId
+     * @param int $provider_id
      */
-    public function setProviderId(int $providerId): void
+    public function setProviderId(int $provider_id): void
     {
-        $this->providerId = $providerId;
+        $this->provider_id = $provider_id;
     }
 
     /**
-     * @return int
+     * @return Category
      */
-    public function getCategoryId(): int
+    public function getCategory(): Category
     {
-        return $this->categoryId;
+        return $this->category;
     }
 
     /**
-     * @param int $categoryId
+     * @param int $category_id
      */
-    public function setCategoryId(int $categoryId): void
+    public function setCategoryId(int $category_id): void
     {
-        $this->categoryId = $categoryId;
+        $this->category_id = $category_id;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
     }
 
 }

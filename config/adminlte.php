@@ -247,8 +247,9 @@ return [
             'icon'    => 'fas fa-boxes',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Cargar nuevo',
+                    'route'  => 'new-product',
+                    'icon' => 'fas fa-plus-circle'
                 ]
             ],
         ],
@@ -257,7 +258,7 @@ return [
             'icon'    => 'fas fa-tags',
             'submenu' => [
                 [
-                    'text' => 'Crear nueva',
+                    'text' => 'Cargar nueva',
                     'route'  => 'new-category',
                     'icon' => 'fas fa-plus-circle'
                 ],

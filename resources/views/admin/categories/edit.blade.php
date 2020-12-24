@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar categoría')
+@section('title', 'Actualizar categoría')
 
 @section('content_header')
-    <h1>Editar categoría</h1>
+    <h1>Actualizar categoría</h1>
 @stop
 
 @section('content')
@@ -50,7 +50,7 @@
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
-                        Categoría editada correctamente.
+                        Los datos de la categoría se han actualizado correctamente.
                     </div>
                 </div>
             @endif

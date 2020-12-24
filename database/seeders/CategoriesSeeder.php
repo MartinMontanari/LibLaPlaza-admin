@@ -15,7 +15,7 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
+//        DB::table('categories')->truncate();
 
         DB::table('categories')->insert([
             'name'=> 'Escolar notebooks',

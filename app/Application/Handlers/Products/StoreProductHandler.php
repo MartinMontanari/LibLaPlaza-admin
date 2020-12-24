@@ -5,6 +5,7 @@ namespace App\Application\Handlers\Products;
 
 
 use App\Application\Commands\Products\StoreProductCommand;
+use App\Application\Services\StockService;
 use App\Domain\Entities\Product;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
@@ -16,25 +17,33 @@ class StoreProductHandler
     private ProductRepository $productRepository;
     private CategoryRepository $categoryRepository;
     private ProviderRepository $providerRepository;
+    private StockService $stockService;
 
     /**
      * StoreProductHandler constructor.
      * @param ProductRepository $productRepository
      * @param CategoryRepository $categoryRepository
      * @param ProviderRepository $providerRepository
+     * @param StockService $stockService
      */
     public function __construct
     (
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
-        ProviderRepository $providerRepository
+        ProviderRepository $providerRepository,
+        StockService $stockService
     )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->providerRepository = $providerRepository;
+        $this->stockService = $stockService;
     }
 
+    /**
+     * @param StoreProductCommand $command
+     * @return bool
+     */
     public function handle(StoreProductCommand $command)
     {
         $product = new Product();
@@ -46,6 +55,19 @@ class StoreProductHandler
         $product->setCategoryId($command->getCategoryId());
         $product->setProviderId($command->getProviderId());
 
-        //TODO hacer la parte de stock
+        $this->productRepository->persist($product);
+
+        $this->stockService->start($product->getId());
+    }
+
+    /**
+     * @return array
+     */
+    public function viewData() : array
+    {
+        $providers = $this->providerRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
+
+        return [$providers, $categories];
     }
 }

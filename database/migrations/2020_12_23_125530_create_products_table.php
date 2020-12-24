@@ -18,16 +18,16 @@ class CreateProductsTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->bigInteger('price');
-            $table->integer('provider_id');
-            $table->integer('category_id');
+            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('provider_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
         });
 
-//        Schema::table('products', function (Blueprint $table) {
-//            $table->foreign('provider_id')->references('id')->on('providers');
-//            $table->foreign('category_id')->references('id')->on('categories');
-//        });
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+        });
     }
 
     /**

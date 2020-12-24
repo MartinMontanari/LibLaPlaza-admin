@@ -7,7 +7,7 @@ namespace App\Application\Commands\Products;
 class StoreProductCommand
 {
 
-    private int $code;
+    private string $code;
     private string $name;
     private ?string $description;
     private int $price;
@@ -16,14 +16,14 @@ class StoreProductCommand
 
     /**
      * StoreProductCommand constructor.
-     * @param int $code
+     * @param string $code
      * @param string $name
      * @param string|null $description
      * @param int $price
      * @param int $providerId
      * @param int $categoryId
      */
-    public function __construct(int $code, string $name, ?string $description, int $price, int $providerId, int $categoryId)
+    public function __construct(string $code, string $name, ?string $description, int $price, int $providerId, int $categoryId)
     {
         $this->code = $code;
         $this->name = $name;
@@ -33,11 +33,10 @@ class StoreProductCommand
         $this->categoryId = $categoryId;
     }
 
-
     /**
-     * @return int
+     * @return string
      */
-    public function getCode(): int
+    public function getCode(): string
     {
         return $this->code;
     }

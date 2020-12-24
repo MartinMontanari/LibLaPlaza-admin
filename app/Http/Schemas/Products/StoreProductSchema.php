@@ -13,7 +13,7 @@ class StoreProductSchema
     {
         return [
             'code' => 'bail|required|min:6|max:30',
-            'name' => 'bail|required|min:15|max:90',
+            'name' => 'bail|required|min:15|max:45',
             'description' => 'bail|min:15|max:90',
             'price' => 'bail|required|numeric|min:1',
             'provider_id' => 'bail|required|numeric|min:1',
@@ -33,6 +33,7 @@ class StoreProductSchema
             'name.required' => 'Debe ingresar el nombre del producto',
             'name.min' => 'El nombre de producto ingresado es demasiado corto.',
             'name.max' => 'El nombre de producto ingresado es demasiado largo.',
+            //TODO description messages
             'price.required' => 'Debe ingresar el precio del producto.',
             'price.numeric' => 'El precio ingresado es incorrecto.',
             'price.min' => 'El precio ingresado es incorrecto.',

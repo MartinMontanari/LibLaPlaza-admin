@@ -15,13 +15,14 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('quantity');
-            $table->integer('product_id');
+            $table->unsignedBigInteger('quantity')->default(0);
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
         });
-//        Schema::table('stocks', function (Blueprint $table) {
-//            $table->foreign('product_id')->references('id')->on('products');
-//        }
+
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->foreign('product_id')->references('id')->on('products');
+        });
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('title', 'Nuevo proveedor')
 
 @section('content_header')
-    <h1>Crear nuevo proveedor</h1>
+    <h1>Registrar nuevo proveedor</h1>
 @stop
 
 @section('content')
@@ -52,7 +52,7 @@
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
-                        Proveedor creado correctamente.
+                        Proveedor registrado correctamente.
                     </div>
                 </div>
             @endif

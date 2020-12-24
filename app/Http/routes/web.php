@@ -48,7 +48,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::delete('providers/{id}',[\App\Http\Controllers\Providers\DeleteProviderAction::class,'__invoke'])->name('delete-provider');
 
         //products routes
-        Route::view('products/new', 'admin/products/new')->name('new-product');
-        Route::post('products',[SotreProductAction::class,'__invoke'])->name('store-product');
+        Route::get('products/new', [\App\Http\Controllers\Products\StoreProductAction::class,'view'])->name('new-product');
+        Route::post('products',[\App\Http\Controllers\Products\StoreProductAction::class,'__invoke'])->name('store-product');
     }
 );
