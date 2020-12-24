@@ -33,7 +33,8 @@ class StoreProductSchema
             'name.required' => 'Debe ingresar el nombre del producto',
             'name.min' => 'El nombre de producto ingresado es demasiado corto.',
             'name.max' => 'El nombre de producto ingresado es demasiado largo.',
-            //TODO description messages
+            'description.min' => 'La descripción ingresada es demasiado corta.',
+            'description.max' => 'La descripción ingresada es demasiado larga.',
             'price.required' => 'Debe ingresar el precio del producto.',
             'price.numeric' => 'El precio ingresado es incorrecto.',
             'price.min' => 'El precio ingresado es incorrecto.',
