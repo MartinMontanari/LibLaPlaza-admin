@@ -11,19 +11,19 @@ class Stock extends Model
     protected $table = 'stocks';
 
     /**
-     * @return int
+     * @return Product
      */
-    public function getProductId(): int
+    public function getProductId(): Product
     {
-        return $this->productId;
+        return $this->product;
     }
 
     /**
-     * @param int $productId
+     * @param int $product_id
      */
-    public function setProductId(int $productId): void
+    public function setProductId(int $product_id): void
     {
-        $this->productId = $productId;
+        $this->productId = $product_id;
     }
 
     /**
@@ -50,6 +50,9 @@ class Stock extends Model
         $this->quantity = $quantity;
     }
 
-
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
 }
