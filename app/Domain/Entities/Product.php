@@ -86,11 +86,11 @@ class Product extends Model
     }
 
     /**
-     * @return int
+     * @return Provider
      */
-    public function getProviderId(): int
+    public function getProvider() : Provider
     {
-        return $this->provider_id;
+        return $this->provider;
     }
 
     /**
@@ -102,11 +102,11 @@ class Product extends Model
     }
 
     /**
-     * @return int
+     * @return Category
      */
-    public function getCategoryId(): int
+    public function getCategory(): Category
     {
-        return $this->category_id;
+        return $this->category;
     }
 
     /**
@@ -115,6 +115,16 @@ class Product extends Model
     public function setCategoryId(int $category_id): void
     {
         $this->category_id = $category_id;
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
     }
 
 }
