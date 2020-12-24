@@ -50,7 +50,7 @@ class StoreProductHandler
         $product->setCategoryId($command->getCategoryId());
         $product->setProviderId($command->getProviderId());
 
-        dd($this->productRepository->persist($product));
+        $this->productRepository->persist($product);
 
         return true;
         //TODO hacer la parte de stock

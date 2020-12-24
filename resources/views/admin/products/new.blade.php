@@ -18,7 +18,7 @@
                     <div class="form-group-sm">
                         <form id="form" action="{{route('store-product')}}" method="POST">
                             @csrf
-                            <div class="form-group-sm">
+                            <div class="form-group-lg">
                                 <label>Código:</label>
                                 <input type="text" class="form-control" name="code" min="6" max="30" maxlength="30"
                                        placeholder="Código"
@@ -32,21 +32,30 @@
                                           maxlength="90"
                                           placeholder="Descripción"
                                           value="{{old('description')}}"></textarea><br>
-                                <label>Precio en $ (pesos):</label>
-                                <div class="container-sm d-inline-block">
+                                <div class="container-sm row justify-content-start d-inline-block">
                                     <div class="row justify-content-start">
+                                        <label class="col-4">Precio en $ (pesos):</label>
                                         <p class="col-1"><strong>$</strong></p>
-                                        <input type="number" class="form-control col-6" name="price" min="1"
+                                        <input type="number" step="any" class="form-control col-5" name="price" min="1"
                                                placeholder="Precio"
                                                value="{{old('price')}}" required>
                                     </div>
                                 </div>
-                                <br>
-                                <label>Proveedor:
+                                <br>                   <label>Proveedor:
                                     <select class="form-control select2-blue" name="provider_id">
                                         <option value="">Asignar proveedor...</option>
                                         @foreach($providers as $provider)
-                                            <option value="{{ $provider->getId() }}">{{$provider->getName()}}</option>
+                                            <option
+                                                value="{{ $provider->getId() }}">{{$provider->getName()}}</option>
+                                        @endforeach
+                                    </select>
+                                </label>
+                                <label>Categoría:
+                                    <select class="form-control select2-blue" name="provider_id">
+                                        <option value="">Asignar categoría...</option>
+                                        @foreach($categories as $category)
+                                            <option
+                                                value="{{ $category->getId() }}">{{$category->getName()}}</option>
                                         @endforeach
                                     </select>
                                 </label>
@@ -70,7 +79,7 @@
             {{--                </div>--}}
             {{--            </div>--}}
             {{--        @endif--}}
-            @if(session('status')=== 'success')
+            @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
                         Producto cargado correctamente.
@@ -78,5 +87,4 @@
                 </div>
             @endif
         </div>
-    {{--    //TODO hacer formulario y terminar vista, integrar endpoint --}}
 @stop
