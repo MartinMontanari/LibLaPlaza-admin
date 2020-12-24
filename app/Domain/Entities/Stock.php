@@ -23,7 +23,7 @@ class Stock extends Model
      */
     public function setProductId(int $product_id): void
     {
-        $this->productId = $product_id;
+        $this->product_id = $product_id;
     }
 
     /**

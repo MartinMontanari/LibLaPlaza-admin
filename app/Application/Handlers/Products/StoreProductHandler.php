@@ -5,6 +5,7 @@ namespace App\Application\Handlers\Products;
 
 
 use App\Application\Commands\Products\StoreProductCommand;
+use App\Application\Services\StockService;
 use App\Domain\Entities\Product;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
@@ -16,23 +17,27 @@ class StoreProductHandler
     private ProductRepository $productRepository;
     private CategoryRepository $categoryRepository;
     private ProviderRepository $providerRepository;
+    private StockService $stockService;
 
     /**
      * StoreProductHandler constructor.
      * @param ProductRepository $productRepository
      * @param CategoryRepository $categoryRepository
      * @param ProviderRepository $providerRepository
+     * @param StockService $stockService
      */
     public function __construct
     (
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
-        ProviderRepository $providerRepository
+        ProviderRepository $providerRepository,
+        StockService $stockService
     )
     {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->providerRepository = $providerRepository;
+        $this->stockService = $stockService;
     }
 
     /**
@@ -52,7 +57,7 @@ class StoreProductHandler
 
         $this->productRepository->persist($product);
 
-        //TODO hacer la parte de stock
+        $this->stockService->start($product->getId());
     }
 
     /**
