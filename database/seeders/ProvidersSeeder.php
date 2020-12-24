@@ -14,7 +14,7 @@ class ProvidersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('providers')->truncate();
+//        DB::table('providers')->truncate();
 
         DB::table('providers')->insert([
             'code' => 'ONCE11',

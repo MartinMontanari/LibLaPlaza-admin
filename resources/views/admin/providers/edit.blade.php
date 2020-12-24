@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Editar Proveedor')
+@section('title', 'Actualizar Proveedor')
 
 @section('content_header')
-    <h1>Editar proveedor</h1>
+    <h1>Actualizar proveedor</h1>
 @stop
 
 @section('content')
@@ -52,7 +52,7 @@
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
-                        Los datos del proveedor ha sido editado correctamente.
+                        Los datos del proveedor se han actualizado correctamente.
                     </div>
                 </div>
             @endif
