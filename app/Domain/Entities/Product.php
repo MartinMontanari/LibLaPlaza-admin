@@ -90,15 +90,15 @@ class Product extends Model
      */
     public function getProviderId(): int
     {
-        return $this->providerId;
+        return $this->provider_id;
     }
 
     /**
-     * @param int $providerId
+     * @param int $provider_id
      */
-    public function setProviderId(int $providerId): void
+    public function setProviderId(int $provider_id): void
     {
-        $this->providerId = $providerId;
+        $this->provider_id = $provider_id;
     }
 
     /**
@@ -106,15 +106,15 @@ class Product extends Model
      */
     public function getCategoryId(): int
     {
-        return $this->categoryId;
+        return $this->category_id;
     }
 
     /**
-     * @param int $categoryId
+     * @param int $category_id
      */
-    public function setCategoryId(int $categoryId): void
+    public function setCategoryId(int $category_id): void
     {
-        $this->categoryId = $categoryId;
+        $this->category_id = $category_id;
     }
 
 }

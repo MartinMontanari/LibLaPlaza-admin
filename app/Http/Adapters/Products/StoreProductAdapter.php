@@ -30,7 +30,7 @@ class StoreProductAdapter
             $request->input('code'),
             $request->input('name'),
             array_key_exists('description', $request->all()) ? $request->input('description') : null,
-            $request->input('price'),
+            (float)$request->input('price') * 100,
             $request->input('provider_id'),
             $request->input('category_id'),
         );

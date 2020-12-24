@@ -37,7 +37,6 @@ class StoreProductAction
     {
         try {
             $command = $this->adapter->adapt($request);
-            dd($command);
             $this->handler->handle($command);
             return redirect()->route('new-product')->with('status', 'success');
         } catch (InvalidBodyException $errors) {
