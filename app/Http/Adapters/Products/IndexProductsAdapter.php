@@ -6,7 +6,7 @@ namespace App\Http\Adapters\Products;
 
 use App\Application\Queries\Products\IndexProductsQuery;
 use App\Exceptions\InvalidBodyException;
-use App\Http\Schemas\Common\IdSchema;
+use App\Http\Schemas\Products\IndexProductSchema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -19,10 +19,10 @@ class IndexProductsAdapter
      */
     public function adapt(Request $request)
     {
-        $validate = Validator::make($request->all(), IdSchema::getRules());
+        $validate = Validator::make($request->all(), IndexProductSchema::getRules());
 
         if ($validate->fails()) {
-            throw new InvalidBodyException('Ocurrió un error.');
+            throw new InvalidBodyException(['Ocurrió un error.']);
         }
 
         return new IndexProductsQuery

@@ -32,4 +32,6 @@ class StockService
 
         $this->stockRepository->persist($stock);
     }
+
+
 }

@@ -50,6 +50,6 @@ Route::middleware('auth')->prefix('dashboard')->group(
         //products routes
         Route::get('products/new', [\App\Http\Controllers\Products\StoreProductAction::class, 'view'])->name('new-product');
         Route::post('products', [\App\Http\Controllers\Products\StoreProductAction::class, '__invoke'])->name('store-product');
-        Route::get('products', [IndexProductsAction::class, '__invoke'])->name('list-products');
+        Route::get('products', [\App\Http\Controllers\Products\IndexProductsAction::class, '__invoke'])->name('list-products');
     }
 );

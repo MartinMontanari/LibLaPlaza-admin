@@ -250,6 +250,11 @@ return [
                     'text' => 'Cargar nuevo',
                     'route'  => 'new-product',
                     'icon' => 'fas fa-plus-circle'
+                ],
+                [
+                    'text' => 'Ver todos',
+                    'route'  => 'list-products',
+                    'icon' => 'fas fa-bars'
                 ]
             ],
         ],
