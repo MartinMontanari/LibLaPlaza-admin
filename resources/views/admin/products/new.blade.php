@@ -66,7 +66,6 @@
                 </div>
             </div>
         </div>
-        <h6>// FORM DIV FROM STATUS FORN CHECK //</h6>
         <div class="row justify-content-md-center">
                     @if($errors->any())
                         <div class="card col-6 alert alert-danger">
