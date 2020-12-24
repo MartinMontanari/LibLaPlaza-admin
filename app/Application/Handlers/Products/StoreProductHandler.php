@@ -35,7 +35,11 @@ class StoreProductHandler
         $this->providerRepository = $providerRepository;
     }
 
-    public function handle(StoreProductCommand $command)
+    /**
+     * @param StoreProductCommand $command
+     * @return bool
+     */
+    public function handle(StoreProductCommand $command) : bool
     {
         $product = new Product();
         $product->setCode($command->getCode());
@@ -46,6 +50,20 @@ class StoreProductHandler
         $product->setCategoryId($command->getCategoryId());
         $product->setProviderId($command->getProviderId());
 
+        dd($this->productRepository->persist($product));
+
+        return true;
         //TODO hacer la parte de stock
+    }
+
+    /**
+     * @return array
+     */
+    public function viewData() : array
+    {
+        $providers = $this->providerRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
+
+        return [$providers, $categories];
     }
 }
