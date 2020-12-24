@@ -16,4 +16,17 @@ class MysqlProductRepository implements ProductRepository
     {
         $product->save();
     }
+
+    /**
+     * @param int|null $page
+     * @param int|null $size
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
+     */
+    public function getAll(?int $page, ?int $size)
+    {
+        return Product::query()
+            ->take($page)
+            ->limit($size)
+            ->paginate(10);
+    }
 }
