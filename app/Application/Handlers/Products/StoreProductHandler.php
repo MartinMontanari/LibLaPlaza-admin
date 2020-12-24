@@ -39,7 +39,7 @@ class StoreProductHandler
      * @param StoreProductCommand $command
      * @return bool
      */
-    public function handle(StoreProductCommand $command) : bool
+    public function handle(StoreProductCommand $command)
     {
         $product = new Product();
         $product->setCode($command->getCode());
@@ -52,7 +52,6 @@ class StoreProductHandler
 
         $this->productRepository->persist($product);
 
-        return true;
         //TODO hacer la parte de stock
     }
 

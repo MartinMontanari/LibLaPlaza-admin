@@ -41,7 +41,7 @@
                                                value="{{old('price')}}" required>
                                     </div>
                                 </div>
-                                <br>                   <label>Proveedor:
+                                <br> <label>Proveedor:
                                     <select class="form-control select2-blue" name="provider_id">
                                         <option value="">Asignar proveedor...</option>
                                         @foreach($providers as $provider)
@@ -51,7 +51,7 @@
                                     </select>
                                 </label>
                                 <label>Categoría:
-                                    <select class="form-control select2-blue" name="provider_id">
+                                    <select class="form-control select2-blue" name="category_id">
                                         <option value="">Asignar categoría...</option>
                                         @foreach($categories as $category)
                                             <option
@@ -68,17 +68,17 @@
         </div>
         <h6>// FORM DIV FROM STATUS FORN CHECK //</h6>
         <div class="row justify-content-md-center">
-            {{--        @if($errors->any())--}}
-            {{--            <div class="card col-6 alert alert-danger">--}}
-            {{--                <div class="row justify-content-center text-wrap">--}}
-            {{--                    <ul>--}}
-            {{--                        @foreach($errors->all() as $error)--}}
-            {{--                            <li>{{ $error }}</li>--}}
-            {{--                        @endforeach--}}
-            {{--                    </ul>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
-            {{--        @endif--}}
+                    @if($errors->any())
+                        <div class="card col-6 alert alert-danger">
+                            <div class="row justify-content-center text-wrap">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">
