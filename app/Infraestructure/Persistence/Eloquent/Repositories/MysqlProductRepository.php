@@ -29,4 +29,15 @@ class MysqlProductRepository implements ProductRepository
             ->limit($size)
             ->paginate(10);
     }
+
+    /**
+     * @param int $id
+     * @return Product
+     */
+    public function getOneByIdOrFail(int $id): Product
+    {
+     return Product::query()
+         ->where('id','=',$id)
+         ->firstOrFail();
+    }
 }
