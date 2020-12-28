@@ -1,10 +1,11 @@
+<?php
 @extends('adminlte::page')
 
-@section('title', 'Nuevo producto')
+@section('title', 'Actualizar producto')
 
 
 @section('content_header')
-    <h1>Cargar nuevo producto</h1>
+    <h1>Actualizar producto</h1>
 @stop
 
 @section('content')
@@ -12,7 +13,7 @@
         <div class="row justify-content-md-center">
             <div class="card col-6 block">
                 <div class="card-header">
-                    Complete los campos debajo
+                    Edite los campos debajo
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
@@ -67,17 +68,17 @@
             </div>
         </div>
         <div class="row justify-content-md-center">
-                    @if($errors->any())
-                        <div class="card col-6 alert alert-danger">
-                            <div class="row justify-content-center text-wrap">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
+            @if($errors->any())
+                <div class="card col-6 alert alert-danger">
+                    <div class="row justify-content-center text-wrap">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">

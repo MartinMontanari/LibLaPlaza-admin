@@ -21,11 +21,11 @@ class UpdateProductAction
     public function __construct
     (
         UpdateProductHandler $updateProductHandler,
-        UpdateProductAdapter $updateProductAdapter
+//        UpdateProductAdapter $updateProductAdapter
 
     )
     {
-        $this->adapter = $updateProductAdapter;
+//        $this->adapter = $updateProductAdapter;
         $this->handler = $updateProductHandler;
     }
 
@@ -41,19 +41,19 @@ class UpdateProductAction
         );
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function __invoke(Request $request)
-    {
-        try {
-            $command = $this->adapter->adapt($request);
-            $this->handler->handle($command);
-            return redirect()->route('new-product')->with('status', 'success');
-        } catch (InvalidBodyException $errors) {
-            return redirect()->back()->withErrors($errors->getMessages());
-        }
-
-    }
+//    /**
+//     * @param Request $request
+//     * @return \Illuminate\Http\RedirectResponse
+//     */
+//    public function __invoke(Request $request)
+//    {
+//        try {
+//            $command = $this->adapter->adapt($request);
+//            $this->handler->handle($command);
+//            return redirect()->route('new-product')->with('status', 'success');
+//        } catch (InvalidBodyException $errors) {
+//            return redirect()->back()->withErrors($errors->getMessages());
+//        }
+//
+//    }
 }
