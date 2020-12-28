@@ -44,4 +44,10 @@ class UpdateProductAction
         }
 
     }
+
+    public function index()
+    {
+        $product = $this->handler->index($request->query('id'));
+        return view('admin.providers.edit',['product' => $product]);
+    }
 }
