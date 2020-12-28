@@ -36,9 +36,9 @@
                             <th scope="col"> {{$product->getName()}}</th>
                             <th scope="col"> {{$product->getCode()}}</th>
                             <th scope="col"> {{$product->getPrice()}}</th>
-{{--                            <th scope="col" class="text-center">--}}
-{{--                                <a href="{{route('edit-category',['id' => $category->getId()])}}"--}}
-{{--                                   class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>--}}
+                            <th scope="col" class="text-center">
+                               <a href="{{route('edit-product',['id' => $product->getId()])}}"
+                                   class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
 {{--                                <form class="form d-inline-block" method="post"--}}
 {{--                                      action="{{route('delete-category', ['id'=>$category->getId()]) }}">--}}
 {{--                                    @csrf @method('DELETE')--}}
@@ -47,7 +47,7 @@
 {{--                                        Eliminar--}}
 {{--                                    </button>--}}
 {{--                                </form>--}}
-{{--                            </th>--}}
+                            </th>
                         </tr>
                     @endforeach
                     </tbody>

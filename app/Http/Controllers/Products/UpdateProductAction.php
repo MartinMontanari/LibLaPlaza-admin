@@ -5,24 +5,21 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\UpdateProductHandler;
-use App\Exceptions\InvalidBodyException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class UpdateProductAction
 {
     private UpdateProductHandler $handler;
-    private UpdateProductAdapter $adapter;
+//    private UpdateProductAdapter $adapter;
 
-    /**
-     * StoreProductAction constructor.
-     * @param UpdateProductHandler $updateProductHandler
-     * @param UpdateProductAdapter $updateProductAdapter
-     */
+
     public function __construct
     (
-        UpdateProductHandler $updateProductHandler,
+        UpdateProductHandler $updateProductHandler
 //        UpdateProductAdapter $updateProductAdapter
-
     )
     {
 //        $this->adapter = $updateProductAdapter;
@@ -31,13 +28,13 @@ class UpdateProductAction
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index(Request $request)
     {
         $productData = $this->handler->index($request->query('id'));
-        return view('admin.product.edit',
-            ['providers' => $productData[0],'categories' => $productData[1], 'product' => $productData[2]]
+        return view('admin.products.edit',
+            ['productData' => ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2]]]
         );
     }
 
