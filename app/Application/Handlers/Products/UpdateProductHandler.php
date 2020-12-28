@@ -4,36 +4,52 @@
 namespace App\Application\Handlers\Products;
 
 
-use App\Application\Commands\Providers\UpdateProviderCommand;
+use App\Application\Services\StockService;
 use App\Domain\Entities\Product;
-use App\Domain\Entities\Provider;
+use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
+use App\Domain\Interfaces\ProviderRepository;
 use App\Exceptions\AlreadyExistsException;
 
 class UpdateProductHandler
 {
-    private ProductRepository $repository;
+    private ProductRepository $productRepository;
+    private CategoryRepository $categoryRepository;
+    private ProviderRepository $providerRepository;
+    private StockService $stockService;
 
     /**
-     * UpdateProductHandler constructor.
+     * StoreProductHandler constructor.
      * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
+     * @param ProviderRepository $providerRepository
+     * @param StockService $stockService
      */
     public function __construct
     (
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository,
+        ProviderRepository $providerRepository,
+        StockService $stockService
     )
     {
-        $this->repository = $productRepository;
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->providerRepository = $providerRepository;
+        $this->stockService = $stockService;
     }
 
 
     /**
      * @param int $id
-     * @return Product
+     * @return array
      */
-    public function index(int $id) : Product
+    public function index(int $id) : array
     {
-        return $this->repository->getOneByIdOrFail($id);
+        $providers = $this->providerRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
+        $product = $this->productRepository->getOneByIdOrFail($id);
+        return [$providers, $categories, $product];
     }
 
     //TODO fix import and php docs - made UC

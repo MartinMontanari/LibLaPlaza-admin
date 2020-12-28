@@ -4,7 +4,7 @@
 namespace App\Http\Controllers\Products;
 
 
-
+use App\Application\Handlers\Products\UpdateProductHandler;
 use App\Exceptions\InvalidBodyException;
 use Illuminate\Http\Request;
 
@@ -31,6 +31,18 @@ class UpdateProductAction
 
     /**
      * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function index(Request $request)
+    {
+        $productData = $this->handler->index($request->query('id'));
+        return view('admin.product.edit',
+            ['providers' => $productData[0],'categories' => $productData[1], 'product' => $productData[2]]
+        );
+    }
+
+    /**
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Request $request)
@@ -43,11 +55,5 @@ class UpdateProductAction
             return redirect()->back()->withErrors($errors->getMessages());
         }
 
-    }
-
-    public function index()
-    {
-        $product = $this->handler->index($request->query('id'));
-        return view('admin.providers.edit',['product' => $product]);
     }
 }
