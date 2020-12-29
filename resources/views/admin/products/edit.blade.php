@@ -43,7 +43,7 @@
                                 <br> <label>Proveedor:
                                     <select class="form-control select2-blue" name="provider_id" required>
                                         <option value="">Asignar proveedor...</option>
-                                        <option value="default" selected>{{$product->getProvider()->getName()}}</option>
+                                        <option value="{{$product->getProvider()->getId()}}" selected>{{$product->getProvider()->getName()}}</option>
                                         @foreach($providers as $provider)
                                             <option
                                                 value="{{ $provider->getId() }}">{{$provider->getName()}}</option>
@@ -53,7 +53,7 @@
                                 <label>Categoría:
                                     <select class="form-control select2-blue" name="category_id" required>
                                         <option value="">Asignar categoría...</option>
-                                        <option value="default" selected>{{$product->getCategory()->getName()}}</option>
+                                        <option value={{$product->getCategory()->getId()}} selected>{{$product->getCategory()->getName()}}</option>
                                         @foreach($categories as $category)
                                             <option
                                                 value="{{ $category->getId() }}">{{$category->getName()}}</option>
