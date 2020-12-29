@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\UpdateProductHandler;
+use App\Exceptions\InvalidBodyException;
+use App\Http\Adapters\Products\UpdateProductAdapter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -14,16 +16,16 @@ class UpdateProductAction
 {
     private UpdateProductHandler $handler;
 
-//    private UpdateProductAdapter $adapter;
+    private UpdateProductAdapter $adapter;
 
 
     public function __construct
     (
-        UpdateProductHandler $updateProductHandler
-//        UpdateProductAdapter $updateProductAdapter
+        UpdateProductHandler $updateProductHandler,
+        UpdateProductAdapter $updateProductAdapter
     )
     {
-//        $this->adapter = $updateProductAdapter;
+        $this->adapter = $updateProductAdapter;
         $this->handler = $updateProductHandler;
     }
 
@@ -41,6 +43,7 @@ class UpdateProductAction
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \App\Exceptions\InvalidBodyException
      */
     public function __invoke(Request $request)
     {
