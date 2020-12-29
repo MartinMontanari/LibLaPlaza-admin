@@ -10,6 +10,7 @@ use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
 use App\Exceptions\AlreadyExistsException;
+use Money\Money;
 
 class UpdateProductHandler
 {
@@ -49,8 +50,10 @@ class UpdateProductHandler
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();
         $product = $this->productRepository->getOneByIdOrFail($id);
+        $productPrice = Money::ARS( strval($product->getPrice())/ 100);
 
-        return [$providers, $categories, $product];
+
+        return [$providers, $categories, $product, $productPrice];
     }
 
     //TODO fix import and php docs - made UC

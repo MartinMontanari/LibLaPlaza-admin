@@ -35,7 +35,7 @@ class UpdateProductAction
     {
         $productData = $this->handler->index($request->query('id'));
 
-        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2]]);
+        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2],'productPrice' => $productData[3]]);
     }
 
 //    /**
