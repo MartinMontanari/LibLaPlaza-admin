@@ -5,12 +5,9 @@ namespace App\Application\Handlers\Products;
 
 
 use App\Application\Services\StockService;
-use App\Domain\Entities\Product;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
-use App\Exceptions\AlreadyExistsException;
-use Money\Money;
 
 class UpdateProductHandler
 {
@@ -45,18 +42,18 @@ class UpdateProductHandler
      * @param int $id
      * @return array
      */
-    public function index(int $id) : array
+    public function index(int $id): array
     {
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();
         $product = $this->productRepository->getOneByIdOrFail($id);
-        $productPrice = Money::ARS( strval($product->getPrice())/ 100);
-
+        $productPrice = strval($product->getPrice()) / 100;
 
         return [$providers, $categories, $product, $productPrice];
     }
+}
 
-    //TODO fix import and php docs - made UC
+//TODO fix import and php docs - made UC
 //    public function handle(UpdateProductCommand $command)
 //    {
 //        $searchedByCode = $this->repository->getOneByCode($command->getCode());
@@ -83,4 +80,4 @@ class UpdateProductHandler
 //        $this->repository->persist($provider);
 //    }
 
-}
+//}

@@ -37,7 +37,7 @@
                                         <p class="col-1"><strong>$</strong></p>
                                         <input type="number" step="any" class="form-control col-5" name="price" min="1"
                                                placeholder="Precio"
-                                               value="{{$product->getPrice()}}" required>
+                                               value="{{strval($productPrice)}}" required>
                                     </div>
                                 </div>
                                 <br> <label>Proveedor:
