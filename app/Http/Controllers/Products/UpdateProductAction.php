@@ -38,19 +38,19 @@ class UpdateProductAction
         return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2],'productPrice' => $productData[3]]);
     }
 
-//    /**
-//     * @param Request $request
-//     * @return \Illuminate\Http\RedirectResponse
-//     */
-//    public function __invoke(Request $request)
-//    {
-//        try {
-//            $command = $this->adapter->adapt($request);
-//            $this->handler->handle($command);
-//            return redirect()->route('new-product')->with('status', 'success');
-//        } catch (InvalidBodyException $errors) {
-//            return redirect()->back()->withErrors($errors->getMessages());
-//        }
-//
-//    }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(Request $request)
+    {
+        try {
+            $command = $this->adapter->adapt($request);
+            $this->handler->handle($command);
+            return redirect()->route('new-product')->with('status', 'success');
+        } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
+
+    }
 }

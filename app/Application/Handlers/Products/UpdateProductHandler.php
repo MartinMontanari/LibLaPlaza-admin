@@ -47,7 +47,7 @@ class UpdateProductHandler
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();
         $product = $this->productRepository->getOneByIdOrFail($id);
-        $productPrice = strval($product->getPrice()) / 100;
+        $productPrice = $product->getPrice() / 100;
 
         return [$providers, $categories, $product, $productPrice];
     }
