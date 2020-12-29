@@ -50,7 +50,7 @@ class StoreProductHandler
         $product->setCode($command->getCode());
         $product->setName($command->getName());
         $price = Money::ARS($command->getPrice() * 100);
-        $product->setPrice($price->getAmount());
+        $product->setPrice($price);
         $product->setDescription($command->getDescription());
         $product->setCategoryId($command->getCategoryId());
         $product->setProviderId($command->getProviderId());

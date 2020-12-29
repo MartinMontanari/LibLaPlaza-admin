@@ -18,7 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->unsignedBigInteger('price');
+            $table->unsignedBigInteger('price_amount');
+            $table->string('price_currency');
             $table->unsignedBigInteger('provider_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();

@@ -5,6 +5,8 @@ namespace App\Domain\Entities;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Money\Currency;
+use Money\Money;
 
 class Product extends Model
 {
@@ -70,19 +72,20 @@ class Product extends Model
     }
 
     /**
-     * @return int
+     * @return Money
      */
-    public function getPrice(): int
+    public function getPrice(): Money
     {
-        return $this->price;
+        return new Money($this->price_amount, new Currency($this->price_currency));
     }
 
     /**
      * @param int $price
      */
-    public function setPrice(int $price): void
+    public function setPrice(Money $price): void
     {
-        $this->price = $price;
+        $this->price_amount = $price->getAmount();
+        $this->price_currency = $price->getCurrency()->getCode();
     }
 
     /**

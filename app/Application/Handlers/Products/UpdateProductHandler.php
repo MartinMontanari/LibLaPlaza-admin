@@ -4,10 +4,14 @@
 namespace App\Application\Handlers\Products;
 
 
+use App\Application\Commands\Products\UpdateProductCommand;
 use App\Application\Services\StockService;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
+use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\EntityNotFound;
+use Money\Money;
 
 class UpdateProductHandler
 {
@@ -41,43 +45,54 @@ class UpdateProductHandler
     /**
      * @param int $id
      * @return array
+     * View data and nurture
      */
     public function index(int $id): array
     {
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();
         $product = $this->productRepository->getOneByIdOrFail($id);
-        $productPrice = $product->getPrice() / 100;
+        $productPrice = $product->getPrice()->getAmount() / 100;
 
         return [$providers, $categories, $product, $productPrice];
     }
+
+    /**
+     * @param UpdateProductCommand $command
+     * USe case handler
+     */
+
+    public function handle(UpdateProductCommand $command)
+    {
+        $searchedByCode = $this->productRepository->getOneByCode($command->getCode());
+        if ((isset($searchedByCode) && $searchedByCode == $command->getCode()) && ($searchedByCode != $this->productRepository->getOneByCode($command->getCode()))) {
+            throw new AlreadyExistsException(
+                ["El código {$searchedByCode->getCode()} ya existe.",
+                    "Corresponde al producto {$searchedByCode->getName()}.",
+                    "Ingrese otro."]
+            );
+        }
+
+        $product = $this->productRepository->getOneByIdOrFail($command->getId());
+        if (isset($product)) {
+
+        } else {
+            throw new EntityNotFound("La entidad no existe.", 404);
+        }
+
+        $product->setCode($command->getCode());
+        $product->setName($command->getName());
+        $product->setDescription($command->getDescription());
+        $price = Money::ARS($command->getPrice());
+        $product->setPrice($price);
+        $description = $command->getDescription();
+        if (isset($description)) {
+            $product->setDescription($command->getDescription());
+        }
+        $product->setProviderId($command->getProviderId());
+        $product->setCategoryId($command->getCategoryId());
+
+        $this->productRepository->persist($product);
+    }
+
 }
-
-//TODO fix import and php docs - made UC
-//    public function handle(UpdateProductCommand $command)
-//    {
-//        $searchedByCode = $this->repository->getOneByCode($command->getCode());
-//        if(isset($searchedByCode) && $searchedByCode==$command->getCode())
-//        {
-//            throw new AlreadyExistsException(
-//                ["El código {$searchedByCode->getCode()} ya existe.",
-//                    "Corresponde al proveedor {$searchedByCode->getName()}.",
-//                    "Ingrese otro."]
-//            );
-//        }
-//
-//        $provider = $this->repository->getOneByIdOrFail($command->getId());
-//
-//        $provider->setCode($command->getCode());
-//        $provider->setName($command->getName());
-//
-//        $description = $command->getDescription();
-//        if(isset($description))
-//        {
-//            $provider->setDescription($command->getDescription());
-//        }
-//
-//        $this->repository->persist($provider);
-//    }
-
-//}

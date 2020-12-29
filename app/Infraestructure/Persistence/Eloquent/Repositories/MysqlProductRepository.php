@@ -40,4 +40,15 @@ class MysqlProductRepository implements ProductRepository
          ->where('id','=',$id)
          ->firstOrFail();
     }
+
+    /**
+     * @param int $code
+     * @return Product
+     */
+    public function getOneByCode(string $code): Product
+    {
+        return Product::query()
+            ->where('code','=',$code)
+            ->first();
+    }
 }

@@ -33,6 +33,7 @@ class IndexProductsAction
         try {
             $query = $this->adapter->adapt($request);
             $products = $this->handler->handle($query);
+
             return view('admin.products.index', ['products' => $products]);
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());

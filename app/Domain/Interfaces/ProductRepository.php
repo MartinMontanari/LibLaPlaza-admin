@@ -25,4 +25,10 @@ interface ProductRepository
      * @return Product
      */
     public function getOneByIdOrFail(int $id) : Product;
+
+    /**
+     * @param string $code
+     * @return Product
+     */
+    public function getOneByCode(string $code) : Product;
 }
