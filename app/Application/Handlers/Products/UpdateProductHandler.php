@@ -49,6 +49,7 @@ class UpdateProductHandler
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();
         $product = $this->productRepository->getOneByIdOrFail($id);
+
         return [$providers, $categories, $product];
     }
 

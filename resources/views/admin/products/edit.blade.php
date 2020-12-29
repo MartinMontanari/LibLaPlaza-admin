@@ -1,4 +1,3 @@
-<?php
 @extends('adminlte::page')
 
 @section('title', 'Actualizar producto')
@@ -18,7 +17,7 @@
                 <div class="card-body">
                     <div class="form-group-sm">
                         <form id="form" action="{{route('update-product',['id' => $product->getId()])}}" method="POST">
-                            @csrf @method('PUT');
+                            @csrf @method('PUT')
                             <div class="form-group-lg">
                                 <label>Código:</label>
                                 <input type="text" class="form-control" name="code" min="6" max="30" maxlength="30"
@@ -31,8 +30,7 @@
                                 <label>Descripción:</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90"
                                           maxlength="90"
-                                          placeholder="Descripción"
-                                          value="{{$product->getDescription()}}"></textarea><br>
+                                          placeholder="Descripción">{{$product->getDescription()}}</textarea><br>
                                 <div class="container-sm row justify-content-start d-inline-block">
                                     <div class="row justify-content-start">
                                         <label class="col-4">Precio en $ (pesos):</label>
@@ -45,7 +43,7 @@
                                 <br> <label>Proveedor:
                                     <select class="form-control select2-blue" name="provider_id" required>
                                         <option value="">Asignar proveedor...</option>
-                                        <option value="default" selected>{{$product->getProvider()}}</option>
+                                        <option value="default" selected>{{$product->getProvider()->getName()}}</option>
                                         @foreach($providers as $provider)
                                             <option
                                                 value="{{ $provider->getId() }}">{{$provider->getName()}}</option>
@@ -55,8 +53,8 @@
                                 <label>Categoría:
                                     <select class="form-control select2-blue" name="category_id" required>
                                         <option value="">Asignar categoría...</option>
-                                        <option value="default" selected>{{$product->getCategory()}}</option>
-                                    @foreach($categories as $category)
+                                        <option value="default" selected>{{$product->getCategory()->getName()}}</option>
+                                        @foreach($categories as $category)
                                             <option
                                                 value="{{ $category->getId() }}">{{$category->getName()}}</option>
                                         @endforeach

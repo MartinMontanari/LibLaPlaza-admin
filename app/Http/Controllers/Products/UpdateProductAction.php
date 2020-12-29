@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class UpdateProductAction
 {
     private UpdateProductHandler $handler;
+
 //    private UpdateProductAdapter $adapter;
 
 
@@ -33,9 +34,8 @@ class UpdateProductAction
     public function index(Request $request)
     {
         $productData = $this->handler->index($request->query('id'));
-        return view('admin.products.edit',
-            ['productData' => ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2]]]
-        );
+
+        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2]]);
     }
 
 //    /**
