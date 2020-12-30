@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Infraestructure\Persistence\Eloquent\Repositories;
+namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 
 
 use App\Domain\Entities\Category;

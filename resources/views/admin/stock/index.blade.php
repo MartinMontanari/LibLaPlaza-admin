@@ -12,23 +12,23 @@
         <div class="row justify-content-md-center">
             <div class="card col-6 block">
                 <div class="card-header">
-
+                    Realizar consulta
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-                        <form id="form" action="{{route('update-stock',['id' => $product->getId()])}}" method="POST">
+{{--                        <form id="form" action="{{route('update-stock',['id' => $product->getId()])}}" method="POST">--}}
                             @csrf
                             <div class="form-group-lg">
                                 <br> <label>Seleccione el producto:
                                     <select class="form-control select2-blue" name="provider_id" required>
-                                        <option value="">Asignar proveedor...</option>
+                                        <option value="">Seleccionar producto...</option>
                                     @foreach($products as $product)
                                             <option
                                             value="{{ $product->getId() }}">{{$product->getCode()}}-{{$product->getName()}}</option>
                                         @endforeach
                                     </select>
                                 </label>
-
+                                <br/>
                                 <label>Cantidad:</label>
                                 <input type="number" class="form-control" name="quantity" min="0"
                                        placeholder="Cantidad"

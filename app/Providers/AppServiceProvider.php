@@ -6,10 +6,11 @@ use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
 use App\Domain\Interfaces\StockRepository;
-use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
-use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlProductRepository;
-use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlProviderRepository;
-use App\Infraestructure\Persistence\Eloquent\Repositories\MysqlStockRepository;
+
+use App\Infrastructure\Persistence\Eloquent\Repositories\MysqlCategoryRepository;
+use App\Infrastructure\Persistence\Eloquent\Repositories\MysqlProductRepository;
+use App\Infrastructure\Persistence\Eloquent\Repositories\MysqlProviderRepository;
+use App\Infrastructure\Persistence\Eloquent\Repositories\MysqlStockRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
