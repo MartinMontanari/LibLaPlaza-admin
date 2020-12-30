@@ -59,13 +59,13 @@ class UpdateProductHandler
 
     /**
      * @param UpdateProductCommand $command
-     * USe case handler
+     * Use case handler
      */
 
     public function handle(UpdateProductCommand $command)
     {
         $searchedByCode = $this->productRepository->getOneByCode($command->getCode());
-        if ((isset($searchedByCode) && $searchedByCode == $command->getCode()) && ($searchedByCode != $this->productRepository->getOneByCode($command->getCode()))) {
+        if ((isset($searchedByCode) && $searchedByCode == $command->getCode())) {
             throw new AlreadyExistsException(
                 ["El código {$searchedByCode->getCode()} ya existe.",
                     "Corresponde al producto {$searchedByCode->getName()}.",

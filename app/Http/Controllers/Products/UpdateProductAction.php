@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\UpdateProductHandler;
+use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\EntityNotFound;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\UpdateProductAdapter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UpdateProductAction
@@ -37,23 +40,25 @@ class UpdateProductAction
     {
         $productData = $this->handler->index($request->query('id'));
 
-        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2],'productPrice' => $productData[3]]);
+        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2], 'productPrice' => $productData[3]]);
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \App\Exceptions\InvalidBodyException
+     * @return RedirectResponse
      */
     public function __invoke(Request $request)
     {
         try {
             $command = $this->adapter->adapt($request);
             $this->handler->handle($command);
-            return redirect()->route('new-product')->with('status', 'success');
+            return redirect()->back()->with('status', 'success');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
+        } catch (AlreadyExistsException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        } catch (EntityNotFound $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
         }
-
     }
 }

@@ -8,6 +8,7 @@ use App\Application\Handlers\Providers\UpdateProviderHandler;
 use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Providers\UpdateProviderAdapter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UpdateProviderAction
@@ -44,7 +45,7 @@ class UpdateProviderAction
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function __invoke(Request $request)
     {
@@ -53,8 +54,7 @@ class UpdateProviderAction
             $this->handler->handle($command);
             return redirect()->back()->with('status','Los datos del proveedor ha sido editado correctamente.');
         }
-        catch (InvalidBodyException $errors)
-        {
+        catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
         catch (AlreadyExistsException $errors){
