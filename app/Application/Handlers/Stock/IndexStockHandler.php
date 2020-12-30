@@ -24,9 +24,10 @@ class IndexStockHandler
 
     /**
      * @return mixed
+     *
      */
     public function index()
     {
-        return $this->productRepository->getAll();
+        return $this->productRepository->getAll(null,null);
     }
 }

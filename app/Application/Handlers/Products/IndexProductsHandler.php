@@ -6,7 +6,6 @@ namespace App\Application\Handlers\Products;
 
 use App\Application\Queries\Products\IndexProductsQuery;
 use App\Domain\Interfaces\ProductRepository;
-use App\Domain\Interfaces\StockRepository;
 
 class IndexProductsHandler
 {
