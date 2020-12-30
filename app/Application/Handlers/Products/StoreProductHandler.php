@@ -42,14 +42,13 @@ class StoreProductHandler
 
     /**
      * @param StoreProductCommand $command
-     * @return bool
      */
     public function handle(StoreProductCommand $command)
     {
         $product = new Product();
         $product->setCode($command->getCode());
         $product->setName($command->getName());
-        $price = Money::ARS($command->getPrice() * 100);
+        $price = Money::ARS($command->getPrice());
         $product->setPrice($price);
         $product->setDescription($command->getDescription());
         $product->setCategoryId($command->getCategoryId());
