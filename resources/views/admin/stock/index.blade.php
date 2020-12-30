@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-{{--                        <form id="form" action="{{route('update-stock',['id' => $product->getId()])}}" method="POST">--}}
+{{--                        <form id="form" action="{{route('stock-report',['id' => $product->getId()])}}" method="POST">--}}
                             @csrf
                             <div class="form-group-lg">
                                 <br> <label>Seleccione el producto:
@@ -28,12 +28,6 @@
                                         @endforeach
                                     </select>
                                 </label>
-                                <br/>
-                                <label>Cantidad:</label>
-                                <input type="number" class="form-control" name="quantity" min="0"
-                                       placeholder="Cantidad"
-                                       value="{{old('quantity')}}" required><br>
-
 {{--                                <label>Categoría:--}}
 {{--                                    <select class="form-control select2-blue" name="category_id" required>--}}
 {{--                                        <option value="">Asignar categoría...</option>--}}
@@ -43,7 +37,7 @@
 {{--                                        @endforeach--}}
 {{--                                    </select>--}}
 {{--                                </label>--}}
-                                <input type="submit" class="btn btn-primary btn-block" value="Actualizar stock">
+                                <input type="submit" class="btn btn-primary btn-block" value="Realizar consulta">
                             </div>
                         </form>
                     </div>

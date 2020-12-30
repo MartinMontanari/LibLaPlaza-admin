@@ -12,15 +12,15 @@ class IndexStockAction
 
     public function __construct
     (
-        IndexStockhandler $indexStockhandler
+        IndexStockHandler $indexStockHandler
     )
     {
-        $this->handler = $indexStockhandler;
+        $this->handler = $indexStockHandler;
     }
 
     public function __invoke()
     {
-        // TODO: Implement __invoke() method.
+
     }
 
     public function index()

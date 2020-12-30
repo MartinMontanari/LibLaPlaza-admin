@@ -55,7 +55,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
 
         //stock routes
-        Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('product-stock');
+        Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');
 
     }
 );

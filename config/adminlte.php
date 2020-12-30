@@ -258,7 +258,7 @@ return [
                 ],
                 [
                     'text' => 'Stock',
-                    'route' => 'product-stock',
+                    'route' => 'stock-index',
                     'icon' => 'fas fa-check-circle'
                 ]
             ],
