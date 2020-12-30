@@ -19,4 +19,16 @@ interface ProductRepository
      * @return mixed
      */
     public function getAll(?int $page, ?int $size);
+
+    /**
+     * @param int $id
+     * @return Product
+     */
+    public function getOneByIdOrFail(int $id) : Product;
+
+    /**
+     * @param string $code
+     * @return Product
+     */
+    public function getOneByCode(string $code) : Product;
 }

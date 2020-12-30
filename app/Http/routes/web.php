@@ -51,5 +51,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::get('products/new', [\App\Http\Controllers\Products\StoreProductAction::class, 'view'])->name('new-product');
         Route::post('products', [\App\Http\Controllers\Products\StoreProductAction::class, '__invoke'])->name('store-product');
         Route::get('products', [\App\Http\Controllers\Products\IndexProductsAction::class, '__invoke'])->name('list-products');
+        Route::put('products/{id}', [\App\Http\Controllers\Products\UpdateProductAction::class, '__invoke'])->name('update-product');
+        Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
     }
 );

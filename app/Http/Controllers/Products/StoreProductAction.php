@@ -7,6 +7,8 @@ namespace App\Http\Controllers\Products;
 use App\Application\Handlers\Products\StoreProductHandler;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\StoreProductAdapter;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class StoreProductAction
@@ -31,7 +33,7 @@ class StoreProductAction
 
     /**
      * @param Request $request
-     * @return view|\Illuminate\Http\RedirectResponse
+     * @return view|RedirectResponse
      */
     public function __invoke(Request $request)
     {

@@ -29,7 +29,7 @@ class UpdateProviderHandler
      * @param int $id
      * @return Provider
      */
-    public function index(int $id) : Provider
+    public function index(int $id): Provider
     {
         return $this->repository->getOneByIdOrFail($id);
     }
@@ -41,8 +41,7 @@ class UpdateProviderHandler
     public function handle(UpdateProviderCommand $command)
     {
         $searchedByCode = $this->repository->getOneByCode($command->getCode());
-        if(isset($searchedByCode) && $searchedByCode==$command->getCode())
-        {
+        if (isset($searchedByCode) && $searchedByCode->getId() != $command->getId()) {
             throw new AlreadyExistsException(
                 ["El código {$searchedByCode->getCode()} ya existe.",
                     "Corresponde al proveedor {$searchedByCode->getName()}.",
@@ -56,8 +55,7 @@ class UpdateProviderHandler
         $provider->setName($command->getName());
 
         $description = $command->getDescription();
-        if(isset($description))
-        {
+        if (isset($description)) {
             $provider->setDescription($command->getDescription());
         }
 
