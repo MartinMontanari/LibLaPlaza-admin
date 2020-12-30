@@ -41,7 +41,7 @@ class UpdateProviderHandler
     public function handle(UpdateProviderCommand $command)
     {
         $searchedByCode = $this->repository->getOneByCode($command->getCode());
-        if (isset($searchedByCode) && $searchedByCode->getCode() == $command->getCode()) {
+        if (isset($searchedByCode) && $searchedByCode->getId() != $command->getId()) {
             throw new AlreadyExistsException(
                 ["El código {$searchedByCode->getCode()} ya existe.",
                     "Corresponde al proveedor {$searchedByCode->getName()}.",
