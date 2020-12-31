@@ -13,7 +13,7 @@ class Stock extends Model
     /**
      * @return Product
      */
-    public function getProductId(): Product
+    public function getProduct(): Product
     {
         return $this->product;
     }

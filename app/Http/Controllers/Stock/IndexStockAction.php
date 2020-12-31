@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Stock;
 
 
+use App\Application\Handlers\Stock\GetProductStockHandler;
 use App\Application\Handlers\Stock\IndexStockHandler;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Stock\GetProductStockAdapter;
@@ -15,31 +16,37 @@ use Illuminate\Http\Request;
 
 class IndexStockAction
 {
-    private IndexStockHandler $handler;
+    private IndexStockHandler $indexHandler;
+    private GetProductStockHandler $getProductStockHandler;
     private GetProductStockAdapter $adapter;
 
     /**
      * IndexStockAction constructor.
      * @param IndexStockHandler $indexStockHandler
      * @param GetProductStockAdapter $getProductStockAdapter
+     * @param GetProductStockHandler $getProductStockHandler
      */
     public function __construct
     (
         IndexStockHandler $indexStockHandler,
-        GetProductStockAdapter $getProductStockAdapter
+        GetProductStockAdapter $getProductStockAdapter,
+        GetProductStockHandler $getProductStockHandler
     )
     {
-        $this->handler = $indexStockHandler;
+        $this->indexHandler = $indexStockHandler;
         $this->adapter = $getProductStockAdapter;
+        $this->getProductStockHandler = $getProductStockHandler;
+
     }
 
 
     /**
      * @return Application|Factory|View
      */
-    public function index()
+    public
+    function index()
     {
-        $products = $this->handler->index();
+        $products = $this->indexHandler->index();
         return view('admin.stock.index', ['products' => $products]);
     }
 
@@ -47,13 +54,15 @@ class IndexStockAction
      * @param Request $request
      * @return Application|Factory|View|RedirectResponse
      */
-    public function __invoke(Request $request)
+    public
+    function __invoke(Request $request)
     {
         try {
             $query = $this->adapter->adapt($request);
-            $product = $this->handler->handle($query);
+            $productAndStock = $this->getProductStockHandler->handle($query);
 
-            return view('admin.stock.update', ['product' => $product]);
+            return $productAndStock;
+//            return view('admin.stock.update', ['productStock' => $productAndStock]);
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
