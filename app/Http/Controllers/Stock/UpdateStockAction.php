@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 class UpdateStockAction
 {
     private UpdateStockHandler $updateStockHandler;
-//    private UpdateProductStockAdapter $updateProductStockAdapter;
+    private UpdateStockAdapter $updateStockAdapter;
 
     public function __construct
     (
-        UpdateStockHandler $updateStockHandler
-//        UpdateProductStockAdapter $updateProductStockAdapter
+        UpdateStockHandler $updateStockHandler,
+        UpdateStockAdapter $updateStockAdapter
     )
     {
         $this->updateStockHandler = $updateStockHandler;
-//        $this->updateProductStockAdapter = $updateProductStockAdapter;
+        $this->updateStockAdapter = $updateStockAdapter;
     }
 
 
@@ -29,9 +29,9 @@ class UpdateStockAction
         return view('admin.stock.update',['productStock' => $productAndStock]);
     }
 
-//    public function __invoke()
-//    {
-//        // TODO: Implement __invoke() method.
-
-//    }
+    public function __invoke(Request $request)
+    {
+        $command = $this->updateStockAdapter->adapt($request);
+        //TODO terminar
+    }
 }

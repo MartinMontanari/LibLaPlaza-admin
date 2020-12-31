@@ -22,10 +22,15 @@
                     <p><strong>Stock actual:</strong> {{$productStock->getQuantity()}}</p>
                 </div>
                 <div class="card-footer bg-white">
-                    <label>Cantidad:
-                        <input class="form-control" type="number" step="1" min="0" required value="quantity" placeholder="Cantidad">
-                    </label>
-{{--                    //TODO terminar esta mierda--}}
+                    <form id="form" action="{{route('update-stock',['id'=>$productStock->getProduct()->getId()])}}"
+                          method="POST">
+                        @csrf
+                        <label>Cantidad:
+                            <input class="form-control" type="number" step="1" min="0" required value="quantity"
+                                   placeholder="Cantidad">
+                        </label>
+                        <input type="submit" class="btn btn-primary" value="Guardar">
+                    </form>
                 </div>
             </div>
         </div>

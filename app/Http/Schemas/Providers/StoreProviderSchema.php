@@ -6,7 +6,10 @@ namespace App\Http\Schemas\Providers;
 
 class StoreProviderSchema
 {
-    public static function getRules()
+    /**
+     * @return string[]
+     */
+    public static function getRules() : array
     {
         return [
             'code' => 'bail|required|alpha_num|between:1,6',
@@ -14,7 +17,10 @@ class StoreProviderSchema
         ];
     }
 
-    public static function getMessages()
+    /**
+     * @return string[]
+     */
+    public static function getMessages() : array
     {
         return [
             'code.required' => 'Debe ingresar el código del proveedor.',

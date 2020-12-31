@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group-lg">
                                 <label>Seleccione un producto del listado:
-                                    <select class="form-control select2-blue" name="product_id" id="productSelect" onchange="getValue()" required>
+                                    <select class="form-control select2-blue" name="product_id" required>
                                         <option value="">Seleccionar producto...</option>
                                         @foreach($products as $product)
                                             <option
