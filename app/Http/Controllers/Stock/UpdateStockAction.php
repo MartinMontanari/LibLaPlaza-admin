@@ -4,19 +4,34 @@
 namespace App\Http\Controllers\Stock;
 
 
+use App\Application\Handlers\Stock\UpdateStockHandler;
+use Illuminate\Http\Request;
+
 class UpdateStockAction
 {
-    public function __construct()
+    private UpdateStockHandler $updateStockHandler;
+//    private UpdateProductStockAdapter $updateProductStockAdapter;
+
+    public function __construct
+    (
+        UpdateStockHandler $updateStockHandler
+//        UpdateProductStockAdapter $updateProductStockAdapter
+    )
     {
+        $this->updateStockHandler = $updateStockHandler;
+//        $this->updateProductStockAdapter = $updateProductStockAdapter;
     }
 
-    public function __invoke()
+
+    public function index(Request $request)
     {
-        // TODO: Implement __invoke() method.
+        $productAndStock = $this->updateStockHandler->index($request->query('id'));
+        return view('admin.stock.update',['productStock' => $productAndStock]);
     }
 
-    public function index()
-    {
+//    public function __invoke()
+//    {
+//        // TODO: Implement __invoke() method.
 
-    }
+//    }
 }
