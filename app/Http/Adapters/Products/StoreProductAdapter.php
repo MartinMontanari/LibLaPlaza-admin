@@ -17,7 +17,7 @@ class StoreProductAdapter
      * @return StoreProductCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : StoreProductCommand
     {
         $validate = Validator::make($request->all(),StoreProductSchema::getRules(),StoreProductSchema::getMessages());
 

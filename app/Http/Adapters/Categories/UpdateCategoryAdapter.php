@@ -16,7 +16,7 @@ class UpdateCategoryAdapter
      * @param Request $request
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : UpdateCategoryCommand
     {
         $validate = Validator::make($request->all(),UpdateCategorySchema::getRules(),UpdateCategorySchema::getMessages());
 

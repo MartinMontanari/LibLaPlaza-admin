@@ -17,7 +17,7 @@ class DeleteCategoryAdapter
      * @return DeleteCategoryCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : DeleteCategoryCommand
     {
         $validate = Validator::make($request->all(), DeleteCategorySchema::getRules(), DeleteCategorySchema::getMessages());
         if (!$validate->fails()) {

@@ -17,7 +17,7 @@ class UpdateProviderAdapter
      * @return UpdateProviderCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : UpdateProviderCommand
     {
         $validate = Validator::make($request->all(),UpdateProviderSchema::getRules(),UpdateProviderSchema::getMessages());
 

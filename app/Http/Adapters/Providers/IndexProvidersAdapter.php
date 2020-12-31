@@ -17,7 +17,7 @@ class IndexProvidersAdapter
      * @return IndexProvidersQuery
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : IndexProvidersQuery
     {
         $validate = Validator::make($request->all(),IndexProvidersSchema::getRules());
 

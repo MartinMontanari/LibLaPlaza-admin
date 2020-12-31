@@ -17,7 +17,7 @@ class UpdateStockAdapter
      * @return UpdateStockCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : UpdateStockCommand
     {
         $validate = Validator::make($request->all(), UpdateStockSchema::getRules(), UpdateStockSchema::getMessages());
 
