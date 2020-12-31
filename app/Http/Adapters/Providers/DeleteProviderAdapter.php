@@ -17,7 +17,7 @@ class DeleteProviderAdapter
      * @return DeleteProviderCommand
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : DeleteProviderCommand
     {
         $validate = Validator::make([$request->route('id')],DeleteProviderSchema::getRules(),DeleteProviderSchema::getMessages());
 

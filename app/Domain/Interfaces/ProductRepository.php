@@ -31,4 +31,9 @@ interface ProductRepository
      * @return Product
      */
     public function getOneByCode(string $code) : Product;
+
+    /**
+     * @param int $id
+     */
+    public function deleteOneById(int $id) : void;
 }

@@ -17,7 +17,7 @@ class IndexProductsAdapter
      * @return IndexProductsQuery
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : IndexProductsQuery
     {
         $validate = Validator::make($request->all(), IndexProductSchema::getRules());
 

@@ -18,7 +18,7 @@ class GetProductStockAdapter
      * @return GetProductStockQuery
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : GetProductStockQuery
     {
         $validate = Validator::make($request->all(), IdSchema::getRules());
 

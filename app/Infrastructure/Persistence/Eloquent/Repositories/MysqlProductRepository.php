@@ -52,4 +52,14 @@ class MysqlProductRepository implements ProductRepository
             ->where('code','=',$code)
             ->first();
     }
+
+    /**
+     * @param int $id
+     */
+    public function deleteOneById(int $id): void
+    {
+        Product::query()
+            ->where('id','=', $id)
+            ->delete();
+    }
 }
