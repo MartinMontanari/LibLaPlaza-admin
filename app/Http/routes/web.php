@@ -58,7 +58,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');
         Route::post('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, '__invoke'])->name('stock-report');
         Route::get('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, 'index'])->name('product-stock');
-        Route::post('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, '__invoke'])->name('update-stock');
+        Route::put('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, '__invoke'])->name('update-stock');
 
     }
 );

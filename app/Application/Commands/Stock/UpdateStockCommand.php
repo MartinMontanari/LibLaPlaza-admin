@@ -11,7 +11,6 @@ class UpdateStockCommand
 
     /**
      * UpdateStockCommand constructor.
-     * @param int $stock_id
      * @param int $product_id
      * @param int $quantity
      */

@@ -14,6 +14,7 @@ class UpdateStockAdapter
 {
     /**
      * @param Request $request
+     * @return UpdateStockCommand
      * @throws InvalidBodyException
      */
     public function adapt(Request $request)
@@ -23,9 +24,9 @@ class UpdateStockAdapter
         if ($validate->fails()) {
             throw new InvalidBodyException($validate->errors()->getMessages());
         }
-
         return new UpdateStockCommand(
-          $request->input('')
+            $request->input('product_id'),
+            $request->input('quantity')
         );
     }
 }

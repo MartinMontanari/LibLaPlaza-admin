@@ -13,8 +13,8 @@ class UpdateStockSchema
     public static function getRules() : array
     {
         return [
-            'quantity' => 'bail|required|numeric|min:0',
-            'product_id' => 'bail|required|min:0|numeric'
+            'product_id' => 'bail|required|min:0|numeric',
+            'quantity' => 'bail|required|numeric|min:0'
         ];
     }
 

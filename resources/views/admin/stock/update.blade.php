@@ -22,11 +22,12 @@
                     <p><strong>Stock actual:</strong> {{$productStock->getQuantity()}}</p>
                 </div>
                 <div class="card-footer bg-white">
-                    <form id="form" action="{{route('update-stock',['product_id'=>$productStock->getProduct()->getId()])}}"
+                    <form id="form"
+                          action="{{route('update-stock',['product_id'=>$productStock->getProduct()->getId()])}}"
                           method="POST">
-                        @csrf
+                        @csrf @method('PUT')
                         <label>Cantidad:
-                            <input class="form-control" type="number" step="1" min="0" required value="quantity"
+                            <input class="form-control" type="number" step="1" min="0" name="quantity" required
                                    placeholder="Cantidad">
                         </label>
                         <input type="submit" class="btn btn-primary" value="Guardar">
@@ -43,6 +44,13 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                    </div>
+                </div>
+            @endif
+            @if(session('status'))
+                <div class="card col-6 alert alert-success">
+                    <div class="row justify-content-center">
+                        El stock se ha actualizado correctamente.
                     </div>
                 </div>
             @endif

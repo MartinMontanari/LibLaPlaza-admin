@@ -6,13 +6,13 @@ namespace App\Exceptions;
 
 use App\Http\Enums\HttpCodes;
 
-class EntityNotFound extends \Exception implements \Throwable
+class EntityNotFoundException extends \Exception implements \Throwable
 {
 
     private array $messages;
 
     /**
-     * EntityNotFound constructor.
+     * EntityNotFoundException constructor.
      * @param array $message
      * @param int $code
      */

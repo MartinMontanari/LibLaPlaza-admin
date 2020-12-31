@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Stock;
 
 
 use App\Application\Handlers\Stock\UpdateStockHandler;
+use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Stock\UpdateStockAdapter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UpdateStockAction
@@ -28,21 +30,24 @@ class UpdateStockAction
     public function index(Request $request)
     {
         $productAndStock = $this->updateStockHandler->index($request->query('id'));
-        return view('admin.stock.update',['productStock' => $productAndStock]);
+        return view('admin.stock.update', ['productStock' => $productAndStock]);
     }
 
     /**
      * @param Request $request
-     * @throws \App\Exceptions\InvalidBodyException
+     * @return RedirectResponse
      */
     public function __invoke(Request $request)
     {
-        try{
+        try {
             $command = $this->updateStockAdapter->adapt($request);
-        }catch (InvalidBodyException $errors){
+            $this->updateStockHandler->handle($command);
+
+            return redirect()->back()->with('status','success');
+        } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        } catch (EntityNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
-
-        //TODO terminar
     }
 }
