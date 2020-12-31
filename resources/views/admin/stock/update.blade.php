@@ -22,7 +22,7 @@
                     <p><strong>Stock actual:</strong> {{$productStock->getQuantity()}}</p>
                 </div>
                 <div class="card-footer bg-white">
-                    <form id="form" action="{{route('update-stock',['id'=>$productStock->getProduct()->getId()])}}"
+                    <form id="form" action="{{route('update-stock',['product_id'=>$productStock->getProduct()->getId()])}}"
                           method="POST">
                         @csrf
                         <label>Cantidad:

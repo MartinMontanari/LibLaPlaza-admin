@@ -4,6 +4,7 @@
 namespace App\Http\Adapters\Stock;
 
 
+use App\Application\Commands\Stock\UpdateStockCommand;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Schemas\Stock\UpdateStockSchema;
 use Illuminate\Http\Request;
@@ -22,5 +23,9 @@ class UpdateStockAdapter
         if ($validate->fails()) {
             throw new InvalidBodyException($validate->errors()->getMessages());
         }
+
+        return new UpdateStockCommand(
+          $request->input('')
+        );
     }
 }
