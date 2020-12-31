@@ -6,9 +6,13 @@ namespace App\Http\Schemas\Common;
 
 class IdSchema
 {
-    public static function getRules() {
+    /**
+     * @return string[]
+     */
+    public static function getRules() : array
+    {
         return [
-            'id' => 'bail|required|min:0|integer',
+            'id' => 'bail|min:0|integer',
         ];
     }
 }

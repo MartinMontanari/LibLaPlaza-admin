@@ -10,7 +10,7 @@ class UpdateCategorySchema
     {
         return [
             'name' => 'bail|required|min:3|max:30',
-            'description' => 'bail|required|min:15|max:90'
+            'description' => 'bail|required|min:15|max:110'
         ];
     }
 

@@ -48,10 +48,17 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::delete('providers/{id}', [\App\Http\Controllers\Providers\DeleteProviderAction::class, '__invoke'])->name('delete-provider');
 
         //products routes
-        Route::get('products/new', [\App\Http\Controllers\Products\StoreProductAction::class, 'view'])->name('new-product');
+        Route::get('products/new', [\App\Http\Controllers\Products\StoreProductAction::class, 'index'])->name('new-product');
         Route::post('products', [\App\Http\Controllers\Products\StoreProductAction::class, '__invoke'])->name('store-product');
         Route::get('products', [\App\Http\Controllers\Products\IndexProductsAction::class, '__invoke'])->name('list-products');
         Route::put('products/{id}', [\App\Http\Controllers\Products\UpdateProductAction::class, '__invoke'])->name('update-product');
         Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
+
+        //stock routes
+        Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');
+        Route::post('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, '__invoke'])->name('stock-report');
+        Route::get('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, 'index'])->name('product-stock');
+        Route::put('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, '__invoke'])->name('update-stock');
+
     }
 );

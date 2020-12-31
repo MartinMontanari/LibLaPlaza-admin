@@ -1,18 +1,17 @@
 <?php
 
 
-namespace App\Application\Handlers\Products;
+namespace App\Application\Handlers\Stock;
 
 
-use App\Application\Queries\Products\IndexProductsQuery;
 use App\Domain\Interfaces\ProductRepository;
 
-class IndexProductsHandler
+class IndexStockHandler
 {
     private ProductRepository $productRepository;
 
     /**
-     * IndexProductsHandler constructor.
+     * IndexStockHandler constructor.
      * @param ProductRepository $productRepository
      */
     public function __construct
@@ -23,8 +22,12 @@ class IndexProductsHandler
         $this->productRepository = $productRepository;
     }
 
-    public function handle(IndexProductsQuery $query)
+    /**
+     * @return mixed
+     *
+     */
+    public function index()
     {
-        return $this->productRepository->getAll($query->getPage(),$query->getSize());
+        return $this->productRepository->getAll(null,null);
     }
 }

@@ -33,25 +33,9 @@ class ProvidersSeeder extends Seeder
         ]);
 
         DB::table('providers')->insert([
-            'code' => 'PROV1',
-            'name' => 'Proveedor 1',
-            'description' => 'Proveedor 1 de prueba',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        DB::table('providers')->insert([
-            'code' => 'PROV2',
-            'name' => 'Proveedor 2',
-            'description' => 'Proveedor 2 de prueba',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        DB::table('providers')->insert([
-            'code' => 'PROV3',
-            'name' => 'Proveedor 3',
-            'description' => 'Proveedor 3 de prueba',
+            'code' => 'FREIB1',
+            'name' => 'Freiberg Mayorista',
+            'description' => 'Proveedor polirubro http://www.freiberg.com.ar/',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

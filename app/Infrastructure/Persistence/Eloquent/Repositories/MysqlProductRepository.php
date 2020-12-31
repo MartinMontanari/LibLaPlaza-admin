@@ -1,11 +1,12 @@
 <?php
 
 
-namespace App\Infraestructure\Persistence\Eloquent\Repositories;
+namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 
 
 use App\Domain\Entities\Product;
 use App\Domain\Interfaces\ProductRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class MysqlProductRepository implements ProductRepository
 {
@@ -20,7 +21,7 @@ class MysqlProductRepository implements ProductRepository
     /**
      * @param int|null $page
      * @param int|null $size
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|mixed
+     * @return LengthAwarePaginator|mixed
      */
     public function getAll(?int $page, ?int $size)
     {

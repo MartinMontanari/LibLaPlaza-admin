@@ -243,60 +243,65 @@ return [
             'url' => '#'
         ],
         [
-            'text'    => 'Productos',
-            'icon'    => 'fas fa-boxes',
+            'text' => 'Productos',
+            'icon' => 'fas fa-boxes',
             'submenu' => [
                 [
                     'text' => 'Cargar nuevo',
-                    'route'  => 'new-product',
+                    'route' => 'new-product',
                     'icon' => 'fas fa-plus-circle'
                 ],
                 [
                     'text' => 'Ver todos',
-                    'route'  => 'list-products',
+                    'route' => 'list-products',
                     'icon' => 'fas fa-bars'
+                ],
+                [
+                    'text' => 'Stock',
+                    'route' => 'stock-index',
+                    'icon' => 'fas fa-check-circle'
                 ]
             ],
         ],
         [
-            'text'    => 'Categorías',
-            'icon'    => 'fas fa-tags',
+            'text' => 'Categorías',
+            'icon' => 'fas fa-tags',
             'submenu' => [
                 [
                     'text' => 'Cargar nueva',
-                    'route'  => 'new-category',
+                    'route' => 'new-category',
                     'icon' => 'fas fa-plus-circle'
                 ],
                 [
                     'text' => 'Ver todas',
-                    'route'  => 'list-categories',
+                    'route' => 'list-categories',
                     'icon' => 'fas fa-bars'
                 ],
             ],
         ],
         [
-            'text'    => 'Proveedores',
-            'icon'    => 'fas fa-truck',
+            'text' => 'Proveedores',
+            'icon' => 'fas fa-truck',
             'submenu' => [
                 [
                     'text' => 'Registrar nuevo',
-                    'route'  => 'new-provider',
+                    'route' => 'new-provider',
                     'icon' => 'fas fa-plus-circle'
                 ],
                 [
                     'text' => 'Ver todos',
-                    'route'  => 'list-providers',
+                    'route' => 'list-providers',
                     'icon' => 'fas fa-bars'
                 ],
             ],
         ],
         [
-            'text'    => 'Reportes',
-            'icon'    => 'fas fa-folder',
+            'text' => 'Reportes',
+            'icon' => 'fas fa-folder',
             'submenu' => [
                 [
                     'text' => 'level_one',
-                    'url'  => '#',
+                    'url' => '#',
                 ]
             ],
         ],

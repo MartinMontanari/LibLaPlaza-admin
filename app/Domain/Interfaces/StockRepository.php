@@ -14,4 +14,9 @@ interface StockRepository
      */
     public function persist(Stock $stock): void;
 
+    /**
+     * @param int $product_id
+     * @return Stock
+     */
+    public function getProductStock(int $product_id) : Stock;
 }
