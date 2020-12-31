@@ -53,6 +53,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::get('products', [\App\Http\Controllers\Products\IndexProductsAction::class, '__invoke'])->name('list-products');
         Route::put('products/{id}', [\App\Http\Controllers\Products\UpdateProductAction::class, '__invoke'])->name('update-product');
         Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
+        Route::delete('products/{id}',[DeleteProductAction::class,'__invoke'])->name('delete-product');
 
         //stock routes
         Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');

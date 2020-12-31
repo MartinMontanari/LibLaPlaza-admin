@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Application\Services;
+namespace App\Application\Handlers\Stock;
 
 
 use App\Domain\Entities\Stock;
 use App\Domain\Interfaces\StockRepository;
 
-class StockService
+class StartStockHandler
 {
     private StockRepository $stockRepository;
 
@@ -19,11 +19,10 @@ class StockService
         $this->stockRepository = $stockRepository;
     }
 
-
     /**
      * @param int $product_id
      */
-    public function start(int $product_id) : void
+    public function start(int $product_id): void
     {
         $stock = new Stock();
 
@@ -32,6 +31,5 @@ class StockService
 
         $this->stockRepository->persist($stock);
     }
-
 
 }
