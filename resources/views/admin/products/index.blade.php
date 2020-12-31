@@ -39,14 +39,14 @@
                             <th scope="col" class="text-center">
                                 <a href="{{route('edit-product',['id' => $product->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
-                                {{--                                <form class="form d-inline-block" method="post"--}}
-                                {{--                                      action="{{route('delete-category', ['id'=>$category->getId()]) }}">--}}
-                                {{--                                    @csrf @method('DELETE')--}}
-                                {{--                                    <button class="btn btn-danger btn-sm d-inline-block" role="button"--}}
-                                {{--                                            onclick="return confirm('¿Está seguro que desea borrar la categoría {{$category->getName()}}?');">--}}
-                                {{--                                        Eliminar--}}
-                                {{--                                    </button>--}}
-                                {{--                                </form>--}}
+                                <form class="form d-inline-block" method="post"
+                                      action="{{route('delete-product', ['id'=>$product->getId()]) }}">
+                                    @csrf @method('DELETE')
+                                    <button class="btn btn-danger btn-sm d-inline-block" role="button"
+                                            onclick="return confirm('¿Está seguro que desea borrar el producto {{$product->getName()}}?');">
+                                        Eliminar
+                                    </button>
+                                </form>
                             </th>
                         </tr>
                     @endforeach

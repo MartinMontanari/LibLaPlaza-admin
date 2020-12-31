@@ -21,7 +21,8 @@ class CreateStocksTable extends Migration
         });
 
         Schema::table('stocks', function (Blueprint $table) {
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete( 'no action');
+
         });
     }
 
