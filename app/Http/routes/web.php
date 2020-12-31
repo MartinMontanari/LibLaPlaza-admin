@@ -56,6 +56,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
 
         //stock routes
         Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');
+        Route::post('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, '__invoke'])->name('stock-report');
 
     }
 );
