@@ -4,6 +4,9 @@
 namespace App\Http\Controllers\Products;
 
 
+use App\Application\Handlers\Products\DeleteProductHandler;
+use App\Http\Adapters\Products\DeleteProductAdapter;
+
 class DeleteProductAction
 {
     private DeleteProductHandler $deleteProductHandler;
