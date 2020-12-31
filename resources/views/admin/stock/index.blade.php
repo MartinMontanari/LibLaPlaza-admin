@@ -49,12 +49,6 @@
                     </div>
                 </div>
             @endif
-            @if(session('status'))
-                <div class="card col-6 alert alert-success">
-                    <div class="row justify-content-center">
-                        Stock actualizado correctamente.
-                    </div>
-                </div>
-            @endif
         </div>
+    </div>
 @stop

@@ -61,8 +61,7 @@ class IndexStockAction
             $query = $this->adapter->adapt($request);
             $productAndStock = $this->getProductStockHandler->handle($query);
 
-            return $productAndStock;
-//            return view('admin.stock.update', ['productStock' => $productAndStock]);
+            return view('admin.stock.report', ['productStock' => $productAndStock]);
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
