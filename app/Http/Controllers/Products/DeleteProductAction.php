@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\DeleteProductHandler;
+use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\DeleteProductAdapter;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class DeleteProductAction
 {
@@ -22,8 +26,20 @@ class DeleteProductAction
         $this->deleteProductAdapter = $deleteProductAdapter;
     }
 
-    public function __invoke()
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function __invoke(Request $request)
     {
-        // TODO: Implement __invoke() method.
+        try {
+            $command = $this->deleteProductAdapter->adapt($request);
+            $this->deleteProductHandler->handle($command);
+            return redirect()->back()->with('status', 'success');
+        } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        } catch (EntityNotFoundException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
     }
 }
