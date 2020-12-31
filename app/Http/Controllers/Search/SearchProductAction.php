@@ -4,14 +4,34 @@
 namespace App\Http\Controllers\Search;
 
 
+use Illuminate\Http\Request;
+
 class SearchProductAction
 {
-    public function __construct()
+    private SearchProductAdapter $searchProductAdapter;
+    private SearchProductHandler $searchProductHandler;
+
+    /**
+     * SearchProductAction constructor.
+     * @param SearchProductAdapter $searchProductAdapter
+     * @param SearchProductHandler $searchProductHandler
+     */
+    public function __construct
+    (
+        SearchProductAdapter $searchProductAdapter,
+        SearchProductHandler $searchProductHandler
+    )
     {
+        $this->SearchProductAdapter = $searchProductAdapter;
+        $this->SearchProductHandler = $searchProductHandler;
     }
 
-    public function __invoke()
+
+    /**
+     * @param Request $request
+     */
+    public function __invoke(Request  $request)
     {
-        return 'HOLANDAAAAAAAAAA';
+        //TODO hacer todo el caso de uso, no hay nada hecho. Ni la query. Ni el handler. Solo se hizo la ruta y se conectó con éste controller.
     }
 }

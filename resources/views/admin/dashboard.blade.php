@@ -8,5 +8,5 @@
 @stop
 
 @section('content')
-    <h1>ACÁ TRAER UN DIV CON ALGO, QUEDA CHOTO VACÍO</h1>
+    <h1>Panel de administración</h1>
 @stop
