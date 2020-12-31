@@ -15,9 +15,13 @@
                     Detalles
                 </div>
                 <div class="card-body">
-                    <div class="form-group-sm">
-
-                    </div>
+                    <p><strong>Nombre:</strong> {{$productStock->getProduct()->getName()}}</p>
+                    <p><strong>Código:</strong> {{$productStock->getProduct()->getCode()}}</p>
+                    <p><strong>Categoría:</strong> {{$productStock->getProduct()->getCategory()->getName()}}</p>
+                    <p><strong>Proveedor:</strong> {{$productStock->getProduct()->getProvider()->getName()}}</p>
+                    <p><strong>Stock actual:</strong> {{$productStock->getQuantity()}}</p>
+                    <a href="{{route('product-stock',['id' => $productStock->getProduct()->getId()])}}"
+                       class="btn btn-warning btn-sm d-inline-block" role="button">Actualizar stock</a>
                 </div>
             </div>
         </div>

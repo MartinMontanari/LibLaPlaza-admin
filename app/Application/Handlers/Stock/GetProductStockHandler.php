@@ -5,9 +5,7 @@ namespace App\Application\Handlers\Stock;
 
 
 use App\Application\Queries\Stock\GetProductStockQuery;
-use App\Domain\Entities\Product;
 use App\Domain\Entities\Stock;
-use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\StockRepository;
 
 class GetProductStockHandler

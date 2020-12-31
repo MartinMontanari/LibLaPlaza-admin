@@ -50,7 +50,7 @@ class StoreProductAction
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function view()
+    public function index()
     {
         $data = $this->handler->viewData();
         $providers = $data[0];

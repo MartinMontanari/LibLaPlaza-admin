@@ -27,7 +27,7 @@
                                        placeholder="Nombre"
                                        value="{{$provider->getName()}}" required><br>
                                 <label>Descripción:</label>
-                                <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
+                                <textarea type="text" rows="2" class="form-control" name="description" maxlength="110"
                                           placeholder="Descripción">{{$provider->getDescription()}}</textarea><br>
                                 <input type="submit" data-toggle="modal" data-target="#success"
                                        class="btn btn-primary btn-block" value="Guardar cambios">
