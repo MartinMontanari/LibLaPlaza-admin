@@ -33,5 +33,10 @@ class UpdateStockHandler
         return $this->stockRepository->getProductStock($product_id);
     }
 
+    //TODO
+    public function handle(UpdateStockCommand $command)
+    {
+
+    }
 
 }

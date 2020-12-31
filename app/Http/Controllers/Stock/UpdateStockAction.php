@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Stock;
 
 
 use App\Application\Handlers\Stock\UpdateStockHandler;
+use App\Exceptions\InvalidBodyException;
+use App\Http\Adapters\Stock\UpdateStockAdapter;
 use Illuminate\Http\Request;
 
 class UpdateStockAction
@@ -29,9 +31,18 @@ class UpdateStockAction
         return view('admin.stock.update',['productStock' => $productAndStock]);
     }
 
+    /**
+     * @param Request $request
+     * @throws \App\Exceptions\InvalidBodyException
+     */
     public function __invoke(Request $request)
     {
-        $command = $this->updateStockAdapter->adapt($request);
+        try{
+            $command = $this->updateStockAdapter->adapt($request);
+        }catch (InvalidBodyException $errors){
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
+
         //TODO terminar
     }
 }
