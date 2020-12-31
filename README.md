@@ -104,7 +104,7 @@ Base de datos = trabajofinal (éste último campo puede no completarlo y podrá 
 2. Copiar lo que existe en el ```.env.example```
 3. Este archivo contiene las credenciales de las cuentas de los servicios utilizados.
 
-### Ejecución de las migraciones (Laravel)
+### Conexión con la base de datos - Ejecución de las migraciones y seeders de datos de prueba (Laravel)
 0. Primeramente actualizar el archivo `.env` con los datos correspondientes de la BD:
 
 ```
@@ -116,7 +116,7 @@ DB_USERNAME=test
 DB_PASSWORD=test
 ```
 
-1. Luego seguimos con la configuración de las variables para el correcto functionamiento del despacho de correos electrónicos desde la aplicación:
+1. Luego seguimos con la configuración de las variables para el correcto funcionamiento del despacho de correos electrónicos desde la aplicación:
 
 ```
 MAIL_MAILER=smtp
@@ -128,22 +128,27 @@ MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="mail de gmail"
 MAIL_FROM_NAME="TP-Final-Lab III"
 ```
+- *Esta parte no es fundamental para el funcionamiento del sistema, pero si desea poder recuperar su contraseña en caso de habérsela olvidado puede hacerlo configurando las credenciales para el envío del correo de recuperación.*
 - Reemplazar los campos por las credenciales de una cuenta de gmail válida.
-- También tiene que tener activado el acceso a aplicaicones poco seguras activado (si no sabe como hacerlo puede consultar la documentación oficial de google https://support.google.com/a/answer/6260879?hl=es )
+- También tiene que tener activado el acceso a aplicaciones poco seguras activado (si no sabe como hacerlo puede consultar la documentación oficial de google https://support.google.com/a/answer/6260879?hl=es )
 ```
 MAIL_USERNAME="mail de gmail"
 MAIL_PASSWORD="pass de gmail"
 MAIL_FROM_ADDRESS="mail de gmail"
 ```
+- Ejecutaremos las migraciones y los seeders para tener datos para realizar las pruebas necesarias.
+
 1. Entramos al `bash nginx` del Lord Commander ubicados en `TrabajoFinal-LabIII/docker/` ejecutar: `./webapp`.
 
-2. Ejecutamos dentro del bash `php artisan migrate`
+2. Ejecutamos dentro del bash `php artisan migrate` -> esto corre las migraciones y crea las tablas en la bdd.
 
-3. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `trabajofinal`.
+3. Ejecutamos dentro del bash `php artisan db:seed` -> esto corre los seeders y setea datos de prueba en las tablas de la bdd.
 
-4. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate`.
+4. Una vez terminada la ejecución ya tendremos las tablas correspondientes en nuestra base de datos `trabajofinal`.
 
-5. Listo ya podemos salir del comandante.
+5. Ejecutar para tener el `.env` completo y correcto `php artisan key:generate`.
+
+6. Listo ya podemos salir del comandante.
 
 ### Ultimos pasos.
 
