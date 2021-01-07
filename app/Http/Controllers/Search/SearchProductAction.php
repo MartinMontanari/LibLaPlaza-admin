@@ -8,23 +8,23 @@ use Illuminate\Http\Request;
 
 class SearchProductAction
 {
-//    private SearchProductAdapter $searchProductAdapter;
-//    private SearchProductHandler $searchProductHandler;
-//
-//    /**
-//     * SearchProductAction constructor.
-//     * @param SearchProductAdapter $searchProductAdapter
-//     * @param SearchProductHandler $searchProductHandler
-//     */
-//    public function __construct
-//    (
-//        SearchProductAdapter $searchProductAdapter,
-//        SearchProductHandler $searchProductHandler
-//    )
-//    {
-//        $this->SearchProductAdapter = $searchProductAdapter;
-//        $this->SearchProductHandler = $searchProductHandler;
-//    }
+    private SearchProductAdapter $searchProductAdapter;
+    private SearchProductHandler $searchProductHandler;
+
+    /**
+     * SearchProductAction constructor.
+     * @param SearchProductAdapter $searchProductAdapter
+     * @param SearchProductHandler $searchProductHandler
+     */
+    public function __construct
+    (
+        SearchProductAdapter $searchProductAdapter,
+        SearchProductHandler $searchProductHandler
+    )
+    {
+        $this->SearchProductAdapter = $searchProductAdapter;
+        $this->SearchProductHandler = $searchProductHandler;
+    }
 
 
     /**
@@ -32,6 +32,6 @@ class SearchProductAction
      */
     public function __invoke(Request  $request)
     {
-       return '';
+        dd($request->input('query'));
     }
 }
