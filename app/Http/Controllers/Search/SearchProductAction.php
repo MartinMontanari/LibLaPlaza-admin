@@ -4,6 +4,9 @@
 namespace App\Http\Controllers\Search;
 
 
+use App\Application\Handlers\Products\SearchProductHandler;
+use App\Exceptions\InvalidBodyException;
+use App\Http\Adapters\Products\SearchProductAdapter;
 use Illuminate\Http\Request;
 
 class SearchProductAction
@@ -22,16 +25,23 @@ class SearchProductAction
         SearchProductHandler $searchProductHandler
     )
     {
-        $this->SearchProductAdapter = $searchProductAdapter;
-        $this->SearchProductHandler = $searchProductHandler;
+        $this->searchProductAdapter = $searchProductAdapter;
+        $this->searchProductHandler = $searchProductHandler;
     }
 
 
     /**
      * @param Request $request
      */
-    public function __invoke(Request  $request)
+    public function __invoke(Request $request)
     {
-        dd($request->input('query'));
+        try {
+            $query = $this->searchProductAdapter->adapt($request);
+            $result = $this->searchProductHandler->handle($query);
+
+            //TODO finish with return.
+        } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
     }
 }
