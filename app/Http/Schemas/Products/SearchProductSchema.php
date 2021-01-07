@@ -25,3 +25,4 @@ class SearchProductSchema
             'query.between' => 'El texto de búsqueda debe contener entre 6 y 30 caracteres. '
         ];
     }
+}
