@@ -14,9 +14,10 @@ class SearchProductAdapter
 {
     /**
      * @param Request $request
+     * @return SearchProductQuery
      * @throws InvalidBodyException
      */
-    public function adapt(Request $request)
+    public function adapt(Request $request) : SearchProductQuery
     {
         $validate = Validator::make($request->all(),SearchProductSchema::getRules(),SearchProductSchema::getMessages());
 
@@ -25,7 +26,7 @@ class SearchProductAdapter
         }
 
         return new SearchProductQuery(
-          $request->query()
+            array_key_exists('query', $request->all()) ? $request->input('query') : null,
         );
     }
 }
