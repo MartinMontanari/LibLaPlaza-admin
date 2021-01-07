@@ -6,21 +6,21 @@ namespace App\Application\Queries\Products;
 
 class SearchProductQuery
 {
-    private string $search;
+    private ?string $search;
 
     /**
      * SearchProductQuery constructor.
-     * @param string $search
+     * @param ?string $search
      */
-    public function __construct(string $search)
+    public function __construct(?string $search)
     {
         $this->search = $search;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSearch(): string
+    public function getSearch(): ?string
     {
         return $this->search;
     }
