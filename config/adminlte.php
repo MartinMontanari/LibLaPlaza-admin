@@ -232,10 +232,10 @@ return [
 
     'menu' => [
         [
-            'text' => 'Buscar un producto',
-            'search' => true,
-            'topnav' => true,
-            'route' => 'search-product',
+//            'text' => 'Buscar un producto',
+//            'search' => true,
+//            'topnav' => true,
+//            'route' => 'search-product',
         ],
         ['header' => 'Menú de opciones'],
         [
