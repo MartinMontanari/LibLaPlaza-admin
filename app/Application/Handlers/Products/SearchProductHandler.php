@@ -4,17 +4,34 @@
 namespace App\Application\Handlers\Products;
 
 
+use App\Application\Queries\Products\SearchProductQuery;
 use App\Domain\Entities\Product;
+use App\Domain\Interfaces\ProductRepository;
 
 class SearchProductHandler
 {
-    public function __construct()
+    private ProductRepository $productRepository;
+
+    /**
+     * SearchProductHandler constructor.
+     * @param ProductRepository $productRepository
+     */
+    public function __construct
+    (
+        ProductRepository $productRepository
+    )
     {
+        $this->productRepository = $productRepository;
     }
 
-
-    public function handle(SearchProductQuery $query) : Product
+    /**
+     * @param SearchProductQuery $query
+     * @return mixed
+     */
+    public function handle(SearchProductQuery $query)
     {
-        //TODO
+        $queryResult = $this->productRepository->getManyByName($query->getSearch());
+
+        return $queryResult;
     }
 }

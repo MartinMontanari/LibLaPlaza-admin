@@ -36,4 +36,10 @@ interface ProductRepository
      * @param int $id
      */
     public function deleteOneById(int $id) : void;
+
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function getManyByName(string $name);
 }

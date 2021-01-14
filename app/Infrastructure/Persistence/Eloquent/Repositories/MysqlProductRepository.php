@@ -7,6 +7,8 @@ namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 use App\Domain\Entities\Product;
 use App\Domain\Interfaces\ProductRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class MysqlProductRepository implements ProductRepository
 {
@@ -43,7 +45,7 @@ class MysqlProductRepository implements ProductRepository
     }
 
     /**
-     * @param int $code
+     * @param string $code
      * @return Product
      */
     public function getOneByCode(string $code): Product
@@ -61,5 +63,14 @@ class MysqlProductRepository implements ProductRepository
         Product::query()
             ->where('id','=', $id)
             ->delete();
+    }
+
+    /**
+     * @param string $name
+     * @return Builder[]|Collection
+     */
+    public function getManyByName(string $name)
+    {
+        return Product::query()->where('name', '=', $name)->get();
     }
 }
