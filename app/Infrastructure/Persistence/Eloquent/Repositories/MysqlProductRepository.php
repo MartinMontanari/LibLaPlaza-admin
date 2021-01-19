@@ -66,11 +66,14 @@ class MysqlProductRepository implements ProductRepository
     }
 
     /**
-     * @param string $name
+     * @param string $query
      * @return Builder[]|Collection
      */
-    public function getManyByName(string $name)
+    public function getManyByQuery(string $query)
     {
-        return Product::query()->where('name', '=', $name)->get();
+        return Product::query()->where('name','like', '%'.$query.'%')
+            ->orWhere('description','like', '%'.$query.'%')
+            ->orWhere('code','=', $query)
+            ->get();
     }
 }

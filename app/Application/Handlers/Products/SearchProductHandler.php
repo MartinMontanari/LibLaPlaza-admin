@@ -30,8 +30,8 @@ class SearchProductHandler
      */
     public function handle(SearchProductQuery $query)
     {
-        $queryResult = $this->productRepository->getManyByName($query->getSearch());
-
+        $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
+        dd($queryResult);
         return $queryResult;
     }
 }

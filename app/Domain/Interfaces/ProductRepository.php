@@ -38,8 +38,8 @@ interface ProductRepository
     public function deleteOneById(int $id) : void;
 
     /**
-     * @param string $name
+     * @param string $query
      * @return mixed
      */
-    public function getManyByName(string $name);
+    public function getManyByQuery(string $query);
 }
