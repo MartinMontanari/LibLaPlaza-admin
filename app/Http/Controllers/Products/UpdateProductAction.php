@@ -18,7 +18,6 @@ use Illuminate\Http\Request;
 class UpdateProductAction
 {
     private UpdateProductHandler $handler;
-
     private UpdateProductAdapter $adapter;
 
 
