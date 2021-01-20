@@ -31,8 +31,6 @@ class SearchProductHandler
      */
     public function handle(SearchProductQuery $query)
     {
-//        $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
-//        return $queryResult;
         if (count($this->productRepository->getManyByQuery($query->getSearch())) >= 1) {
             $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
         } else {
