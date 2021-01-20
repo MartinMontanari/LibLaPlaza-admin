@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Search;
 
 
 use App\Application\Handlers\Products\SearchProductHandler;
+use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\SearchProductAdapter;
 use Illuminate\Http\RedirectResponse;
@@ -43,6 +44,8 @@ class SearchProductAction
             return $result;
             //TODO finish with return.
         } catch (InvalidBodyException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        } catch (EntityNotFoundException $errors){
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }
