@@ -8,6 +8,9 @@ use App\Application\Handlers\Products\SearchProductHandler;
 use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\SearchProductAdapter;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -34,15 +37,15 @@ class SearchProductAction
 
     /**
      * @param Request $request
-     * @return RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function __invoke(Request $request)
     {
         try {
             $query = $this->searchProductAdapter->adapt($request);
             $result = $this->searchProductHandler->handle($query);
-            return $result;
-            //TODO finish with return.
+
+            return view('admin.dashboard')->with(['queryResult' => $result]);
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         } catch (EntityNotFoundException $errors){
