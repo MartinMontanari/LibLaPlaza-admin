@@ -5,8 +5,8 @@ namespace App\Application\Handlers\Products;
 
 
 use App\Application\Queries\Products\SearchProductQuery;
-use App\Domain\Entities\Product;
 use App\Domain\Interfaces\ProductRepository;
+use App\Exceptions\EntityNotFoundException;
 
 class SearchProductHandler
 {
@@ -27,11 +27,17 @@ class SearchProductHandler
     /**
      * @param SearchProductQuery $query
      * @return mixed
+     * @throws EntityNotFoundException
      */
     public function handle(SearchProductQuery $query)
     {
-        $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
-        dd($queryResult);
+//        $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
+//        return $queryResult;
+        if (count($this->productRepository->getManyByQuery($query->getSearch())) >= 1) {
+            $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
+        } else {
+            throw new EntityNotFoundException(["Ningún elemento coincide con su búsqueda", "Intente buscar nuevamente"]);
+        }
         return $queryResult;
     }
 }

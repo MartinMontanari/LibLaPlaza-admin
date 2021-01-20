@@ -46,7 +46,7 @@ class SearchProductAction
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         } catch (EntityNotFoundException $errors){
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->route('home')->withErrors($errors->getMessages());
         }
     }
 }
