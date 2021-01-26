@@ -36,7 +36,6 @@ class IndexStockAction
         $this->indexHandler = $indexStockHandler;
         $this->adapter = $getProductStockAdapter;
         $this->getProductStockHandler = $getProductStockHandler;
-
     }
 
 

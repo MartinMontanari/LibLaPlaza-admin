@@ -51,7 +51,7 @@ class ProductsSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'code' => 'NEWCOD12',
+            'code' => 'NEWCOD13',
             'name' => 'Mochila footy para nena2',
             'description' => 'Con lentejuelas y carro. 4 cierres. 5 bolsillos.',
             'price_amount' => '543010',

@@ -235,6 +235,8 @@ return [
             'text' => 'Buscar un producto',
             'search' => true,
             'topnav' => true,
+            'input_name' => 'query' ,
+            'route' => 'search-product',
         ],
         ['header' => 'Menú de opciones'],
         [
