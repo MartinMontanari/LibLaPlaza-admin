@@ -54,6 +54,8 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::put('products/{id}', [\App\Http\Controllers\Products\UpdateProductAction::class, '__invoke'])->name('update-product');
         Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
         Route::delete('products/{id}',[\App\Http\Controllers\Products\DeleteProductAction::class,'__invoke'])->name('delete-product');
+
+        //Search routes
         Route::get('search/products',[\App\Http\Controllers\Search\SearchProductAction::class,'__invoke'])->name('search-product');
 
         //stock routes
@@ -61,6 +63,9 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::post('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, '__invoke'])->name('stock-report');
         Route::get('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, 'index'])->name('product-stock');
         Route::put('stock/update', [\App\Http\Controllers\Stock\UpdateStockAction::class, '__invoke'])->name('update-stock');
+
+        //Reports routes
+        Route::get('report/lower-stock',[\App\Http\Controllers\Reports\LowerStockReportAction::class,'__invoke'])->name('low-stock-report');
 
     }
 );
