@@ -54,9 +54,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
         Route::put('products/{id}', [\App\Http\Controllers\Products\UpdateProductAction::class, '__invoke'])->name('update-product');
         Route::get('product/edit', [\App\Http\Controllers\Products\UpdateProductAction::class, 'index'])->name('edit-product');
         Route::delete('products/{id}',[\App\Http\Controllers\Products\DeleteProductAction::class,'__invoke'])->name('delete-product');
-
-        //Search routes
-        Route::get('search/products',[\App\Http\Controllers\Search\SearchProductAction::class,'__invoke'])->name('search-product');
+        Route::get('search/products',[\App\Http\Controllers\Products\SearchProductAction::class,'__invoke'])->name('search-product');
 
         //stock routes
         Route::get('stock', [\App\Http\Controllers\Stock\IndexStockAction::class, 'index'])->name('stock-index');

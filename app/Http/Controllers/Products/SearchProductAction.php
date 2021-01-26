@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Search;
+namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\SearchProductHandler;
