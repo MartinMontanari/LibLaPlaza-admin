@@ -8,7 +8,7 @@ use App\Application\Commands\Stock\UpdateStockCommand;
 use App\Domain\Entities\Stock;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\StockRepository;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 
 class UpdateStockHandler
 {
@@ -37,7 +37,7 @@ class UpdateStockHandler
 
     /**
      * @param UpdateStockCommand $command
-     * @throws EntityNotFoundException
+     * @throws ResultNotFoundException
      */
     public function handle(UpdateStockCommand $command)
     {
@@ -47,7 +47,7 @@ class UpdateStockHandler
             $stock->setQuantity($command->getQuantity());
         }
         else{
-            throw new EntityNotFoundException(['Ocurrió un error.', 'No se ha encontrado el producto seleccionado o bien la relación no es correcta.']);
+            throw new ResultNotFoundException(['Ocurrió un error.', 'No se ha encontrado el producto seleccionado o bien la relación no es correcta.']);
         }
 
         $this->stockRepository->persist($stock);

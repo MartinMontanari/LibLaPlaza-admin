@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\SearchProductHandler;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\SearchProductAdapter;
 use Illuminate\Contracts\Foundation\Application;
@@ -48,7 +48,7 @@ class SearchProductAction
             return view('admin.dashboard')->with(['queryResult' => $result]);
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
-        } catch (EntityNotFoundException $errors){
+        } catch (ResultNotFoundException $errors){
             return redirect()->route('home')->withErrors($errors->getMessages());
         }
     }

@@ -6,7 +6,7 @@ namespace App\Application\Handlers\Products;
 
 use App\Application\Commands\Products\DeleteProductCommand;
 use App\Domain\Interfaces\ProductRepository;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 
 class DeleteProductHandler
 {
@@ -26,7 +26,7 @@ class DeleteProductHandler
 
     /**
      * @param DeleteProductCommand $command
-     * @throws EntityNotFoundException
+     * @throws ResultNotFoundException
      */
     public function handle(DeleteProductCommand $command)
     {
@@ -36,7 +36,7 @@ class DeleteProductHandler
             $this->productRepository->deleteOneById($command->getId());
         }
         else{
-            throw new EntityNotFoundException(['Ocurrió un error.', 'No se ha encontrado el producto seleccionado o bien la relación no es correcta.']);
+            throw new ResultNotFoundException(['Ocurrió un error.', 'No se ha encontrado el producto seleccionado o bien la relación no es correcta.']);
         }
     }
 }

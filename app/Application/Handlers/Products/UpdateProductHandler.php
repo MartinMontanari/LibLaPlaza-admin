@@ -11,7 +11,7 @@ use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
 use App\Domain\Interfaces\StockRepository;
 use App\Exceptions\AlreadyExistsException;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 use Money\Money;
 
 class UpdateProductHandler
@@ -57,7 +57,7 @@ class UpdateProductHandler
     /**
      * @param UpdateProductCommand $command
      * @throws AlreadyExistsException
-     * @throws EntityNotFoundException
+     * @throws ResultNotFoundException
      * Use case handler
      */
 
@@ -76,7 +76,7 @@ class UpdateProductHandler
         if (isset($product)) {
 
         } else {
-            throw new EntityNotFoundException("La entidad no existe.", 404);
+            throw new ResultNotFoundException("La entidad no existe.", 404);
         }
 
         $product->setCode($command->getCode());

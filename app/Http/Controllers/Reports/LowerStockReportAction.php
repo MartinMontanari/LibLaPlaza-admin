@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Reports;
 
 
 use App\Application\Handlers\Reports\LowerStockReportHandler;
-use App\Exceptions\EntityNotFoundException;
-use App\Exceptions\InvalidBodyException;
+use App\Exceptions\ResultNotFoundException;
 use Illuminate\Http\RedirectResponse;
 
 class LowerStockReportAction
@@ -28,7 +27,7 @@ class LowerStockReportAction
     {
         try {
             $result = $this->lowerStockReportHandler->handle();
-        } catch (EntityNotFoundException $errors) {
+        } catch (ResultNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }
