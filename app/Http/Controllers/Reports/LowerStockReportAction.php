@@ -4,25 +4,32 @@
 namespace App\Http\Controllers\Reports;
 
 
-use Illuminate\Http\Request;
+use App\Application\Handlers\Reports\LowerStockReportHandler;
+use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\InvalidBodyException;
+use Illuminate\Http\RedirectResponse;
 
 class LowerStockReportAction
 {
-    private LowerStockReportAdapter $lowerStockReportAdapter;
     private LowerStockReportHandler $lowerStockReportHandler;
 
     public function __construct
     (
-        LowerStockReportAdapter $lowerStockReportAdapter,
         LowerStockReportHandler $lowerStockReportHandler
     )
     {
-        $this->lowerStockReportAdapter = $lowerStockReportAdapter;
         $this->lowerStockReportHandler = $lowerStockReportHandler;
     }
 
-    public function __invoke(Request $request)
+    /**
+     * @return RedirectResponse
+     */
+    public function __invoke()
     {
-
+        try {
+            $result = $this->lowerStockReportHandler->handle();
+        } catch (EntityNotFoundException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
     }
 }

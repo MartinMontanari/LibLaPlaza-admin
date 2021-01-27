@@ -6,6 +6,8 @@ namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 
 use App\Domain\Entities\Stock;
 use App\Domain\Interfaces\StockRepository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class MysqlStockRepository implements StockRepository
 {
@@ -27,5 +29,16 @@ class MysqlStockRepository implements StockRepository
         return Stock::query()
             ->where('product_id', '=', $product_id)
             ->first();
+    }
+
+    /**
+     * @param int $min
+     * @return Builder|mixed
+     */
+    public function filterProductsByStock(int $min) : Collection
+    {
+        return Stock::query()
+            ->where('quantity','<=',$min)
+            ->get();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Domain\Interfaces;
 
 
 use App\Domain\Entities\Stock;
+use Illuminate\Database\Eloquent\Collection;
 
 interface StockRepository
 {
@@ -19,4 +20,10 @@ interface StockRepository
      * @return Stock
      */
     public function getProductStock(int $product_id) : Stock;
+
+    /**
+     * @param int $min
+     * @return Collection
+     */
+    public function filterProductsByStock(int $min) : Collection;
 }
