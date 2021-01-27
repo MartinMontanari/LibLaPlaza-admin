@@ -29,6 +29,5 @@ class LowerStockReportHandler
         if (count($result) <= 1 ) {
             throw new ResultNotFoundException(["No hay productos con stock bajo.s"]);
         }
-        dd($result);
     }
 }
