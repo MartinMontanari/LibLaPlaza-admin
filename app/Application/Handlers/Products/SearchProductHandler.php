@@ -31,9 +31,8 @@ class SearchProductHandler
      */
     public function handle(SearchProductQuery $query)
     {
-        if (count($this->productRepository->getManyByQuery($query->getSearch())) >= 1) {
-            $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
-        } else {
+        $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
+        if (count($queryResult) <= 1) {
             throw new ResultNotFoundException(["Ningún elemento coincide con su búsqueda", "Intente buscar nuevamente"]);
         }
         return $queryResult;

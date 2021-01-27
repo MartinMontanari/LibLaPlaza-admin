@@ -6,6 +6,7 @@ namespace App\Application\Handlers\Reports;
 
 use App\Domain\Interfaces\StockRepository;
 use App\Exceptions\ResultNotFoundException;
+use Illuminate\Database\Eloquent\Collection;
 
 class LowerStockReportHandler
 {
@@ -18,12 +19,16 @@ class LowerStockReportHandler
     }
 
     /**
+     * @return Collection
      * @throws ResultNotFoundException
      */
     public function handle()
     {
-        if ($this->stockRepository->filterProductsByStock(self::MIN_STOCK_VALUE) == 0) {
-            throw new ResultNotFoundException("No se encontraron resultados.");
-        };
+        $result = $this->stockRepository->filterProductsByStock(self::MIN_STOCK_VALUE);
+
+        if (count($result) <= 1 ) {
+            throw new ResultNotFoundException(["No hay productos con stock bajo.s"]);
+        }
+        dd($result);
     }
 }
