@@ -6,6 +6,7 @@ namespace App\Application\Handlers\Products;
 
 use App\Application\Queries\Products\SearchProductQuery;
 use App\Domain\Interfaces\ProductRepository;
+use App\Exceptions\InvalidBodyException;
 use App\Exceptions\ResultNotFoundException;
 
 class SearchProductHandler
@@ -33,7 +34,7 @@ class SearchProductHandler
     {
         $queryResult = $this->productRepository->getManyByQuery($query->getSearch());
         if (count($queryResult) <= 1) {
-            throw new ResultNotFoundException(["Ningún elemento coincide con su búsqueda", "Intente buscar nuevamente"]);
+            throw new ResultNotFoundException(["Ningún elemento coincide con su búsqueda.", "Intente buscar nuevamente."]);
         }
         return $queryResult;
     }

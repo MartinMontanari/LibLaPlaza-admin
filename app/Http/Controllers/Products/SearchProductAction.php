@@ -47,7 +47,7 @@ class SearchProductAction
 
             return view('admin.dashboard')->with(['queryResult' => $result]);
         } catch (InvalidBodyException $errors) {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->route('home')->withErrors($errors->getMessages());
         } catch (ResultNotFoundException $errors){
             return redirect()->route('home')->withErrors($errors->getMessages());
         }
