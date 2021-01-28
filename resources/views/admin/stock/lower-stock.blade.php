@@ -9,9 +9,15 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            @if($report->count() == 0)
-                <div class="card col-6 alert alert-danger text-center">
-                    No hay productos con bajo stock.
+            @if($errors->any())
+                <div class="card col-6 alert alert-danger">
+                    <div class="row justify-content-center text-wrap">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             @else
                 <table class="table table-hover table-striped">

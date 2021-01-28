@@ -30,9 +30,9 @@ class LowerStockReportAction
     {
         try {
             $result = $this->lowerStockReportHandler->handle();
-            return view('admin.stock.lower-stock', ['report'=>$result]);
+            return view('admin.stock.lower-stock', ['report' => $result]);
         } catch (ResultNotFoundException $errors) {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return view('admin.stock.lower-stock')->withErrors($errors->getMessages());
         }
     }
 }
