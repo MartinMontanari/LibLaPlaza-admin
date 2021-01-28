@@ -6,6 +6,9 @@ namespace App\Http\Controllers\Reports;
 
 use App\Application\Handlers\Reports\LowerStockReportHandler;
 use App\Exceptions\ResultNotFoundException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class LowerStockReportAction
@@ -21,12 +24,13 @@ class LowerStockReportAction
     }
 
     /**
-     * @return RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function __invoke()
     {
         try {
             $result = $this->lowerStockReportHandler->handle();
+            return view('admin.stock.lower-stock', ['report'=>$result]);
         } catch (ResultNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }

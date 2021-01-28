@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Eloquent\Repositories;
 
 use App\Domain\Entities\Stock;
 use App\Domain\Interfaces\StockRepository;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -33,12 +34,12 @@ class MysqlStockRepository implements StockRepository
 
     /**
      * @param int $min
-     * @return Builder|mixed
+     * @return LengthAwarePaginator|mixed
      */
-    public function filterProductsByStock(int $min) : Collection
+    public function filterProductsByStock(int $min)
     {
         return Stock::query()
             ->where('quantity','<=',$min)
-            ->get();
+            ->paginate(10);
     }
 }

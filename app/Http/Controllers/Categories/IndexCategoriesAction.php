@@ -8,6 +8,10 @@ use App\Application\Handlers\Categories\IndexCategoriesHandler;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\IndexCategoriesAdapter;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class IndexCategoriesAction
@@ -32,7 +36,7 @@ class IndexCategoriesAction
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     * @return Application|Factory|View|RedirectResponse
      */
     public function __invoke(Request $request)
     {

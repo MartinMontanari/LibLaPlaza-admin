@@ -23,7 +23,7 @@ interface StockRepository
 
     /**
      * @param int $min
-     * @return Collection
+     * @return mixed
      */
-    public function filterProductsByStock(int $min) : Collection;
+    public function filterProductsByStock(int $min);
 }

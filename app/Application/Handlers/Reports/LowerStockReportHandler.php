@@ -25,9 +25,9 @@ class LowerStockReportHandler
     public function handle()
     {
         $result = $this->stockRepository->filterProductsByStock(self::MIN_STOCK_VALUE);
-
         if (count($result) <= 1 ) {
-            throw new ResultNotFoundException(["No hay productos con stock bajo.s"]);
+            throw new ResultNotFoundException(["No hay productos con stock bajo."]);
         }
+        return $result;
     }
 }
