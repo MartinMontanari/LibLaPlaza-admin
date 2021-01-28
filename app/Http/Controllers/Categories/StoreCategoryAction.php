@@ -7,7 +7,6 @@ use App\Application\Handlers\Categories\StoreCategoryHandler;
 use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\StoreCategoryAdapter;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class StoreCategoryAction
@@ -41,11 +40,11 @@ class StoreCategoryAction
             $this->handler->handle($command);
             return redirect()->route('new-category')->with('status','la categoría se ha creado correctamente.');
         } catch (InvalidBodyException $errors) {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
         catch (AlreadyExistsException $errors)
         {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
     }
 }

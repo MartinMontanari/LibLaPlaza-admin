@@ -11,6 +11,7 @@ use App\Domain\Entities\Product;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
+use App\Exceptions\AlreadyExistsException;
 use Money\Money;
 
 class StoreProductHandler
@@ -46,6 +47,15 @@ class StoreProductHandler
      */
     public function handle(StoreProductCommand $command)
     {
+        $searchedByCode = $this->productRepository->getOneByCode($command->getCode());
+        if (isset($searchedByCode)) {
+            throw new AlreadyExistsException(
+                ["El código {$searchedByCode->getCode()} ya existe.",
+                    "Corresponde al producto {$searchedByCode->getName()}.",
+                    "Ingrese otro código e intente nuevamente."]
+            );
+        }
+
         $product = new Product();
         $product->setCode($command->getCode());
         $product->setName($command->getName());
@@ -56,14 +66,13 @@ class StoreProductHandler
         $product->setProviderId($command->getProviderId());
 
         $this->productRepository->persist($product);
-
         $this->startStockHandler->start($product->getId());
     }
 
     /**
      * @return array
      */
-    public function viewData() : array
+    public function viewData(): array
     {
         $providers = $this->providerRepository->findAll();
         $categories = $this->categoryRepository->findAll();

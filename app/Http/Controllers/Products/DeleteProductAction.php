@@ -35,7 +35,7 @@ class DeleteProductAction
         try {
             $command = $this->deleteProductAdapter->adapt($request);
             $this->deleteProductHandler->handle($command);
-            return redirect()->back()->with('status', 'success');
+            return redirect()->back()->with('status', 'Producto eliminado correctamente');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         } catch (ResultNotFoundException $errors) {
