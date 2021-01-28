@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group-lg">
                                 <label>Código:</label>
-                                <input type="text" class="form-control" name="code" min="6" max="30" maxlength="30"
+                                <input type="text" class="form-control" name="code" min="1" max="30" maxlength="30"
                                        placeholder="Código"
                                        value="{{old('code')}}" required><br>
                                 <label>Nombre:</label>
@@ -31,7 +31,7 @@
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90"
                                           maxlength="90"
                                           placeholder="Descripción"
-                                          value="{{old('description')}}"></textarea><br>
+                                >{{old('description')}}</textarea><br>
                                 <div class="container-sm row justify-content-start d-inline-block">
                                     <div class="row justify-content-start">
                                         <label class="col-4">Precio en $ (pesos):</label>
@@ -67,17 +67,17 @@
             </div>
         </div>
         <div class="row justify-content-md-center">
-                    @if($errors->any())
-                        <div class="card col-6 alert alert-danger">
-                            <div class="row justify-content-center text-wrap">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
+            @if($errors->any())
+                <div class="card col-6 alert alert-danger">
+                    <div class="row justify-content-center text-wrap">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
             @if(session('status'))
                 <div class="card col-6 alert alert-success">
                     <div class="row justify-content-center">

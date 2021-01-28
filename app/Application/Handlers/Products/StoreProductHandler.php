@@ -44,6 +44,7 @@ class StoreProductHandler
 
     /**
      * @param StoreProductCommand $command
+     * @throws AlreadyExistsException
      */
     public function handle(StoreProductCommand $command)
     {

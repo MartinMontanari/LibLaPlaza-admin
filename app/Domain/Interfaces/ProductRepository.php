@@ -28,9 +28,9 @@ interface ProductRepository
 
     /**
      * @param string $code
-     * @return Product
+     * @return Product|null
      */
-    public function getOneByCode(string $code) : Product;
+    public function getOneByCode(string $code) : ?Product;
 
     /**
      * @param int $id

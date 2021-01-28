@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Products;
 
 
 use App\Application\Handlers\Products\StoreProductHandler;
+use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Products\StoreProductAdapter;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -43,12 +46,13 @@ class StoreProductAction
             return redirect()->route('new-product')->with('status', 'success');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages())->withInput();
+        }catch (AlreadyExistsException $errors){
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
-
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {

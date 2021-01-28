@@ -24,7 +24,7 @@
                                        placeholder="Código"
                                        value="{{$product->getCode()}}" required><br>
                                 <label>Nombre:</label>
-                                <input type="text" class="form-control" name="name" min="15" max="45" maxlength="45"
+                                <input type="text" class="form-control" name="name" min="1" max="45" maxlength="45"
                                        placeholder="Nombre"
                                        value="{{$product->getName()}}" required><br>
                                 <label>Descripción:</label>
