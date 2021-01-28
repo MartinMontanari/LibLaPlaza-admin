@@ -15,7 +15,7 @@ class UpdateProductSchema
         return [
             'id' => 'bail|min:0|integer',
             'code' => 'bail|required|min:6|max:30',
-            'name' => 'bail|required|min:15|max:45',
+            'name' => 'bail|required|min:1|max:45',
             'description' => 'bail|min:15|max:90',
             'price' => 'bail|required|numeric|min:1',
             'provider_id' => 'bail|required|numeric|min:1',

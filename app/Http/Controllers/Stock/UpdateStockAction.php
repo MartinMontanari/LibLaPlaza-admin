@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Stock;
 
 
 use App\Application\Handlers\Stock\UpdateStockHandler;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Stock\UpdateStockAdapter;
 use Illuminate\Http\RedirectResponse;
@@ -46,7 +46,7 @@ class UpdateStockAction
             return redirect()->back()->with('status','success');
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
-        } catch (EntityNotFoundException $errors) {
+        } catch (ResultNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }

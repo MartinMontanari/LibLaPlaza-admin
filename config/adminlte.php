@@ -302,8 +302,9 @@ return [
             'icon' => 'fas fa-folder',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url' => '#',
+                    'text' => 'Bajo stock',
+                    'route' => 'low-stock-report',
+                    'icon' => 'far fa-file',
                 ]
             ],
         ],

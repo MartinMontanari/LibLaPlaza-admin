@@ -6,8 +6,8 @@ namespace App\Http\Controllers\Products;
 
 use App\Application\Handlers\Products\UpdateProductHandler;
 use App\Exceptions\AlreadyExistsException;
-use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
+use App\Exceptions\ResultNotFoundException;
 use App\Http\Adapters\Products\UpdateProductAdapter;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -33,13 +33,17 @@ class UpdateProductAction
 
     /**
      * @param Request $request
-     * @return Application|Factory|View
+     * @return Application|Factory|View|RedirectResponse
      */
     public function index(Request $request)
     {
-        $productData = $this->handler->index($request->query('id'));
+        try {
+            $productData = $this->handler->index($request->query('id'));
 
-        return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2], 'productPrice' => $productData[3]]);
+            return view('admin.products.edit', ['providers' => $productData[0], 'categories' => $productData[1], 'product' => $productData[2], 'productPrice' => $productData[3]]);
+        } catch (ResultNotFoundException $errors) {
+            return redirect()->back()->withErrors($errors->getMessages());
+        }
     }
 
     /**
@@ -56,7 +60,7 @@ class UpdateProductAction
             return redirect()->back()->withErrors($errors->getMessages());
         } catch (AlreadyExistsException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
-        } catch (EntityNotFoundException $errors) {
+        } catch (ResultNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }

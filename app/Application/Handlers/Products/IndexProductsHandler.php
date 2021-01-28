@@ -23,6 +23,10 @@ class IndexProductsHandler
         $this->productRepository = $productRepository;
     }
 
+    /**
+     * @param IndexProductsQuery $query
+     * @return mixed
+     */
     public function handle(IndexProductsQuery $query)
     {
         return $this->productRepository->getAll($query->getPage(),$query->getSize());

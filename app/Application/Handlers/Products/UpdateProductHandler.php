@@ -9,9 +9,8 @@ use App\Application\Services\StockService;
 use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
-use App\Domain\Interfaces\StockRepository;
 use App\Exceptions\AlreadyExistsException;
-use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 use Money\Money;
 
 class UpdateProductHandler
@@ -19,6 +18,28 @@ class UpdateProductHandler
     private ProductRepository $productRepository;
     private CategoryRepository $categoryRepository;
     private ProviderRepository $providerRepository;
+
+    /**
+     * @param int $id
+     * @return array
+     * @throws ResultNotFoundException
+     * View data and nurture
+     */
+    public function index(int $id): array
+    {
+        $providers = $this->providerRepository->findAll();
+        $categories = $this->categoryRepository->findAll();
+        $product = $this->productRepository->getOneByIdOrFail($id);
+        if (!isset($product)) {
+            throw new ResultNotFoundException(
+                ["No se encontraron resultados, hubo un error."
+                    , "Seleccione otro producto e intente nuevamente."]);
+        }
+        $productPrice = $product->getPrice()->getAmount() / 100;
+
+        return [$providers, $categories, $product, $productPrice];
+    }
+
 
     /**
      * StoreProductHandler constructor.
@@ -38,26 +59,10 @@ class UpdateProductHandler
         $this->providerRepository = $providerRepository;
     }
 
-
-    /**
-     * @param int $id
-     * @return array
-     * View data and nurture
-     */
-    public function index(int $id): array
-    {
-        $providers = $this->providerRepository->findAll();
-        $categories = $this->categoryRepository->findAll();
-        $product = $this->productRepository->getOneByIdOrFail($id);
-        $productPrice = $product->getPrice()->getAmount() / 100;
-
-        return [$providers, $categories, $product, $productPrice];
-    }
-
     /**
      * @param UpdateProductCommand $command
      * @throws AlreadyExistsException
-     * @throws EntityNotFoundException
+     * @throws ResultNotFoundException
      * Use case handler
      */
 
@@ -68,15 +73,15 @@ class UpdateProductHandler
             throw new AlreadyExistsException(
                 ["El código {$searchedByCode->getCode()} ya existe.",
                     "Corresponde al producto {$searchedByCode->getName()}.",
-                    "Ingrese otro."]
+                    "Ingrese otro código e intente nuevamente."]
             );
         }
 
         $product = $this->productRepository->getOneByIdOrFail($command->getId());
-        if (isset($product)) {
-
-        } else {
-            throw new EntityNotFoundException("La entidad no existe.", 404);
+        if (!isset($product)) {
+            throw new ResultNotFoundException(
+                ["No se encontraron resultados, hubo un error."
+                    , "Seleccione otro producto e intente nuevamente."]);
         }
 
         $product->setCode($command->getCode());

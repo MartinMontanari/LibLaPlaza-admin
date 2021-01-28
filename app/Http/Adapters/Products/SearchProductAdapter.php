@@ -22,7 +22,7 @@ class SearchProductAdapter
         $validate = Validator::make($request->all(),SearchProductSchema::getRules(),SearchProductSchema::getMessages());
 
         if($validate->fails()){
-            throw new InvalidBodyException(['No se ha encontrando ningún producto que coincida con su búsqueda.']);
+            throw new InvalidBodyException(['No se ha realizado ninguna búsqueda.', 'Intente nuevamente.']);
         }
 
         return new SearchProductQuery(

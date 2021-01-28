@@ -22,7 +22,7 @@ class StoreProductAdapter
         $validate = Validator::make($request->all(),StoreProductSchema::getRules(),StoreProductSchema::getMessages());
 
         if($validate->fails()){
-            throw new InvalidBodyException(['Ocurrió un error.']);
+            throw new InvalidBodyException($validate->errors()->getMessages());
         }
 
         return new StoreProductCommand

@@ -46,9 +46,9 @@ class MysqlProductRepository implements ProductRepository
 
     /**
      * @param string $code
-     * @return Product
+     * @return Product|null
      */
-    public function getOneByCode(string $code): Product
+    public function getOneByCode(string $code): ?Product
     {
         return Product::query()
             ->where('code','=',$code)
