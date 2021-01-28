@@ -42,7 +42,7 @@ class StoreProductAction
             $this->handler->handle($command);
             return redirect()->route('new-product')->with('status', 'success');
         } catch (InvalidBodyException $errors) {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
 
     }
