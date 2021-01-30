@@ -29,7 +29,7 @@
                                 <label>Descripción:</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                           placeholder="Descripción"
-                                          value="{{old('description')}}"></textarea><br>
+                                          >{{old('description')}}</textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
                             </div>
                         </form>

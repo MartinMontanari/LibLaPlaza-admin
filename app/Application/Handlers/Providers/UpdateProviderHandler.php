@@ -8,6 +8,8 @@ use App\Application\Commands\Providers\UpdateProviderCommand;
 use App\Domain\Entities\Provider;
 use App\Domain\Interfaces\ProviderRepository;
 use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\EntityNotFoundException;
+use App\Exceptions\ResultNotFoundException;
 
 class UpdateProviderHandler
 {
@@ -36,7 +38,7 @@ class UpdateProviderHandler
 
     /**
      * @param UpdateProviderCommand $command
-     * @throws AlreadyExistsException
+     * @throws AlreadyExistsException|EntityNotFoundException
      */
     public function handle(UpdateProviderCommand $command)
     {
@@ -51,6 +53,9 @@ class UpdateProviderHandler
 
         $provider = $this->repository->getOneByIdOrFail($command->getId());
 
+        if(!isset($provider)){
+            throw new EntityNotFoundException(["Proveedor no encontrado."]);
+        }
         $provider->setCode($command->getCode());
         $provider->setName($command->getName());
 
