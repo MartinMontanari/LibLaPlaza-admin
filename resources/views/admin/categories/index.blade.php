@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 @endif
-                <table class="table table-hover table-striped">
+                <table class="table col-sm-12 col-md-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
