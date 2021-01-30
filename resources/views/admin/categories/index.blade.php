@@ -10,12 +10,12 @@
     <div class="container">
         <div class="row justify-content-md-center">
             @if($categories->count() == 0)
-                <div class="card col-6 alert alert-danger text-center">
+                <div class="card col-md-6 alert alert-danger text-center">
                     No hay categorías registradas.
                 </div>
             @else
                 @if(session('status'))
-                    <div class="card col-6 alert alert-success">
+                    <div class="card col-md-6 alert alert-success">
                         <div class="row justify-content-center">
                             Categoría eliminada correctamente.
                         </div>

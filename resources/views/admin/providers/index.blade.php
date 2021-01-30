@@ -3,19 +3,19 @@
 @section('title', 'Listado proveedores')
 
 @section('content_header')
-    <h1>Proveedores registrados</h1>
+    <h1 class="col-md-8">Proveedores registrados</h1>
 @stop
 
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
             @if($providers->count() == 0)
-                <div class="card col-6 alert alert-danger text-center">
+                <div class="card col-md-6 alert alert-danger text-center">
                     No hay proveedores registrados.
                 </div>
             @else
                 @if(session('status'))
-                    <div class="card col-6 alert alert-success">
+                    <div class="card col-md-6 alert alert-success">
                         <div class="row justify-content-center">
                             Proveedor eliminado correctamente.
                         </div>
