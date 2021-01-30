@@ -68,7 +68,7 @@
         </div>
         <div class="row justify-content-md-center">
             @if($errors->any())
-                <div class="card col-6 alert alert-danger">
+                <div class="card col-md-6 alert alert-danger">
                     <div class="row justify-content-center text-wrap">
                         <ul>
                             @foreach($errors->all() as $error)
@@ -79,7 +79,7 @@
                 </div>
             @endif
             @if(session('status'))
-                <div class="card col-6 alert alert-success">
+                <div class="card col-md-6 alert alert-success">
                     <div class="row justify-content-center">
                         Producto cargado correctamente.
                     </div>

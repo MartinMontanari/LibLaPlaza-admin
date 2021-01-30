@@ -10,6 +10,7 @@ use App\Domain\Interfaces\CategoryRepository;
 use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\ProviderRepository;
 use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\ResultNotFoundException;
 use Money\Money;
 
@@ -60,8 +61,7 @@ class UpdateProductHandler
 
     /**
      * @param UpdateProductCommand $command
-     * @throws AlreadyExistsException
-     * @throws ResultNotFoundException
+     * @throws AlreadyExistsException|EntityNotFoundException
      * Use case handler
      */
 
@@ -70,15 +70,15 @@ class UpdateProductHandler
         $searchedByCode = $this->productRepository->getOneByCode($command->getCode());
         if (isset($searchedByCode) && $searchedByCode->getId() != $command->getId()) {
             throw new AlreadyExistsException(
-                ["El código {$searchedByCode->getCode()} ya existe.",
-                    "Corresponde al producto {$searchedByCode->getName()}.",
+                ["El código [{$searchedByCode->getCode()}] ya existe.",
+                    "Corresponde al producto [{$searchedByCode->getName()}].",
                     "Ingrese otro código e intente nuevamente."]
             );
         }
 
         $product = $this->productRepository->getOneByIdOrFail($command->getId());
         if (!isset($product)) {
-            throw new ResultNotFoundException(
+            throw new EntityNotFoundException(
                 ["No se encontraron resultados, hubo un error."
                     , "Seleccione otro producto e intente nuevamente."]);
         }

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Products;
 
 use App\Application\Handlers\Products\UpdateProductHandler;
 use App\Exceptions\AlreadyExistsException;
+use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Exceptions\ResultNotFoundException;
 use App\Http\Adapters\Products\UpdateProductAdapter;
@@ -60,7 +61,7 @@ class UpdateProductAction
             return redirect()->back()->withErrors($errors->getMessages());
         } catch (AlreadyExistsException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
-        } catch (ResultNotFoundException $errors) {
+        } catch (EntityNotFoundException $errors) {
             return redirect()->back()->withErrors($errors->getMessages());
         }
     }
