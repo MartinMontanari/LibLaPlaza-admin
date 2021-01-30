@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="card col-6 block">
+            <div class="card col-md-6 col-sm-12 block">
                 <div class="card-header">
                     Complete los campos debajo
                 </div>
