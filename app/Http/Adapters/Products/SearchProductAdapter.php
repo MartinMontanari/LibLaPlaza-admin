@@ -19,7 +19,7 @@ class SearchProductAdapter
      */
     public function adapt(Request $request) : SearchProductQuery
     {
-        $validate = Validator::make($request->all(),SearchProductSchema::getRules(),SearchProductSchema::getMessages());
+        $validate = Validator::make($request->query(),SearchProductSchema::getRules(),SearchProductSchema::getMessages());
 
         if($validate->fails()){
             throw new InvalidBodyException(['No se ha realizado ninguna búsqueda.', 'Intente nuevamente.']);

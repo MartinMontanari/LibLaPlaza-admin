@@ -242,7 +242,7 @@ return [
         [
             'text' => 'Registrar venta',
             'icon' => 'fas fa-cash-register',
-            'url' => '#'
+            'route' => 'new-sale'
         ],
         [
             'text' => 'Productos',

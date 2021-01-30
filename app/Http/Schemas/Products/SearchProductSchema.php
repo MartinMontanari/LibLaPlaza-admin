@@ -12,7 +12,7 @@ class SearchProductSchema
     public static function getRules(): array
     {
         return [
-            'query' => 'bail|between:1,30',
+            'query' => 'bail|between:1,30|nullable',
         ];
     }
 
