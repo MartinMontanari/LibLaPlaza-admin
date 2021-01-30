@@ -32,9 +32,9 @@
                     <tbody class="table-bordered">
                     @foreach($categories as $category)
                         <tr>
-                            <th scope="col"> {{$category->getName()}}</th>
-                            <th scope="col"> {{$category->getDescription()}}</th>
-                            <th scope="col" class="text-center">
+                            <th class="row-cols-md-4"> {{$category->getName()}}</th>
+                            <th class="row-cols-md-6"> {{$category->getDescription()}}</th>
+                            <th class="row-cols-md-2 text-center align-middle">
                                 <a href="{{route('edit-category',['id' => $category->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"
