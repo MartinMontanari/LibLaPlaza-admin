@@ -19,7 +19,7 @@
         <div class="row">
             @foreach($queryResult as $product)
                 <div class="col-md-4 col-xs-12">
-                    <div class="card" style="width: 100%;">
+                    <div class="card" style="width: auto; height: 90%">
                         <div class="card-body">
                             <h5 class="card-title col-12">{{$product->getName()}}</h5>
                             <h6 class="card-subtitle col-6 mb-2 text-muted">{{$product->getCode()}}</h6>
@@ -37,7 +37,7 @@
     @endif
     <div class="row justify-content-md-center">
         @if($errors->any())
-            <div class="card col-6 alert alert-warning">
+            <div class="card col-md-6 alert alert-warning">
                 <div class="row justify-content-center">
                     <ul>
                         @foreach($errors->all() as $error)

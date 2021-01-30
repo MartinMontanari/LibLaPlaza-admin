@@ -10,18 +10,18 @@
     <div class="container">
         <div class="row justify-content-md-center">
             @if($products->count() == 0)
-                <div class="card col-6 alert alert-danger text-center">
+                <div class="card col-md-6 alert alert-danger text-center">
                     No hay productos cargados.
                 </div>
             @else
                 @if(session('status'))
-                    <div class="card col-6 alert alert-success">
+                    <div class="card col-md-6 alert alert-success">
                         <div class="row justify-content-center">
                             Producto eliminado correctamente.
                         </div>
                     </div>
                 @endif
-                <table class="table table-hover table-striped">
+                <table class="table col-md-12 col-sm-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -33,10 +33,10 @@
                     <tbody class="table-bordered">
                     @foreach($products as $product)
                         <tr>
-                            <th scope="col"> {{$product->getName()}}</th>
-                            <th scope="col"> {{$product->getCode()}}</th>
-                            <th scope="col"> ${{$product->getPrice()->getAmount()/100}}</th>
-                            <th scope="col" class="text-center">
+                            <th class="row-cols-md-2"> {{$product->getName()}}</th>
+                            <th class="row-cols-md-2"> {{$product->getCode()}}</th>
+                            <th class="row-cols-md-4"> ${{$product->getPrice()->getAmount()/100}}</th>
+                            <th class="row-cols-md-4 text-center align-middle">
                                 <a href="{{route('edit-product',['id' => $product->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"

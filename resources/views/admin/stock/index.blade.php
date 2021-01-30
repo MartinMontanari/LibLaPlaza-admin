@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="card col-6 block">
+            <div class="card col-md-6 col-sm-12 block">
                 <div class="card-header">
                     Realizar consulta
                 </div>
@@ -39,7 +39,7 @@
         </div>
         <div class="row justify-content-md-center">
             @if($errors->any())
-                <div class="card col-6 alert alert-danger">
+                <div class="card col-md-6 alert alert-danger">
                     <div class="row justify-content-center text-wrap">
                         <ul>
                             @foreach($errors->all() as $error)

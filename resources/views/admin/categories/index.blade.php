@@ -10,18 +10,18 @@
     <div class="container">
         <div class="row justify-content-md-center">
             @if($categories->count() == 0)
-                <div class="card col-6 alert alert-danger text-center">
+                <div class="card col-md-6 alert alert-danger text-center">
                     No hay categorías registradas.
                 </div>
             @else
                 @if(session('status'))
-                    <div class="card col-6 alert alert-success">
+                    <div class="card col-md-6 alert alert-success">
                         <div class="row justify-content-center">
                             Categoría eliminada correctamente.
                         </div>
                     </div>
                 @endif
-                <table class="table table-hover table-striped">
+                <table class="table col-sm-12 col-md-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -32,9 +32,9 @@
                     <tbody class="table-bordered">
                     @foreach($categories as $category)
                         <tr>
-                            <th scope="col"> {{$category->getName()}}</th>
-                            <th scope="col"> {{$category->getDescription()}}</th>
-                            <th scope="col" class="text-center">
+                            <th class="row-cols-md-4"> {{$category->getName()}}</th>
+                            <th class="row-cols-md-6"> {{$category->getDescription()}}</th>
+                            <th class="row-cols-md-2 text-center align-middle">
                                 <a href="{{route('edit-category',['id' => $category->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"

@@ -44,11 +44,11 @@ class StoreProviderAction
         }
         catch (InvalidBodyException $errors)
         {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
         catch (AlreadyExistsException $errors)
         {
-            return redirect()->back()->withErrors($errors->getMessages());
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
     }
 }

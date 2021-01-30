@@ -51,8 +51,8 @@ class StoreProductHandler
         $searchedByCode = $this->productRepository->getOneByCode($command->getCode());
         if (isset($searchedByCode)) {
             throw new AlreadyExistsException(
-                ["El código {$searchedByCode->getCode()} ya existe.",
-                    "Corresponde al producto {$searchedByCode->getName()}.",
+                ["El código [{$searchedByCode->getCode()}] ya existe.",
+                    "Corresponde al producto [{$searchedByCode->getName()}].",
                     "Ingrese otro código e intente nuevamente."]
             );
         }

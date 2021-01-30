@@ -3,14 +3,14 @@
 @section('title', 'Reporte de estado de stock')
 
 @section('content_header')
-    <h1>Reporte de bajo stock de productos</h1>
+    <h1 class="col-md-8">Reporte de bajo stock de productos</h1>
 @stop
 
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
             @if($errors->any())
-                <div class="card col-6 alert alert-success">
+                <div class="card col-md-6 alert alert-danger">
                     <div class="row justify-content-center text-wrap">
                         <ul>
                             @foreach($errors->all() as $error)

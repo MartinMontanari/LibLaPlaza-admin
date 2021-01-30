@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="card col-6 block">
+            <div class="card col-md-6 block">
                 <div class="card-header">
                     Complete los campos debajo
                 </div>
@@ -29,7 +29,7 @@
                                 <label>Descripción:</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                           placeholder="Descripción"
-                                          value="{{old('description')}}"></textarea><br>
+                                          >{{old('description')}}</textarea><br>
                                 <input type="submit" class="btn btn-primary btn-block" value="Guardar">
                             </div>
                         </form>
@@ -39,7 +39,7 @@
         </div>
         <div class="row justify-content-md-center">
             @if($errors->any())
-                <div class="card col-6 alert alert-danger">
+                <div class="card col-md-6 alert alert-danger">
                     <div class="row justify-content-center text-wrap">
                         <ul>
                             @foreach($errors->all() as $error)
@@ -49,8 +49,8 @@
                     </div>
                 </div>
             @endif
-            @if(session('status'))
-                <div class="card col-6 alert alert-success">
+            @if(session('status'))s
+                <div class="card col-md-6 alert alert-success">
                     <div class="row justify-content-center">
                         Proveedor registrado correctamente.
                     </div>

@@ -37,8 +37,8 @@ class StoreProviderHandler
         if (isset($searchedByCode))
         {
             throw new AlreadyExistsException(
-                ["El código {$searchedByCode->getCode()} ya existe.",
-                    "Corresponde al proveedor {$searchedByCode->getName()}.",
+                ["El código [{$searchedByCode->getCode()}] ya existe.",
+                    "Corresponde al proveedor [{$searchedByCode->getName()}].",
                     "Ingrese otro."]
             );
         }
