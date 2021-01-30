@@ -49,8 +49,8 @@
                     </div>
                 </div>
             @endif
-            @if(session('status'))
-                <div class="card col-6 alert alert-success">
+            @if(session('status'))s
+                <div class="card col-md-6 alert alert-success">
                     <div class="row justify-content-center">
                         Proveedor registrado correctamente.
                     </div>
