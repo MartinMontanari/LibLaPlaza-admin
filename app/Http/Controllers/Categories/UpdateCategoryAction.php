@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Categories;
 
 
 use App\Application\Handlers\Categories\UpdateCategoryHandler;
+use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\EntityNotFoundException;
 use App\Exceptions\InvalidBodyException;
 use App\Http\Adapters\Categories\UpdateCategoryAdapter;
@@ -57,6 +58,8 @@ class UpdateCategoryAction
         } catch (InvalidBodyException $errors) {
             return redirect()->back()->withErrors($errors->getMessages())->withInput();
         } catch (EntityNotFoundException $errors){
+            return redirect()->back()->withErrors($errors->getMessages())->withInput();
+        } catch (AlreadyExistsException $errors){
             return redirect()->back()->withErrors($errors->getMessages())->withInput();
         }
     }

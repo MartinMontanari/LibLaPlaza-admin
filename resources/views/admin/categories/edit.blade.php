@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-md-center">
-            <div class="card col-6 block">
+            <div class="card col-md-6 block">
                 <div class="card-header">
                     Edite los campos debajo
                 </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="row justify-content-md-center">
             @if($errors->any())
-                <div class="card col-6 alert alert-danger">
+                <div class="card col-md-6 alert alert-danger">
                     <div class="row justify-content-center">
                         <ul>
                             @foreach($errors->all() as $error)
@@ -48,7 +48,7 @@
                 </div>
             @endif
             @if(session('status'))
-                <div class="card col-6 alert alert-success">
+                <div class="card col-md-6 alert alert-success">
                     <div class="row justify-content-center">
                         Los datos de la categoría se han actualizado correctamente.
                     </div>

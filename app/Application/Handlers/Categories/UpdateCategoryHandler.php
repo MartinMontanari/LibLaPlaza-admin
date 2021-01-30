@@ -7,6 +7,7 @@ namespace App\Application\Handlers\Categories;
 use App\Application\Commands\Categories\UpdateCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Domain\Interfaces\CategoryRepository;
+use App\Exceptions\AlreadyExistsException;
 use App\Exceptions\EntityNotFoundException;
 
 class UpdateCategoryHandler
@@ -36,7 +37,7 @@ class UpdateCategoryHandler
 
     /**
      * @param UpdateCategoryCommand $command
-     * @throws EntityNotFoundException
+     * @throws EntityNotFoundException|AlreadyExistsException
      */
     public function handle(UpdateCategoryCommand $command)
     {
@@ -44,8 +45,13 @@ class UpdateCategoryHandler
         if(!isset($category)){
             throw new EntityNotFoundException("Categoría no encontrada.");
         }
-        $category->setName($command->getName());
 
+        $searchedByName = $this->repository->getOneByName($command->getName());
+        if(isset($searchedByName) && $searchedByName->getId()!=$command->getId()){
+            throw new AlreadyExistsException(["La categoría [{$searchedByName->getName()}] ya existe."]);
+        }
+
+        $category->setName($command->getName());
         $category->setDescription($command->getDescription());
 
         $this->repository->persist($category);

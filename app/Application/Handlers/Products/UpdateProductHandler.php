@@ -20,6 +20,24 @@ class UpdateProductHandler
     private ProviderRepository $providerRepository;
 
     /**
+     * StoreProductHandler constructor.
+     * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
+     * @param ProviderRepository $providerRepository
+     */
+    public function __construct
+    (
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository,
+        ProviderRepository $providerRepository
+    )
+    {
+        $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
+        $this->providerRepository = $providerRepository;
+    }
+
+    /**
      * @param int $id
      * @return array
      * @throws ResultNotFoundException
@@ -38,25 +56,6 @@ class UpdateProductHandler
         $productPrice = $product->getPrice()->getAmount() / 100;
 
         return [$providers, $categories, $product, $productPrice];
-    }
-
-
-    /**
-     * StoreProductHandler constructor.
-     * @param ProductRepository $productRepository
-     * @param CategoryRepository $categoryRepository
-     * @param ProviderRepository $providerRepository
-     */
-    public function __construct
-    (
-        ProductRepository $productRepository,
-        CategoryRepository $categoryRepository,
-        ProviderRepository $providerRepository
-    )
-    {
-        $this->productRepository = $productRepository;
-        $this->categoryRepository = $categoryRepository;
-        $this->providerRepository = $providerRepository;
     }
 
     /**
