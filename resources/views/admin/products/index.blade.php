@@ -33,10 +33,10 @@
                     <tbody class="table-bordered">
                     @foreach($products as $product)
                         <tr>
-                            <th scope="col"> {{$product->getName()}}</th>
-                            <th scope="col"> {{$product->getCode()}}</th>
-                            <th scope="col"> ${{$product->getPrice()->getAmount()/100}}</th>
-                            <th scope="col" class="text-center">
+                            <th class="row-cols-md-2"> {{$product->getName()}}</th>
+                            <th class="row-cols-md-2"> {{$product->getCode()}}</th>
+                            <th class="row-cols-md-4"> ${{$product->getPrice()->getAmount()/100}}</th>
+                            <th class="row-cols-md-4 text-center align-middle">
                                 <a href="{{route('edit-product',['id' => $product->getId()])}}"
                                    class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
                                 <form class="form d-inline-block" method="post"
