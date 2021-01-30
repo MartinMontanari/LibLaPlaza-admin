@@ -33,7 +33,7 @@ class StoreCategoryHandler
 
         if(isset($searchedByName))
         {
-            throw new AlreadyExistsException(["La categoría {$searchedByName->getName()} ya existe."]);
+            throw new AlreadyExistsException(["La categoría [{$searchedByName->getName()}] ya existe."]);
         }
 
         $category->setName($command->getName());

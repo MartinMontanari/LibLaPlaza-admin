@@ -7,6 +7,7 @@ namespace App\Application\Handlers\Categories;
 use App\Application\Commands\Categories\UpdateCategoryCommand;
 use App\Domain\Entities\Category;
 use App\Domain\Interfaces\CategoryRepository;
+use App\Exceptions\EntityNotFoundException;
 
 class UpdateCategoryHandler
 {
@@ -35,10 +36,14 @@ class UpdateCategoryHandler
 
     /**
      * @param UpdateCategoryCommand $command
+     * @throws EntityNotFoundException
      */
     public function handle(UpdateCategoryCommand $command)
     {
         $category = $this->repository->getOneByIdOrFail($command->getId());
+        if(!isset($category)){
+            throw new EntityNotFoundException("Categoría no encontrada.");
+        }
         $category->setName($command->getName());
 
         $category->setDescription($command->getDescription());
