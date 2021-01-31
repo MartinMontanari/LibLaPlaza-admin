@@ -68,33 +68,65 @@
                                                value="{{old('billNumber')}}" required><br>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Código</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Precio</th>
-                                                <th scope="col">Cantidad</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th class="row-cols-md-3">CART123</th>
-                                                <th class="row-cols-md-3">Cartera</th>
-                                                <th class="row-cols-md-3">$1366,4</th>
-                                                <th class="row-cols-md-3">
-                                                    <input type="number" class="form-control" min="0" name="quantity" placeholder="" required>
-                                                </th>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
                                 <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2"
-                                       value="Registrar venta">
+                                <div class="table-sm">
+                                    <table class="table table-bordered table-striped table-hover">
+                                        <thead class="thead-dark text-center">
+                                        <tr>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 15%">Código</th>
+                                            <th style="width: 50%">Nombre</th>
+                                            <th style="width: 10%">Precio</th>
+                                            <th style="width: 5%;">Cantidad</th>
+                                            <th style="width: 10%;">Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>CART123</td>
+                                            <td class="text-left">Cartera</td>
+                                            <td>$1366,4</td>
+                                            <td>
+                                                <input type="number" class="float-right col-md-12 form-control" min="0"
+                                                       name="quantity"
+                                                       placeholder="" required>
+                                            </td>
+                                            <td>$1366,4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>CART123</td>
+                                            <td class="text-left">Cartera</td>
+                                            <td>$1366,4</td>
+                                            <td>
+                                                <input type="number" class="float-right col-md-12 form-control" min="0"
+                                                       name="quantity"
+                                                       placeholder="" required>
+                                            </td>
+                                            <td>$1366,4</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>CART123</td>
+                                            <td class="text-left">Cartera</td>
+                                            <td>$1366,4</td>
+                                            <td>
+                                                <input type="number" class="float-right col-md-12 form-control" min="0"
+                                                       name="quantity"
+                                                       placeholder="" required>
+                                            </td>
+                                            <td>$1366,4</td>
+                                        </tr>
+                                    </table>
+                                    <div class="col-md-2 float-right">
+                                        Total: $1366,56
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <input type="submit" class="btn btn-success btn-block col-md-2"
+                                           value="Registrar venta">
+                                </div>
                             </div>
                         </form>
                     </div>
