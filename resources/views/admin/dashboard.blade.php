@@ -38,7 +38,7 @@
     <div class="row justify-content-md-center">
         @if($errors->any())
             <div class="card col-md-6 alert alert-warning">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" data-dismiss="alert">
                     <ul>
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>

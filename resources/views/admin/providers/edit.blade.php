@@ -18,15 +18,15 @@
                         <form id="form" action="{{route('update-provider',['id'=>$provider->getId()])}}" method="POST">
                             @csrf @method('PUT')
                             <div class="form-group-sm">
-                                <label>Código:</label>
+                                <label>Código</label>
                                 <input type="text" class="form-control" name="code" min="1" max="6" maxlength="6"
                                        placeholder="Código"
                                        value="{{$provider->getCode()}}" required><br>
-                                <label>Nombre:</label>
+                                <label>Nombre</label>
                                 <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
                                        placeholder="Nombre"
                                        value="{{$provider->getName()}}" required><br>
-                                <label>Descripción:</label>
+                                <label>Descripción</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" maxlength="110"
                                           placeholder="Descripción">{{$provider->getDescription()}}</textarea><br>
                                 <input type="submit" data-toggle="modal" data-target="#success"
@@ -40,7 +40,7 @@
         <div class="row justify-content-md-center">
             @if($errors->any())
                 <div class="card col-md-6 alert alert-danger">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-dismiss="alert">
                         <ul>
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -51,7 +51,7 @@
             @endif
             @if(session('status'))
                 <div class="card col-md-6 alert alert-success">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-dismiss="alert">
                         Los datos del proveedor se han actualizado correctamente.
                     </div>
                 </div>

@@ -21,21 +21,21 @@
                             <div class="form-group-lg">
                                 <div class="input-group">
                                     <div class="col-md-4">
-                                        <label>Nombre y apellido del cliente:</label>
+                                        <label>Nombre y apellido del cliente</label>
                                         <input type="text" class="form-control" name="fullName" min="1" max="20"
                                                maxlength="20"
                                                placeholder="Nombre y apellido"
                                                value="{{old('fullName')}}" required>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>Dni del cliente: </label>
+                                        <label>Dni del cliente </label>
                                         <input type="text" class="form-control" name="dni" min="7" max="15"
                                                maxlength="15"
                                                placeholder="DNI"
                                                value="{{old('dni')}}" required><br>
                                     </div>
                                     <div class="col-md-4">
-                                        <label>Dirección del cliente: </label>
+                                        <label>Dirección del cliente </label>
                                         <input type="text" class="form-control" name="dni" min="7" max="30"
                                                maxlength="30"
                                                placeholder="Direción"
@@ -45,7 +45,7 @@
                                 <hr>
                                 <div class="input-group">
                                     <div class="col-md-4">
-                                        <label>Tipo comprobante:</label>
+                                        <label>Tipo comprobante</label>
                                         <select class="form-control select2-blue col-md-" name="billType" required>
                                             <option value="">Seleccione una opción...</option>
                                             <option value="FCC">Factura cuenta corriente</option>
@@ -54,14 +54,14 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>Serie de comprobante:</label>
+                                        <label>Serie de comprobante</label>
                                         <input type="text" class="form-control" name="billSerie" min="4" max="10"
                                                maxlength="10"
                                                placeholder="Serie de comprobante"
                                                value="{{old('billNumber')}}" required><br>
                                     </div>
                                     <div class="col-md-5">
-                                        <label>Número de comprobante:</label>
+                                        <label>Número de comprobante</label>
                                         <input type="text" class="form-control" name="billNumber" min="5" max="15"
                                                maxlength="15"
                                                placeholder="número de comprobante"
@@ -69,7 +69,23 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="table-sm">
+                                <div class="input-group">
+                                    <div class="col-md-4">
+                                        <label>Artículo</label>
+                                        <select class="form-control select2-blue col-md-" name="billType" required>
+                                            <option value="">Seleccione una opción...</option>
+                                            <option value="FCC">Factura cuenta corriente</option>
+                                            <option value="FCE">Factura contado efectivo</option>
+                                            <option value="TIF">Ticket fiscal</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                                {{--  //TODO sacar el contenido hardcodeado y nutrir con un endpoint--}}
+                                {{--  agregar un search para los productos--}}
+                                {{--  agregar un select para seleccionar los productos--}}
+
+                                <div class="container table-sm overflow-auto">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark text-center">
                                         <tr>
@@ -88,7 +104,7 @@
                                             <td class="text-left">Cartera</td>
                                             <td>$1366,4</td>
                                             <td>
-                                                <input type="number" class="float-right col-md-12 form-control" min="0"
+                                                <input type="number" class="form-control" min="0"
                                                        name="quantity"
                                                        placeholder="" required>
                                             </td>
@@ -119,14 +135,15 @@
                                             <td>$1366,4</td>
                                         </tr>
                                     </table>
-                                    <div class="col-md-2 float-right">
-                                        Total: $1366,56
-                                    </div>
-                                    <br>
-                                    <hr>
-                                    <input type="submit" class="btn btn-success btn-block col-md-2"
-                                           value="Registrar venta">
                                 </div>
+                                <hr>
+                                <div class="col-md-2 float-right">
+                                    Total: $1366,56
+                                </div>
+                                <br>
+                                <hr>
+                                <input type="submit" class="btn btn-success btn-block col-md-2"
+                                       value="Registrar venta">
                             </div>
                         </form>
                     </div>
@@ -136,7 +153,7 @@
     {{--        <div class="row justify-content-md-center">--}}
     {{--            @if($errors->any())--}}
     {{--                <div class="card col-md-6 alert alert-danger">--}}
-    {{--                    <div class="row justify-content-center text-wrap">--}}
+    {{--                    <div class="row justify-content-center text-wrap" data-dismiss="alert">--}}
     {{--                        <ul>--}}
     {{--                            @foreach($errors->all() as $error)--}}
     {{--                                <li>{{ $error }}</li>--}}
@@ -147,7 +164,7 @@
     {{--            @endif--}}
     {{--            @if(session('status'))--}}
     {{--                <div class="card col-md-6 alert alert-success">--}}
-    {{--                    <div class="row justify-content-center">--}}
+    {{--                    <div class="row justify-content-center" data-dismiss="alert">--}}
     {{--                        Producto actualizado correctamente.--}}
     {{--                    </div>--}}
     {{--                </div>--}}

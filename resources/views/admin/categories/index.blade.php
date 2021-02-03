@@ -16,7 +16,7 @@
             @else
                 @if(session('status'))
                     <div class="card col-md-6 alert alert-success">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" data-dismiss="alert">
                             Categoría eliminada correctamente.
                         </div>
                     </div>
