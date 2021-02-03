@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Registrar venta')
+@section('title', 'Nueva venta')
 
 
 @section('content_header')
-    <h1>Registrar venta</h1>
+    <h1>Nueva venta</h1>
 @stop
 
 @section('content')
@@ -29,7 +29,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dni del cliente </label>
-                                        <input type="text" class="form-control" name="dni" min="7" max="15"
+                                        <input type="number" class="form-control" name="dni" minlength="7"
                                                maxlength="15"
                                                placeholder="DNI"
                                                value="{{old('dni')}}" required><br>
@@ -69,22 +69,30 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="input-group">
+                                <div class="input-group col-md-12">
                                     <div class="col-md-4">
                                         <label>Artículo</label>
                                         <select class="form-control select2-blue col-md-" name="billType" required>
-                                            <option value="">Seleccione una opción...</option>
-                                            <option value="FCC">Factura cuenta corriente</option>
-                                            <option value="FCE">Factura contado efectivo</option>
-                                            <option value="TIF">Ticket fiscal</option>
+                                            <option value="">Seleccione un artículo...</option>
+                                            {{--                                            TODO agregar los productos--}}
                                         </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Stock</label>
+                                        <input type="number" class="form-control" min="0"
+                                               value=""
+                                               {{--                                               TODO aquí agregar el stock total del producto--}}
+                                               disabled>
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{--                                        TODO ver como carajos hacer andar éste botón--}}
+                                        <button id="btnAddProduct" class="btn btn-outline-info"
+                                                value="#">Agregar
+                                        </button>
                                     </div>
                                 </div>
                                 <hr>
                                 {{--  //TODO sacar el contenido hardcodeado y nutrir con un endpoint--}}
-                                {{--  agregar un search para los productos--}}
-                                {{--  agregar un select para seleccionar los productos--}}
-
                                 <div class="container table-sm overflow-auto">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark text-center">
@@ -136,9 +144,12 @@
                                         </tr>
                                     </table>
                                 </div>
+
                                 <hr>
                                 <div class="col-md-2 float-right">
+{{--                                    TODO clacular el total y toda la bola--}}
                                     Total: $1366,56
+                                    <input type="hidden" name="totalAmount" id="totalAmount">
                                 </div>
                                 <br>
                                 <hr>
