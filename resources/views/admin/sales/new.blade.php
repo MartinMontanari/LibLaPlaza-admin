@@ -74,18 +74,16 @@
                                         <label>Artículo</label>
                                         <select class="form-control select2-blue col-md-" name="billType" id="articleSelect" required>
                                             <option value="">Seleccione un artículo...</option>
-                                            @foreach($productStock as $product)
-                                                <option value="{{$product->product->getId()}}">{{$product->product->getName()}}</option>
+                                            @foreach($productStock as $stock)
+                                                <option value="{{$stock->product->getId()}}_{{$stock->getQuantity()}}">{{$stock->product->getName()}}</option>
                                             @endforeach
-                                            {{--                                            TODO agregar los productos--}}
                                         </select>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <label>Stock</label>
                                         <input type="number" class="form-control" min="0"
                                                value="" id="pStock"
                                                disabled>
-                                        {{--                                               TODO aquí agregar el stock total del producto--}}
                                     </div>
                                     <div class="col-md-2">
                                         {{--                                        TODO ver como carajos hacer andar éste botón--}}
@@ -164,26 +162,26 @@
                 </div>
             </div>
         </div>
-        {{--        <div class="row justify-content-md-center">--}}
-        {{--            @if($errors->any())--}}
-        {{--                <div class="card col-md-6 alert alert-danger">--}}
-        {{--                    <div class="row justify-content-center text-wrap" data-dismiss="alert">--}}
-        {{--                        <ul>--}}
-        {{--                            @foreach($errors->all() as $error)--}}
-        {{--                                <li>{{ $error }}</li>--}}
-        {{--                            @endforeach--}}
-        {{--                        </ul>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            @endif--}}
-        {{--            @if(session('status'))--}}
-        {{--                <div class="card col-md-6 alert alert-success">--}}
-        {{--                    <div class="row justify-content-center" data-dismiss="alert">--}}
-        {{--                        Producto actualizado correctamente.--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            @endif--}}
-        {{--        </div>--}}
+                <div class="row justify-content-md-center">
+                    @if($errors->any())
+                        <div class="card col-md-6 alert alert-danger">
+                            <div class="row justify-content-center text-wrap" data-dismiss="alert">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
+                    @if(session('status'))
+                        <div class="card col-md-6 alert alert-success">
+                            <div class="row justify-content-center" data-dismiss="alert">
+                                Producto actualizado correctamente.
+                            </div>
+                        </div>
+                    @endif
+                </div>
         @stop
 
         @section('js')
@@ -201,8 +199,8 @@
 
                 function showStock()
                 {
-                    let productStock = document.getElementbyId('articleSelect').value();
-                    $('#pStock').val(productStock)
+                    let productStock = document.getElementById('articleSelect').value.split('_');
+                    $('#pStock').val(productStock[1])
                 }
             </script>
 @stop

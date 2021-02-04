@@ -4,23 +4,28 @@
 namespace App\Http\Controllers\Sales;
 
 
-use App\Domain\Interfaces\StockRepository;
+use App\Application\Handlers\Sales\NewSaleViewDataHandler;
+use App\Exceptions\ResultNotFoundException;
 
 class NewSaleViewDataAction
 {
-    private StockRepository $stockRepository;
+    private NewSaleViewDataHandler $newSaleViewDataHandler;
 
     public function __construct
     (
-        StockRepository $stockRepository
+        NewSaleViewDataHandler $newSaleViewDataHandler
     )
     {
-        $this->stockRepository = $stockRepository;
+        $this->newSaleViewDataHandler = $newSaleViewDataHandler;
     }
 
     public function __invoke()
     {
-        $stock = $this->stockRepository->fetchStockOfAllActiveProducts();
-        return view('admin.sales.new',['productStock'=>$stock]);
+        try {
+            $result = $this->newSaleViewDataHandler->handle();
+            return view('admin.sales.new', ['productStock' => $result]);
+        } catch (ResultNotFoundException $errors) {
+            return redirect()->route('new-sale')->withErrors($errors->getMessages())->withInput();
+        }
     }
 }
