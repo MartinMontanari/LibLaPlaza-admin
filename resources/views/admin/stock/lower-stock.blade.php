@@ -20,7 +20,7 @@
                     </div>
                 </div>
             @else
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-hover table-striped">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">Nombre del producto</th>

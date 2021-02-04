@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 @endif
-                <table class="table col-md-12 col-sm-12 table-hover table-striped">
+                <table class="table table-responsive-sm col-md-12 col-sm-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Codigo</th>

@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 @endif
-                <table class="table col-md-12 col-sm-12 table-hover table-striped">
+                <table class="table table-responsive-sm col-md-12 col-sm-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -30,7 +30,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
-                    <tbody class="table-bordered">
+                    <tbody class="table-bordered  border-white">
                     @foreach($products as $product)
                         <tr>
                             <th class="row-cols-md-2"> {{$product->getName()}}</th>
