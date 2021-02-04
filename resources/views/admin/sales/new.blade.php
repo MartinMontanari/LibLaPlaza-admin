@@ -72,17 +72,20 @@
                                 <div class="input-group col-md-12">
                                     <div class="col-md-4">
                                         <label>Artículo</label>
-                                        <select class="form-control select2-blue col-md-" name="billType" required>
+                                        <select class="form-control select2-blue col-md-" name="billType" id="articleSelect" required>
                                             <option value="">Seleccione un artículo...</option>
+                                            @foreach($productStock as $product)
+                                                <option value="{{$product->product->getId()}}">{{$product->product->getName()}}</option>
+                                            @endforeach
                                             {{--                                            TODO agregar los productos--}}
                                         </select>
                                     </div>
                                     <div class="col-md-2">
                                         <label>Stock</label>
                                         <input type="number" class="form-control" min="0"
-                                               value=""
-                                               {{--                                               TODO aquí agregar el stock total del producto--}}
+                                               value="" id="pStock"
                                                disabled>
+                                        {{--                                               TODO aquí agregar el stock total del producto--}}
                                     </div>
                                     <div class="col-md-2">
                                         {{--                                        TODO ver como carajos hacer andar éste botón--}}
@@ -147,13 +150,13 @@
 
                                 <hr>
                                 <div class="col-md-2 float-right">
-{{--                                    TODO clacular el total y toda la bola--}}
+                                    {{--                                    TODO clacular el total y toda la bola--}}
                                     Total: $1366,56
                                     <input type="hidden" name="totalAmount" id="totalAmount">
                                 </div>
                                 <br>
                                 <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2"
+                                <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
                                        value="Registrar venta">
                             </div>
                         </form>
@@ -161,24 +164,45 @@
                 </div>
             </div>
         </div>
-    {{--        <div class="row justify-content-md-center">--}}
-    {{--            @if($errors->any())--}}
-    {{--                <div class="card col-md-6 alert alert-danger">--}}
-    {{--                    <div class="row justify-content-center text-wrap" data-dismiss="alert">--}}
-    {{--                        <ul>--}}
-    {{--                            @foreach($errors->all() as $error)--}}
-    {{--                                <li>{{ $error }}</li>--}}
-    {{--                            @endforeach--}}
-    {{--                        </ul>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            @endif--}}
-    {{--            @if(session('status'))--}}
-    {{--                <div class="card col-md-6 alert alert-success">--}}
-    {{--                    <div class="row justify-content-center" data-dismiss="alert">--}}
-    {{--                        Producto actualizado correctamente.--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            @endif--}}
-    {{--        </div>--}}
+        {{--        <div class="row justify-content-md-center">--}}
+        {{--            @if($errors->any())--}}
+        {{--                <div class="card col-md-6 alert alert-danger">--}}
+        {{--                    <div class="row justify-content-center text-wrap" data-dismiss="alert">--}}
+        {{--                        <ul>--}}
+        {{--                            @foreach($errors->all() as $error)--}}
+        {{--                                <li>{{ $error }}</li>--}}
+        {{--                            @endforeach--}}
+        {{--                        </ul>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            @endif--}}
+        {{--            @if(session('status'))--}}
+        {{--                <div class="card col-md-6 alert alert-success">--}}
+        {{--                    <div class="row justify-content-center" data-dismiss="alert">--}}
+        {{--                        Producto actualizado correctamente.--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            @endif--}}
+        {{--        </div>--}}
+        @stop
+
+        @section('js')
+            <script>
+                $(document).ready(function () {
+                    $('#btnAddProduct').click(function () {
+                        add();
+                    });
+                });
+
+                let cont=0;
+                let totalAmount = 0;
+                $('#submitSale').hide();
+                $('#articleSelect').change(showStock);
+
+                function showStock()
+                {
+                    let productStock = document.getElementbyId('articleSelect').value();
+                    $('#pStock').val(productStock)
+                }
+            </script>
 @stop

@@ -26,4 +26,9 @@ interface StockRepository
      * @return mixed
      */
     public function filterProductsByStock(int $min);
+
+    /**
+     * @return mixed
+     */
+    public function fetchStockOfAllActiveProducts();
 }

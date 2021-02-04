@@ -13,6 +13,6 @@ class StoreNewSaleAction
 
     public function __invoke()
     {
-        //TODO made UC.
+
     }
 }
