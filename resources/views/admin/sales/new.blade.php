@@ -72,10 +72,17 @@
                                 <div class="input-group col-md-12">
                                     <div class="col-md-4">
                                         <label>Artículo</label>
-                                        <select class="form-control select2-blue col-md-" name="billType" id="articleSelect" required>
+                                        <select class="form-control select2-blue" name="billType"
+                                                id="articleSelect" required>
                                             <option value="">Seleccione un artículo...</option>
                                             @foreach($productStock as $stock)
-                                                <option value="{{$stock->product->getId()}}_{{$stock->getQuantity()}}">{{$stock->product->getName()}}</option>
+                                                <option
+                                                    value="{{$stock->product->getId()}}_
+                                                            {{$stock->getQuantity()}}_
+                                                            {{$stock->product->getCode()}}_
+                                                            {{$stock->product->getPrice()->getAmount()/100}}">
+                                                    {{$stock->product->getName()}}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -84,6 +91,12 @@
                                         <input type="number" class="form-control" min="0"
                                                value="" id="pStock"
                                                disabled>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <label>Cantidad</label>
+                                        <input type="number" class="form-control" min="0"
+                                               name="quantity" id="pQuantity"
+                                               placeholder="" required>
                                     </div>
                                     <div class="col-md-2">
                                         {{--                                        TODO ver como carajos hacer andar éste botón--}}
@@ -95,7 +108,7 @@
                                 <hr>
                                 {{--  //TODO sacar el contenido hardcodeado y nutrir con un endpoint--}}
                                 <div class="container table-sm overflow-auto">
-                                    <table class="table table-bordered table-striped table-hover">
+                                    <table class="table table-bordered table-striped table-hover" id="saleDetail">
                                         <thead class="thead-dark text-center">
                                         <tr>
                                             <th style="width: 5%">#</th>
@@ -108,48 +121,21 @@
                                         </thead>
                                         <tbody class="text-center">
                                         <tr>
+{{--                                            //TODO terminar esta bosta--}}
                                             <th scope="row">1</th>
-                                            <td>CART123</td>
+                                            <td></td>
                                             <td class="text-left">Cartera</td>
-                                            <td>$1366,4</td>
-                                            <td>
-                                                <input type="number" class="form-control" min="0"
-                                                       name="quantity"
-                                                       placeholder="" required>
-                                            </td>
-                                            <td>$1366,4</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>CART123</td>
-                                            <td class="text-left">Cartera</td>
-                                            <td>$1366,4</td>
-                                            <td>
-                                                <input type="number" class="float-right col-md-12 form-control" min="0"
-                                                       name="quantity"
-                                                       placeholder="" required>
-                                            </td>
-                                            <td>$1366,4</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>CART123</td>
-                                            <td class="text-left">Cartera</td>
-                                            <td>$1366,4</td>
-                                            <td>
-                                                <input type="number" class="float-right col-md-12 form-control" min="0"
-                                                       name="quantity"
-                                                       placeholder="" required>
-                                            </td>
-                                            <td>$1366,4</td>
-                                        </tr>
+                                        </tbody>
                                     </table>
                                 </div>
-
                                 <hr>
                                 <div class="col-md-2 float-right">
                                     {{--                                    TODO clacular el total y toda la bola--}}
-                                    Total: $1366,56
+                                    <h5 id="tAmount">Total: $1366,56</h5>
                                     <input type="hidden" name="totalAmount" id="totalAmount">
                                 </div>
                                 <br>
@@ -162,26 +148,26 @@
                 </div>
             </div>
         </div>
-                <div class="row justify-content-md-center">
-                    @if($errors->any())
-                        <div class="card col-md-6 alert alert-danger">
-                            <div class="row justify-content-center text-wrap" data-dismiss="alert">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-                    @if(session('status'))
-                        <div class="card col-md-6 alert alert-success">
-                            <div class="row justify-content-center" data-dismiss="alert">
-                                Producto actualizado correctamente.
-                            </div>
-                        </div>
-                    @endif
+        <div class="row justify-content-md-center">
+            @if($errors->any())
+                <div class="card col-md-6 alert alert-danger">
+                    <div class="row justify-content-center text-wrap" data-dismiss="alert">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
+            @endif
+            @if(session('status'))
+                <div class="card col-md-6 alert alert-success">
+                    <div class="row justify-content-center" data-dismiss="alert">
+                        Producto actualizado correctamente.
+                    </div>
+                </div>
+            @endif
+        </div>
         @stop
 
         @section('js')
@@ -192,15 +178,29 @@
                     });
                 });
 
-                let cont=0;
+                let cont = 0;
                 let totalAmount = 0;
                 $('#submitSale').hide();
                 $('#articleSelect').change(showStock);
 
-                function showStock()
-                {
+                function showStock() {
                     let productStock = document.getElementById('articleSelect').value.split('_');
                     $('#pStock').val(productStock[1])
+                }
+
+                function add() {
+                    let productData = document.getElementById('articleSelect').value.split('_');
+                    let productId = productData[0];
+                    let stock = productData[1];
+                    let quantity = $('#pQuantity').val();
+                    let productName = $('#articleSelect option:selected').text();
+
+                    //TODO terminar ésta otra bosta
+                    if (productId != "" && quantity != "" && quantity > 0) {
+                        if (stock >= quantity) {
+
+                        }
+                    }
                 }
             </script>
 @stop
