@@ -124,7 +124,7 @@
 {{--                                            //TODO terminar esta bosta--}}
                                             <th scope="row">1</th>
                                             <td></td>
-                                            <td class="text-left">Cartera</td>
+                                            <td class="text-left"></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
