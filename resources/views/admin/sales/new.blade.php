@@ -77,10 +77,7 @@
                                             <option value="">Seleccione un artículo...</option>
                                             @foreach($productStock as $stock)
                                                 <option
-                                                    value="{{$stock->product->getId()}}_
-                                                            {{$stock->getQuantity()}}_
-                                                            {{$stock->product->getCode()}}_
-                                                            {{$stock->product->getPrice()->getAmount()/100}}">
+                                                    value="{{$stock->product->getId()}}_{{$stock->getQuantity()}}_{{$stock->product->getCode()}}_{{$stock->product->getPrice()->getAmount()}}">
                                                     {{$stock->product->getName()}}
                                                 </option>
                                             @endforeach
@@ -94,11 +91,11 @@
                                     </div>
                                     <div class="col-md-1">
                                         <label>Cantidad</label>
-                                        <input type="number" class="form-control" min="0"
+                                        <input type="number" class="form-control" min="1"
                                                name="quantity" id="pQuantity"
-                                               placeholder="" required>
+                                               placeholder="" required/>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center">
                                         {{--                                        TODO ver como carajos hacer andar éste botón--}}
                                         <button id="btnAddProduct" class="btn btn-outline-info"
                                                 value="#">Agregar
@@ -111,7 +108,7 @@
                                     <table class="table table-bordered table-striped table-hover" id="saleDetail">
                                         <thead class="thead-dark text-center">
                                         <tr>
-                                            <th style="width: 5%">#</th>
+                                            <th style="width: 5%">Acciones</th>
                                             <th style="width: 15%">Código</th>
                                             <th style="width: 50%">Nombre</th>
                                             <th style="width: 10%">Precio</th>
@@ -120,29 +117,25 @@
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
-                                        <tr>
-{{--                                            //TODO terminar esta bosta--}}
-                                            <th scope="row">1</th>
-                                            <td></td>
-                                            <td class="text-left"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <hr>
-                                <div class="col-md-2 float-right">
-                                    {{--                                    TODO clacular el total y toda la bola--}}
-                                    <h5 id="tAmount">Total: $1366,56</h5>
-                                    <input type="hidden" name="totalAmount" id="totalAmount">
-                                </div>
-                                <br>
-                                <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
-                                       value="Registrar venta">
                             </div>
+                            <hr>
+                            <div class="col-md-12 input-group justify-content-end">
+                                {{--                                    TODO clacular el total y toda la bola--}}
+                                <div>
+                                    <h4 style="margin: 4px 10px;">Total:</h4>
+                                </div>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input class="form-control col-md-1 col-sm-1" id="tAmount" disabled value="0">
+                                <input type="hidden" name="totalAmount" id="totalAmount">
+                            </div>
+                            <hr>
+                            <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
+                                   value="Registrar venta">
                         </form>
                     </div>
                 </div>
@@ -180,25 +173,48 @@
 
                 let cont = 0;
                 let totalAmount = 0;
-                $('#submitSale').hide();
+                if (parseInt($('#tAmount').val()) === 0) {
+                    $('#submitSale').hide();
+                }
                 $('#articleSelect').change(showStock);
 
                 function showStock() {
                     let productStock = document.getElementById('articleSelect').value.split('_');
-                    $('#pStock').val(productStock[1])
+                    $('#pStock').val(productStock[1]);
                 }
 
                 function add() {
                     let productData = document.getElementById('articleSelect').value.split('_');
+                    console.log(productData);
                     let productId = productData[0];
                     let stock = productData[1];
+                    let code = productData[2];
+                    let price = productData[3];
                     let quantity = $('#pQuantity').val();
-                    let productName = $('#articleSelect option:selected').text();
+                    let sTotal = quantity * price;
+                    let tAmount = document.getElementById("tAmount");
+                    let total = tAmount.value + sTotal;
+                    let name = $('#articleSelect option:selected').text();
 
                     //TODO terminar ésta otra bosta
-                    if (productId != "" && quantity != "" && quantity > 0) {
-                        if (stock >= quantity) {
-
+                    if (productId !== "" && quantity !== "" && quantity > 0) {
+                        if (parseInt(stock) >= parseInt(quantity)) {
+                            let row = '<tr>' +
+                                '<td><button type="button" class="btn btn-danger btn-sm d-inline-block" onclick="eliminar(' + cont + ');"> <i class="fas fa-trash"></i></button></td> ' +
+                                '<input type="hidden" name="productId" value="' + productId + '"/>' +
+                                '<td>' + code + '</td> ' +
+                                '<td class="text-left">' + name + '</td> ' +
+                                '<td>' + price / 100 + '</td> ' +
+                                '<td> ' + quantity + ' </td>' +
+                                '<td> ' + total / 100 + ' </td>' +
+                                '</tr>';
+                            cont++;
+                            // clean();TODO ver de donde concha sale ésto en los otros videos
+                            $("#tAmount").html(total);
+                            // evaluar();
+                            $('#saleDetail').append(row);
+                        } else {
+                            alert('La cantidad ingresada es mayor a la cantidad en stock.');
                         }
                     }
                 }
