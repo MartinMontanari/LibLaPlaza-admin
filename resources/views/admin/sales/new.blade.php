@@ -164,12 +164,6 @@
         @endif
     </div>
 @stop
-{{--@section('js')--}}
-{{--    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>--}}
-{{--    <script type="text/javascript" src="{{asset('/assets/spa/js/svgxuse.min.js')}}"></script>--}}
-{{--    <script type="text/javascript" src="{{asset('/assets/spa/js/coreui-utils.js')}}"></script>--}}
-{{--    <script type="text/javascript" src="{{asset('/assets/spa/js/main.js')}}"></script>--}}
-{{--@stop--}}
 
 @section('js')
     <script>
