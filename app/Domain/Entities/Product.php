@@ -5,6 +5,8 @@ namespace App\Domain\Entities;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Money\Currency;
 use Money\Money;
 
@@ -120,14 +122,28 @@ class Product extends Model
         $this->category_id = $category_id;
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
     public function provider()
     {
         return $this->belongsTo(Provider::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function sale()
+    {
+        return $this->hasMany(ProductSale::class);
     }
 
 }

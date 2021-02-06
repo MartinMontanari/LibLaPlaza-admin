@@ -6,22 +6,23 @@ namespace App\Http\Controllers\Sales;
 
 use App\Application\Handlers\Sales\StoreNewSaleHandler;
 use App\Exceptions\InvalidBodyException;
+use App\Http\Adapters\Sales\StoreNewSaleAdapter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class StoreNewSaleAction
 {
     private StoreNewSaleHandler $storeNewSaleHandler;
-//    private StoreNewSaleAdapter $storeNewSaleAdapter;
+    private StoreNewSaleAdapter $storeNewSaleAdapter;
 
     public function __construct
     (
-        StoreNewSaleHandler $storeNewSaleHandler
-//        StoreNewSaleAdapter $storeNewSaleAdapter
+        StoreNewSaleHandler $storeNewSaleHandler,
+        StoreNewSaleAdapter $storeNewSaleAdapter
     )
     {
         $this->storeNewSaleHandler = $storeNewSaleHandler;
-//        $this->storeNewSaleAdapter = $storeNewSaleAdapter;
+        $this->storeNewSaleAdapter = $storeNewSaleAdapter;
     }
 
     /**

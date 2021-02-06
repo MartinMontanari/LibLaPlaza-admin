@@ -5,6 +5,8 @@ namespace App\Domain\Entities;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Sale extends Model
 {
@@ -36,21 +38,21 @@ class Sale extends Model
     {
         $this->billSerieAndBillNumber = $billSerieAndBillNumber;
     }
-
+    
     /**
-     * @return Customer
+     * @return BelongsTo
      */
-    public function getCustomer()
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
 
-//    /**
-//     * @return Customer
-//     */
-//    public function setCustomerId(int $category_id)
-//    {
-//        return $this->;
-//    }
+    /**
+     * @return HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(ProductSale::class);
+    }
 
 }
