@@ -2084,6 +2084,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
@@ -2205,6 +2206,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         //TODO: add message for error
         this.quantityError = 'La cantidad ingresada es mayor al stock actual';
       }
+    },
+    onDestroyProduct: function onDestroyProduct(index) {
+      //TODO que carajos?
+      array.filter(index);
+      return this.selectedProducts;
     },
     onSubmit: function onSubmit() {
       var _this4 = this;
@@ -38656,7 +38662,6 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "text",
-                          name: "fullName",
                           min: "1",
                           max: "20",
                           maxlength: "20",
@@ -38690,7 +38695,6 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "number",
-                          name: "dni",
                           minlength: "7",
                           maxlength: "15",
                           placeholder: "DNI",
@@ -38724,7 +38728,6 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "text",
-                          name: "dni",
                           min: "7",
                           max: "30",
                           maxlength: "30",
@@ -38763,7 +38766,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control select2-blue col-md-",
-                          attrs: { name: "billType", required: "" },
+                          attrs: { required: "" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -38815,7 +38818,6 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "text",
-                          name: "billSerie",
                           min: "4",
                           max: "10",
                           maxlength: "10",
@@ -38849,7 +38851,6 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "text",
-                          name: "billNumber",
                           min: "5",
                           max: "15",
                           maxlength: "15",
@@ -38888,7 +38889,6 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control select2-blue",
-                          attrs: { name: "productId", id: "articleSelect" },
                           on: {
                             change: [
                               function($event) {
@@ -38944,12 +38944,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control text-center",
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          id: "pStock",
-                          disabled: ""
-                        },
+                        attrs: { type: "number", min: "0", disabled: "" },
                         domProps: { value: _vm.stock },
                         on: {
                           input: function($event) {
@@ -38975,13 +38970,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control text-center",
-                        attrs: {
-                          type: "number",
-                          min: "0",
-                          name: "quantity",
-                          id: "pQuantity",
-                          placeholder: ""
-                        },
+                        attrs: { type: "number", min: "0", placeholder: "" },
                         domProps: { value: _vm.quantity },
                         on: {
                           input: function($event) {
@@ -39031,8 +39020,7 @@ var render = function() {
                         "table",
                         {
                           staticClass:
-                            "table table-bordered table-striped table-hover",
-                          attrs: { id: "saleDetail" }
+                            "table table-bordered table-striped table-hover"
                         },
                         [
                           _vm._m(1),
@@ -39042,7 +39030,25 @@ var render = function() {
                             { staticClass: "text-center" },
                             _vm._l(_vm.selectedProducts, function(product) {
                               return _c("tr", [
-                                _vm._m(2, true),
+                                _c("td", { staticClass: "align-middle" }, [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.onDestroyProduct(
+                                            _vm.selectedProducts.indexOf(
+                                              product
+                                            )
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [_c("i", { staticClass: "fas fa-trash" })]
+                                  )
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(product.code))]),
                                 _vm._v(" "),
@@ -39072,7 +39078,7 @@ var render = function() {
                       staticClass: "col-md-12 input-group justify-content-end"
                     },
                     [
-                      _vm._m(3),
+                      _vm._m(2),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group-prepend" }, [
                         _c("span", { staticClass: "input-group-text" }, [
@@ -39086,11 +39092,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "btn btn-success btn-block col-md-2",
-                    attrs: {
-                      type: "submit",
-                      id: "submitSale",
-                      value: "Registrar venta"
-                    }
+                    attrs: { type: "submit", value: "Registrar venta" }
                   })
                 ])
               ]
@@ -39128,24 +39130,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "align-middle" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-danger btn-sm",
-          attrs: {
-            type: "button",
-            onclick: "destroy(selectedProducts.indexOf(product))"
-          }
-        },
-        [_c("i", { staticClass: "fas fa-trash" })]
-      )
     ])
   },
   function() {

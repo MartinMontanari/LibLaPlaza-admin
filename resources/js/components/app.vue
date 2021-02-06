@@ -16,21 +16,21 @@
                                 <div class="input-group">
                                     <div class="col-md-4">
                                         <label>Nombre y apellido del cliente</label>
-                                        <input type="text" class="form-control" name="fullName" min="1" max="20"
+                                        <input type="text" class="form-control" min="1" max="20"
                                                maxlength="20"
                                                placeholder="Nombre y apellido"
                                                v-model="fullName" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dni del cliente </label>
-                                        <input type="number" class="form-control" name="dni" minlength="7"
+                                        <input type="number" class="form-control" minlength="7"
                                                maxlength="15"
                                                placeholder="DNI"
                                                v-model="dni" required><br>
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dirección del cliente </label>
-                                        <input type="text" class="form-control" name="dni" min="7" max="30"
+                                        <input type="text" class="form-control" min="7" max="30"
                                                maxlength="30"
                                                placeholder="Dirección"
                                                v-model="address" required><br>
@@ -40,7 +40,7 @@
                                 <div class="input-group">
                                     <div class="col-md-4">
                                         <label>Tipo comprobante</label>
-                                        <select class="form-control select2-blue col-md-" name="billType"
+                                        <select class="form-control select2-blue col-md-"
                                                 v-model="billType" required>
                                             <option value="">Seleccione una opción...</option>
                                             <option value="FCC">Factura cuenta corriente</option>
@@ -50,14 +50,14 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label>Serie de comprobante</label>
-                                        <input type="text" class="form-control" name="billSerie" v-model="billSerie"
+                                        <input type="text" class="form-control" v-model="billSerie"
                                                min="4" max="10"
                                                maxlength="10"
                                                placeholder="Serie de comprobante" required>
                                     </div>
                                     <div class="col-md-5">
                                         <label>Número de comprobante</label>
-                                        <input type="text" class="form-control" name="billNumber" v-model="billNumber"
+                                        <input type="text" class="form-control" v-model="billNumber"
                                                min="5" max="15"
                                                maxlength="15"
                                                placeholder="número de comprobante"
@@ -68,8 +68,8 @@
                                 <div class="input-group col-md-12">
                                     <div class="col-md-4">
                                         <label>Artículo</label>
-                                        <select class="form-control select2-blue" name="productId"
-                                                id="articleSelect" v-model="selectedProduct" @change="onSelectProduct">
+                                        <select class="form-control select2-blue" v-model="selectedProduct"
+                                                @change="onSelectProduct">
                                             <option value="">Seleccione un artículo...</option>
                                             <option v-for="product in products" :value="product.id">
                                                 {{ product.name }}
@@ -79,15 +79,13 @@
                                     <div class="col-md-2">
                                         <label>Stock</label>
                                         <input type="number" class="form-control text-center" v-model="stock" min="0"
-                                               id="pStock"
                                                disabled>
                                     </div>
                                     <div class="col-md-2">
                                         <label>Cantidad</label>
                                         <input type="number" class="form-control text-center" min="0"
-                                               name="quantity" id="pQuantity" v-model="quantity"
-                                               placeholder="">
-                                        <label class="small" style="color: red">{{quantityError}}</label>
+                                               v-model="quantity" placeholder="">
+                                        <label class="small" style="color: red">{{ quantityError }}</label>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-center align-items-center">
                                         <button @click="onAddProduct" class="btn btn-outline-info">Agregar</button>
@@ -98,7 +96,7 @@
                                     <h5>Detalles de la compra</h5>
                                 </div>
                                 <div class="container table-sm overflow-auto">
-                                    <table class="table table-bordered table-striped table-hover" id="saleDetail">
+                                    <table class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark text-center">
                                         <tr>
                                             <th style="width: 5%">#</th>
@@ -111,7 +109,11 @@
                                         </thead>
                                         <tbody class="text-center">
                                         <tr v-for="product in selectedProducts">
-                                            <td class="align-middle"><button type="button" class="btn btn-danger btn-sm" onclick="destroy(selectedProducts.indexOf(product))"><i class="fas fa-trash"></i></button></td>
+                                            <td class="align-middle">
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                        @click="onDestroyProduct(selectedProducts.indexOf(product))">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </td>
                                             <td>{{ product.code }}</td>
                                             <td class="text-left">{{ product.name }}</td>
                                             <td>{{ product.price }}</td>
@@ -131,8 +133,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
-                                       value="Registrar venta">
+                                <input type="submit" class="btn btn-success btn-block col-md-2" value="Registrar venta">
                             </div>
                         </form>
                     </div>
@@ -226,6 +227,11 @@ export default {
                 this.quantityError = 'La cantidad ingresada es mayor al stock actual'
             }
 
+        },
+        onDestroyProduct(index) {
+            //TODO que carajos?
+            array.filter(index);
+            return this.selectedProducts;
         },
         async onSubmit() {
             const body = {
