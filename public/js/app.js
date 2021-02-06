@@ -1925,6 +1925,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _apiclient__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../apiclient */ "./resources/js/apiclient.js");
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -2071,11 +2083,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'App',
+  name: 'app',
   data: function data() {
     return {
+      message: '',
+      showModal: false,
       products: [],
       selectedProducts: [],
       selectedProduct: '',
@@ -2087,6 +2103,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       billNumber: '',
       stock: '',
       quantity: '',
+      quantityError: '',
+      total: '',
       client: new _apiclient__WEBPACK_IMPORTED_MODULE_1__["default"]()
     };
   },
@@ -2126,13 +2144,79 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         this.stock = newProduct.stock;
       }
     },
-    // onAddProduct() {
-    //     this.selectedProducts.push(
-    //         {
-    //         this.selectedProducts.push({ id: this.selectedProduct, quantity: this.quantity, stock: this.stock });
-    //         })
-    // },
-    onSubmit: function onSubmit() {//TODO: add call to api
+    onAddProduct: function onAddProduct() {
+      var _this3 = this;
+
+      var product = this.products.find(function (product) {
+        return product.id === _this3.selectedProduct;
+      });
+      var index = this.products.indexOf(product);
+
+      if (this.quantity <= 0) {
+        return;
+      }
+
+      if (this.quantity <= product.stock) {
+        var hasProductSelected = this.selectedProducts.findIndex(function (product) {
+          return product.id === _this3.selectedProduct;
+        });
+
+        if (hasProductSelected !== -1) {
+          var quantity = Number(this.selectedProducts[hasProductSelected].quantity);
+          quantity += Number(this.quantity);
+          this.selectedProducts[hasProductSelected].quantity = quantity;
+          this.selectedProducts[hasProductSelected].total = quantity * (product.price.amount / 100);
+        } else {
+          this.selectedProducts.push({
+            id: this.selectedProduct,
+            quantity: this.quantity,
+            stock: this.stock,
+            name: product.name,
+            price: product.price.amount / 100,
+            code: product.code,
+            total: this.quantity * (product.price.amount / 100)
+          });
+        }
+
+        var total = 0;
+
+        var _iterator = _createForOfIteratorHelper(this.selectedProducts),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var _product = _step.value;
+            total += _product.total;
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        this.total = total.toFixed(2);
+        this.products[index] = _objectSpread(_objectSpread({}, product), {}, {
+          stock: product.stock - this.quantity
+        }); // we back data to initial state for restore view
+
+        this.quantity = '';
+        this.selectedProduct = '';
+        this.stock = '';
+      } else {
+        //TODO: add message for error
+        this.quantityError = 'La cantidad ingresada es mayor al stock actual';
+      }
+    },
+    onSubmit: function onSubmit() {
+      var _this4 = this;
+
+      //TODO: add call to api
+      console.log('hola');
+      this.message = 'El producto se ah cargado correctamente';
+      this.showModal = true;
+      setTimeout(function () {
+        _this4.showModal = false;
+      }, 3000);
     }
   }
 });
@@ -2147,8 +2231,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.5.3 (https://getbootstrap.com/)
-  * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Bootstrap v4.6.0 (https://getbootstrap.com/)
+  * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
@@ -2203,7 +2287,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.3): util.js
+   * Bootstrap (v4.6.0): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -2382,7 +2466,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME = 'alert';
-  var VERSION = '4.5.3';
+  var VERSION = '4.6.0';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -2538,7 +2622,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.5.3';
+  var VERSION$1 = '4.6.0';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -2737,7 +2821,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.5.3';
+  var VERSION$2 = '4.6.0';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -2877,6 +2961,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       if (this._config.interval && !this._isPaused) {
+        this._updateInterval();
+
         this._interval = setInterval((document.visibilityState ? this.nextWhenVisible : this.next).bind(this), this._config.interval);
       }
     };
@@ -3118,6 +3204,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
     };
 
+    _proto._updateInterval = function _updateInterval() {
+      var element = this._activeElement || this._element.querySelector(SELECTOR_ACTIVE_ITEM);
+
+      if (!element) {
+        return;
+      }
+
+      var elementInterval = parseInt(element.getAttribute('data-interval'), 10);
+
+      if (elementInterval) {
+        this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
+        this._config.interval = elementInterval;
+      } else {
+        this._config.interval = this._config.defaultInterval || this._config.interval;
+      }
+    };
+
     _proto._slide = function _slide(direction, element) {
       var _this4 = this;
 
@@ -3168,6 +3271,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this._setActiveIndicatorElement(nextElement);
 
+      this._activeElement = nextElement;
       var slidEvent = $__default['default'].Event(EVENT_SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
@@ -3180,15 +3284,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         Util.reflow(nextElement);
         $__default['default'](activeElement).addClass(directionalClassName);
         $__default['default'](nextElement).addClass(directionalClassName);
-        var nextElementInterval = parseInt(nextElement.getAttribute('data-interval'), 10);
-
-        if (nextElementInterval) {
-          this._config.defaultInterval = this._config.defaultInterval || this._config.interval;
-          this._config.interval = nextElementInterval;
-        } else {
-          this._config.interval = this._config.defaultInterval || this._config.interval;
-        }
-
         var transitionDuration = Util.getTransitionDurationFromElement(activeElement);
         $__default['default'](activeElement).one(Util.TRANSITION_END, function () {
           $__default['default'](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE$1);
@@ -3325,7 +3420,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.5.3';
+  var VERSION$3 = '4.6.0';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -3674,7 +3769,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.5.3';
+  var VERSION$4 = '4.6.0';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -3791,7 +3886,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       if (showEvent.isDefaultPrevented()) {
         return;
-      } // Disable totally Popper.js for Dropdown in Navbar
+      } // Totally disable Popper for Dropdowns in Navbar
 
 
       if (!this._inNavbar && usePopper) {
@@ -3800,7 +3895,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
          * Popper - https://popper.js.org
          */
         if (typeof Popper__default['default'] === 'undefined') {
-          throw new TypeError('Bootstrap\'s dropdowns require Popper.js (https://popper.js.org/)');
+          throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
         }
 
         var referenceElement = this._element;
@@ -3968,7 +4063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             boundariesElement: this._config.boundary
           }
         }
-      }; // Disable Popper.js if we have a static display
+      }; // Disable Popper if we have a static display
 
       if (this._config.display === 'static') {
         popperConfig.modifiers.applyStyle = {
@@ -4188,7 +4283,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.5.3';
+  var VERSION$5 = '4.6.0';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -4388,38 +4483,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     _proto._triggerBackdropTransition = function _triggerBackdropTransition() {
       var _this3 = this;
 
-      if (this._config.backdrop === 'static') {
-        var hideEventPrevented = $__default['default'].Event(EVENT_HIDE_PREVENTED);
-        $__default['default'](this._element).trigger(hideEventPrevented);
+      var hideEventPrevented = $__default['default'].Event(EVENT_HIDE_PREVENTED);
+      $__default['default'](this._element).trigger(hideEventPrevented);
 
-        if (hideEventPrevented.isDefaultPrevented()) {
-          return;
-        }
+      if (hideEventPrevented.isDefaultPrevented()) {
+        return;
+      }
 
-        var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+      if (!isModalOverflowing) {
+        this._element.style.overflowY = 'hidden';
+      }
+
+      this._element.classList.add(CLASS_NAME_STATIC);
+
+      var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
+      $__default['default'](this._element).off(Util.TRANSITION_END);
+      $__default['default'](this._element).one(Util.TRANSITION_END, function () {
+        _this3._element.classList.remove(CLASS_NAME_STATIC);
 
         if (!isModalOverflowing) {
-          this._element.style.overflowY = 'hidden';
+          $__default['default'](_this3._element).one(Util.TRANSITION_END, function () {
+            _this3._element.style.overflowY = '';
+          }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
         }
+      }).emulateTransitionEnd(modalTransitionDuration);
 
-        this._element.classList.add(CLASS_NAME_STATIC);
-
-        var modalTransitionDuration = Util.getTransitionDurationFromElement(this._dialog);
-        $__default['default'](this._element).off(Util.TRANSITION_END);
-        $__default['default'](this._element).one(Util.TRANSITION_END, function () {
-          _this3._element.classList.remove(CLASS_NAME_STATIC);
-
-          if (!isModalOverflowing) {
-            $__default['default'](_this3._element).one(Util.TRANSITION_END, function () {
-              _this3._element.style.overflowY = '';
-            }).emulateTransitionEnd(_this3._element, modalTransitionDuration);
-          }
-        }).emulateTransitionEnd(modalTransitionDuration);
-
-        this._element.focus();
-      } else {
-        this.hide();
-      }
+      this._element.focus();
     };
 
     _proto._showElement = function _showElement(relatedTarget) {
@@ -4574,7 +4665,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             return;
           }
 
-          _this9._triggerBackdropTransition();
+          if (_this9._config.backdrop === 'static') {
+            _this9._triggerBackdropTransition();
+          } else {
+            _this9.hide();
+          }
         });
 
         if (animate) {
@@ -4798,7 +4893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.5.3): tools/sanitizer.js
+   * Bootstrap (v4.6.0): tools/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -4924,7 +5019,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.5.3';
+  var VERSION$6 = '4.6.0';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $__default['default'].fn[NAME$6];
@@ -4944,6 +5039,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     container: '(string|element|boolean)',
     fallbackPlacement: '(string|array)',
     boundary: '(string|element)',
+    customClass: '(string|function)',
     sanitize: 'boolean',
     sanitizeFn: '(null|function)',
     whiteList: 'object',
@@ -4969,6 +5065,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     container: false,
     fallbackPlacement: 'flip',
     boundary: 'scrollParent',
+    customClass: '',
     sanitize: true,
     sanitizeFn: null,
     whiteList: DefaultWhitelist,
@@ -5005,7 +5102,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   var Tooltip = /*#__PURE__*/function () {
     function Tooltip(element, config) {
       if (typeof Popper__default['default'] === 'undefined') {
-        throw new TypeError('Bootstrap\'s tooltips require Popper.js (https://popper.js.org/)');
+        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
       } // private
 
 
@@ -5139,7 +5236,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         $__default['default'](this.element).trigger(this.constructor.Event.INSERTED);
         this._popper = new Popper__default['default'](this.element, tip, this._getPopperConfig(attachment));
-        $__default['default'](tip).addClass(CLASS_NAME_SHOW$4); // If this is a touch-enabled device we add extra
+        $__default['default'](tip).addClass(CLASS_NAME_SHOW$4);
+        $__default['default'](tip).addClass(this.config.customClass); // If this is a touch-enabled device we add extra
         // empty mouseover listeners to the body's immediate children;
         // only needed because of broken event delegation on iOS
         // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
@@ -5637,7 +5735,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.5.3';
+  var VERSION$7 = '4.6.0';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $__default['default'].fn[NAME$7];
@@ -5817,7 +5915,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.5.3';
+  var VERSION$8 = '4.6.0';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -6109,7 +6207,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.5.3';
+  var VERSION$9 = '4.6.0';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -6335,7 +6433,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.5.3';
+  var VERSION$a = '4.6.0';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $__default['default'].fn[NAME$a];
@@ -38489,12 +38587,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _vm.showModal
+      ? _c("div", { staticClass: "modal" }, [
+          _vm._v("\n        " + _vm._s(_vm.message) + "\n    ")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-md-center" }, [
       _c("div", { staticClass: "card col-md-12 col-sm-12 block" }, [
         _c("div", { staticClass: "card-header" }, [
-          _vm._v(
-            "\n                    Complete los campos debajo\n                "
-          )
+          _vm._v("\n                Complete los campos debajo\n            ")
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -38790,9 +38892,9 @@ var render = function() {
                               { domProps: { value: product.id } },
                               [
                                 _vm._v(
-                                  "\n                                                " +
+                                  "\n                                            " +
                                     _vm._s(product.name) +
-                                    "\n                                            "
+                                    "\n                                        "
                                 )
                               ]
                             )
@@ -38851,8 +38953,7 @@ var render = function() {
                           min: "0",
                           name: "quantity",
                           id: "pQuantity",
-                          placeholder: "",
-                          required: ""
+                          placeholder: ""
                         },
                         domProps: { value: _vm.quantity },
                         on: {
@@ -38863,7 +38964,13 @@ var render = function() {
                             _vm.quantity = $event.target.value
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        { staticClass: "small", staticStyle: { color: "red" } },
+                        [_vm._v(_vm._s(_vm.quantityError))]
+                      )
                     ]),
                     _vm._v(" "),
                     _c(
@@ -38877,14 +38984,9 @@ var render = function() {
                           "button",
                           {
                             staticClass: "btn btn-outline-info",
-                            attrs: { id: "btnAddProduct", value: "#" },
-                            on: { click: _vm.onSelectProduct }
+                            on: { click: _vm.onAddProduct }
                           },
-                          [
-                            _vm._v(
-                              "Agregar\n                                        "
-                            )
-                          ]
+                          [_vm._v("Agregar")]
                         )
                       ]
                     )
@@ -38894,11 +38996,68 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(0),
                   _vm._v(" "),
-                  _vm._m(1),
+                  _c(
+                    "div",
+                    { staticClass: "container table-sm overflow-auto" },
+                    [
+                      _c(
+                        "table",
+                        {
+                          staticClass:
+                            "table table-bordered table-striped table-hover",
+                          attrs: { id: "saleDetail" }
+                        },
+                        [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            { staticClass: "text-center" },
+                            _vm._l(_vm.selectedProducts, function(product) {
+                              return _c("tr", [
+                                _c("td", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.selectedProducts.indexOf(product)
+                                    )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(product.code))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(product.name))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(product.price))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(product.quantity))]),
+                                _vm._v(" "),
+                                _c("td", [_vm._v(_vm._s(product.total))])
+                              ])
+                            }),
+                            0
+                          )
+                        ]
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm._m(2),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "col-md-12 input-group justify-content-end"
+                    },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group-prepend" }, [
+                        _c("span", { staticClass: "input-group-text" }, [
+                          _vm._v("$ " + _vm._s(_vm.total))
+                        ])
+                      ])
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("br"),
                   _vm._v(" "),
@@ -38934,52 +39093,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container table-sm overflow-auto" }, [
-      _c(
-        "table",
-        {
-          staticClass: "table table-bordered table-striped table-hover",
-          attrs: { id: "saleDetail" }
-        },
-        [
-          _c("thead", { staticClass: "thead-dark text-center" }, [
-            _c("tr", [
-              _c("th", { staticStyle: { width: "5%" } }, [_vm._v("#")]),
-              _vm._v(" "),
-              _c("th", { staticStyle: { width: "15%" } }, [_vm._v("Código")]),
-              _vm._v(" "),
-              _c("th", { staticStyle: { width: "50%" } }, [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Precio")]),
-              _vm._v(" "),
-              _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Cantidad")]),
-              _vm._v(" "),
-              _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", { staticClass: "text-center" })
-        ]
-      )
+    return _c("thead", { staticClass: "thead-dark text-center" }, [
+      _c("tr", [
+        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "15%" } }, [_vm._v("Código")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "50%" } }, [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Precio")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "5%" } }, [_vm._v("Cantidad")]),
+        _vm._v(" "),
+        _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total")])
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("h4", { staticStyle: { margin: "4px 10px" } }, [_vm._v("Total:")]),
-      _vm._v(" "),
-      _c("div", [
-        _c("div", { staticClass: "input-group-prepend" }, [
-          _c("span", { staticClass: "input-group-text" }, [_vm._v("$")])
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control col-md-2 col-sm-2",
-          attrs: { id: "tAmount", disabled: "", value: "0" }
-        })
-      ])
+    return _c("div", [
+      _c("h4", { staticStyle: { margin: "4px 10px" } }, [_vm._v("Total:")])
     ])
   }
 ]
@@ -51624,8 +51759,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/martin/Proyectos/Tecnicatura/TrabajoFinal-LabIII/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/martin/Proyectos/Tecnicatura/TrabajoFinal-LabIII/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/cristian/Documents/Extra/TrabajoFinal-LabIII/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/cristian/Documents/Extra/TrabajoFinal-LabIII/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

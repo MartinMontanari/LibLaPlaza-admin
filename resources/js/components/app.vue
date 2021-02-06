@@ -1,5 +1,9 @@
 <template>
     <div class="container">
+        <div class="modal" v-if="showModal">
+            {{ message }}
+        </div>
+
         <div class="row justify-content-md-center">
             <div class="card col-md-12 col-sm-12 block">
                 <div class="card-header">
@@ -82,12 +86,11 @@
                                         <label>Cantidad</label>
                                         <input type="number" class="form-control text-center" min="0"
                                                name="quantity" id="pQuantity" v-model="quantity"
-                                               placeholder="" required>
+                                               placeholder="">
+                                        <label class="small" style="color: red">{{quantityError}}</label>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                                        <button id="btnAddProduct" @click="onSelectProduct" class="btn btn-outline-info"
-                                                value="#">Agregar
-                                        </button>
+                                        <button @click="onAddProduct" class="btn btn-outline-info">Agregar</button>
                                     </div>
                                 </div>
                                 <hr>
@@ -107,14 +110,14 @@
                                         </tr>
                                         </thead>
                                         <tbody class="text-center">
-<!--                                        <tr>->
-<!--                                            <th scope="row">1</th>-->
-<!--                                            <td></td>-->
-<!--                                            <td class="text-left"></td>-->
-<!--                                            <td></td>-->
-<!--                                            <td></td>-->
-<!--                                            <td></td>-->
-<!--                                        </tr>-->
+                                        <tr v-for="product in selectedProducts">
+                                            <td>{{ selectedProducts.indexOf(product) }}</td>
+                                            <td>{{ product.code }}</td>
+                                            <td>{{ product.name }}</td>
+                                            <td>{{ product.price }}</td>
+                                            <td>{{ product.quantity }}</td>
+                                            <td>{{ product.total }}</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -124,10 +127,8 @@
                                         <h4 style="margin: 4px 10px;">Total:</h4>
                                     </div>
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
+                                        <span class="input-group-text">$ {{ total }}</span>
                                     </div>
-                                    <input class="form-control col-md-2 col-sm-2" id="tAmount" disabled value="0">
-                                    <input type="hidden" name="totalAmount" id="totalAmount">
                                 </div>
                                 <br>
                                 <hr>
@@ -145,9 +146,11 @@
 import ApiFetch from "../apiclient";
 
 export default {
-    name: 'App',
+    name: 'app',
     data() {
         return {
+            message: '',
+            showModal: false,
             products: [],
             selectedProducts: [],
             selectedProduct: '',
@@ -159,6 +162,8 @@ export default {
             billNumber: '',
             stock: '',
             quantity: '',
+            quantityError: '',
+            total: '',
             client: new ApiFetch()
         }
     },
@@ -166,7 +171,6 @@ export default {
         const response = await this.client.get('sale/new');
 
         this.products = response.data.data;
-
     },
     methods: {
         onSelectProduct() {
@@ -175,25 +179,64 @@ export default {
                 this.stock = newProduct.stock;
             }
         },
-        // onAddProduct() {
-        //     this.selectedProducts.push(
-        //         {
-        //         this.selectedProducts.push({ id: this.selectedProduct, quantity: this.quantity, stock: this.stock });
-        //         })
-        // },
+        onAddProduct() {
+            const product = this.products.find(product => product.id === this.selectedProduct);
+            const index = this.products.indexOf(product);
+            if (this.quantity <= 0) {
+                return;
+            }
+
+            if (this.quantity <= product.stock) {
+
+                const hasProductSelected = this.selectedProducts.findIndex(product => product.id === this.selectedProduct);
+
+                if (hasProductSelected !== -1) {
+                    let quantity = Number(this.selectedProducts[hasProductSelected].quantity);
+                    quantity += Number(this.quantity);
+
+                    this.selectedProducts[hasProductSelected].quantity = quantity;
+                    this.selectedProducts[hasProductSelected].total = quantity * (product.price.amount / 100);
+
+                } else {
+                    this.selectedProducts.push({
+                        id: this.selectedProduct,
+                        quantity: this.quantity,
+                        stock: this.stock,
+                        name: product.name,
+                        price: (product.price.amount / 100),
+                        code: product.code,
+                        total: this.quantity * (product.price.amount / 100)
+                    });
+                }
+
+                let total = 0;
+
+                for (const product of this.selectedProducts) {
+                    total += product.total;
+                }
+                this.total = total.toFixed(2);
+
+                this.products[index] = {...product, stock: product.stock - this.quantity};
+
+                // we back data to initial state for restore view
+                this.quantity = '';
+                this.selectedProduct = '';
+                this.stock = '';
+            } else {
+                //TODO: add message for error
+                this.quantityError = 'La cantidad ingresada es mayor al stock actual'
+            }
+
+        },
         onSubmit() {
             //TODO: add call to api
-        }
+            console.log('hola');
+            this.message = 'El producto se ah cargado correctamente';
+            this.showModal = true;
+            setTimeout(() => {
+                this.showModal = false;
+            }, 3000);
+        },
     }
 }
 </script>
-
-<!--'<tr id="row'+cont+'">' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td class="align-middle"><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"> <i class="fas fa-trash"></i></button></td> ' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<input type="hidden" name="productId" value="' + productId + '"/>' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td>' + code + '</td> ' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td class="text-left">' + name + '</td> ' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td>' + price / 100 + '</td> ' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td> ' + quantity + ' </td>' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '<td> ' + sTotal / 100 + ' </td>' +&#45;&#45;}}-->
-<!--// {{&#45;&#45;                                '</tr>'-->
