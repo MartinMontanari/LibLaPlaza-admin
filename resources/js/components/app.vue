@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-                        <form id="form" @submit.prevent="onSubmit" method="POST">
+                        <div id="form" @submit.prevent="onSubmit">
                             <div class="form-group-lg">
                                 <div class="input-group">
                                     <div class="col-md-4">
@@ -111,7 +111,7 @@
                                         <tr v-for="product in selectedProducts">
                                             <td class="align-middle">
                                                 <button type="button" class="btn btn-danger btn-sm"
-                                                        @click="onDestroyProduct(selectedProducts.indexOf(product))">
+                                                        @click="onRemoveProduct(selectedProducts.indexOf(product))">
                                                     <i class="fas fa-trash"></i></button>
                                             </td>
                                             <td>{{ product.code }}</td>
@@ -133,9 +133,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2" value="Registrar venta">
+                                <input type="submit" class="btn btn-success btn-block col-md-2" @click="onSubmit" value="Registrar venta">
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,7 +182,7 @@ export default {
         onAddProduct() {
             const product = this.products.find(product => product.id === this.selectedProduct);
             const index = this.products.indexOf(product);
-            if (this.quantity <= 0) {
+            if (this.quantity <= 0 || this.quantity === '') {
                 return;
             }
 
@@ -225,32 +225,36 @@ export default {
             } else {
                 //TODO: add message for error
                 this.quantityError = 'La cantidad ingresada es mayor al stock actual'
+                setTimeout(() => {
+                    this.quantityError = ""
+                }, 3000);
             }
 
         },
-        onDestroyProduct(index) {
-            //TODO que carajos?
-            array.filter(index);
-            return this.selectedProducts;
+        onRemoveProduct(index) {
+            console.log(index);
+            this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
         },
         async onSubmit() {
             const body = {
                 fullName: this.fullName,
+                dni: this.dni,
+                address: this.address,
+                billType: this.billType,
+                billSerie: this.billSerie,
+                billNumber: this.billNumber,
                 products: this.selectedProducts,
+                total: this.total
             };
-            const response = await this.client.post('', body);
+            const response = await this.client.post('sale/new', body);
 
-            if (isError(response.status)) {
-                //TODO: error handler
+            if (response) {
+                this.message = 'El producto se ha cargado correctamente';
+                this.showModal = true;
+                setTimeout(() => {
+                    this.showModal = false;
+                }, 3000);
             }
-
-            //TODO: add call to api
-            console.log('hola');
-            this.message = 'El producto se ha cargado correctamente';
-            this.showModal = true;
-            setTimeout(() => {
-                this.showModal = false;
-            }, 3000);
         },
     }
 }

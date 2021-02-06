@@ -2152,7 +2152,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
       var index = this.products.indexOf(product);
 
-      if (this.quantity <= 0) {
+      if (this.quantity <= 0 || this.quantity === '') {
         return;
       }
 
@@ -2205,12 +2205,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } else {
         //TODO: add message for error
         this.quantityError = 'La cantidad ingresada es mayor al stock actual';
+        setTimeout(function () {
+          _this3.quantityError = "";
+        }, 3000);
       }
     },
-    onDestroyProduct: function onDestroyProduct(index) {
-      //TODO que carajos?
-      array.filter(index);
-      return this.selectedProducts;
+    onRemoveProduct: function onRemoveProduct(index) {
+      console.log(index);
+      this.selectedProducts = this.selectedProducts.filter(function (selectedProducts) {
+        return selectedProducts.id !== index;
+      });
     },
     onSubmit: function onSubmit() {
       var _this4 = this;
@@ -2223,26 +2227,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 body = {
                   fullName: _this4.fullName,
-                  products: _this4.selectedProducts
+                  dni: _this4.dni,
+                  address: _this4.address,
+                  billType: _this4.billType,
+                  billSerie: _this4.billSerie,
+                  billNumber: _this4.billNumber,
+                  products: _this4.selectedProducts,
+                  total: _this4.total
                 };
                 _context2.next = 3;
-                return _this4.client.post('', body);
+                return _this4.client.post('sale/new', body);
 
               case 3:
                 response = _context2.sent;
 
-                if (isError(response.status)) {//TODO: error handler
-                } //TODO: add call to api
+                if (response) {
+                  _this4.message = 'El producto se ha cargado correctamente';
+                  _this4.showModal = true;
+                  setTimeout(function () {
+                    _this4.showModal = false;
+                  }, 3000);
+                }
 
-
-                console.log('hola');
-                _this4.message = 'El producto se ha cargado correctamente';
-                _this4.showModal = true;
-                setTimeout(function () {
-                  _this4.showModal = false;
-                }, 3000);
-
-              case 9:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -38634,9 +38641,9 @@ var render = function() {
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "form-group-sm" }, [
             _c(
-              "form",
+              "div",
               {
-                attrs: { id: "form", method: "POST" },
+                attrs: { id: "form" },
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -39038,7 +39045,7 @@ var render = function() {
                                       attrs: { type: "button" },
                                       on: {
                                         click: function($event) {
-                                          _vm.onDestroyProduct(
+                                          _vm.onRemoveProduct(
                                             _vm.selectedProducts.indexOf(
                                               product
                                             )
@@ -39092,7 +39099,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("input", {
                     staticClass: "btn btn-success btn-block col-md-2",
-                    attrs: { type: "submit", value: "Registrar venta" }
+                    attrs: { type: "submit", value: "Registrar venta" },
+                    on: { click: _vm.onSubmit }
                   })
                 ])
               ]
