@@ -1,0 +1,199 @@
+<template>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="card col-md-12 col-sm-12 block">
+                <div class="card-header">
+                    Complete los campos debajo
+                </div>
+                <div class="card-body">
+                    <div class="form-group-sm">
+                        <form id="form" @submit.prevent="onSubmit" method="POST">
+                            <div class="form-group-lg">
+                                <div class="input-group">
+                                    <div class="col-md-4">
+                                        <label>Nombre y apellido del cliente</label>
+                                        <input type="text" class="form-control" name="fullName" min="1" max="20"
+                                               maxlength="20"
+                                               placeholder="Nombre y apellido"
+                                               v-model="fullName">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Dni del cliente </label>
+                                        <input type="number" class="form-control" name="dni" minlength="7"
+                                               maxlength="15"
+                                               placeholder="DNI"
+                                               v-model="dni" required><br>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Dirección del cliente </label>
+                                        <input type="text" class="form-control" name="dni" min="7" max="30"
+                                               maxlength="30"
+                                               placeholder="Direción"
+                                               v-model="address" required><br>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="input-group">
+                                    <div class="col-md-4">
+                                        <label>Tipo comprobante</label>
+                                        <select class="form-control select2-blue col-md-" name="billType"
+                                                v-model="billType" required>
+                                            <option value="">Seleccione una opción...</option>
+                                            <option value="FCC">Factura cuenta corriente</option>
+                                            <option value="FCE">Factura contado efectivo</option>
+                                            <option value="TIF">Ticket fiscal</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Serie de comprobante</label>
+                                        <input type="text" class="form-control" name="billSerie" v-model="billSerie"
+                                               min="4" max="10"
+                                               maxlength="10"
+                                               placeholder="Serie de comprobante" required>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <label>Número de comprobante</label>
+                                        <input type="text" class="form-control" name="billNumber" v-model="billNumber"
+                                               min="5" max="15"
+                                               maxlength="15"
+                                               placeholder="número de comprobante"
+                                               required><br>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="input-group col-md-12">
+                                    <div class="col-md-4">
+                                        <label>Artículo</label>
+                                        <select class="form-control select2-blue" name="productId"
+                                                id="articleSelect" v-model="selectedProduct" @change="onSelectProduct">
+                                            <option value="">Seleccione un artículo...</option>
+                                            <option v-for="product in products" :value="product.id">
+                                                {{ product.name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Stock</label>
+                                        <input type="number" class="form-control text-center" v-model="stock" min="0"
+                                               id="pStock"
+                                               disabled>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>Cantidad</label>
+                                        <input type="number" class="form-control text-center" min="0"
+                                               name="quantity" id="pQuantity" v-model="quantity"
+                                               placeholder="" required>
+                                    </div>
+                                    <div class="col-md-2 d-flex justify-content-center align-items-center">
+                                        <button id="btnAddProduct" @click="onSelectProduct" class="btn btn-outline-info"
+                                                value="#">Agregar
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="col-md-12 text-center">
+                                    <h5>Detalles de la compra</h5>
+                                </div>
+                                <div class="container table-sm overflow-auto">
+                                    <table class="table table-bordered table-striped table-hover" id="saleDetail">
+                                        <thead class="thead-dark text-center">
+                                        <tr>
+                                            <th style="width: 5%">#</th>
+                                            <th style="width: 15%">Código</th>
+                                            <th style="width: 50%">Nombre</th>
+                                            <th style="width: 10%">Precio</th>
+                                            <th style="width: 5%;">Cantidad</th>
+                                            <th style="width: 10%;">Total</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="text-center">
+<!--                                        <tr>->
+<!--                                            <th scope="row">1</th>-->
+<!--                                            <td></td>-->
+<!--                                            <td class="text-left"></td>-->
+<!--                                            <td></td>-->
+<!--                                            <td></td>-->
+<!--                                            <td></td>-->
+<!--                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr>
+                                <div class="col-md-12 input-group justify-content-end">
+                                    <div>
+                                        <h4 style="margin: 4px 10px;">Total:</h4>
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input class="form-control col-md-2 col-sm-2" id="tAmount" disabled value="0">
+                                    <input type="hidden" name="totalAmount" id="totalAmount">
+                                </div>
+                                <br>
+                                <hr>
+                                <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
+                                       value="Registrar venta">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+import ApiFetch from "../apiclient";
+
+export default {
+    name: 'App',
+    data() {
+        return {
+            products: [],
+            selectedProducts: [],
+            selectedProduct: '',
+            fullName: '',
+            dni: '',
+            address: '',
+            billType: '',
+            billSerie: '',
+            billNumber: '',
+            stock: '',
+            quantity: '',
+            client: new ApiFetch()
+        }
+    },
+    async mounted() {
+        const response = await this.client.get('sale/new');
+
+        this.products = response.data.data;
+
+    },
+    methods: {
+        onSelectProduct() {
+            const newProduct = this.products.find(product => product.id === this.selectedProduct);
+            if (newProduct) {
+                this.stock = newProduct.stock;
+            }
+        },
+        // onAddProduct() {
+        //     this.selectedProducts.push(
+        //         {
+        //         this.selectedProducts.push({ id: this.selectedProduct, quantity: this.quantity, stock: this.stock });
+        //         })
+        // },
+        onSubmit() {
+            //TODO: add call to api
+        }
+    }
+}
+</script>
+
+<!--'<tr id="row'+cont+'">' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td class="align-middle"><button type="button" class="btn btn-danger btn-sm" onclick="eliminar(' + cont + ');"> <i class="fas fa-trash"></i></button></td> ' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<input type="hidden" name="productId" value="' + productId + '"/>' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td>' + code + '</td> ' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td class="text-left">' + name + '</td> ' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td>' + price / 100 + '</td> ' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td> ' + quantity + ' </td>' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '<td> ' + sTotal / 100 + ' </td>' +&#45;&#45;}}-->
+<!--// {{&#45;&#45;                                '</tr>'-->
