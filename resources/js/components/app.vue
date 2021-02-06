@@ -241,7 +241,7 @@ export default {
 
             //TODO: add call to api
             console.log('hola');
-            this.message = 'El producto se ah cargado correctamente';
+            this.message = 'El producto se ha cargado correctamente';
             this.showModal = true;
             setTimeout(() => {
                 this.showModal = true;
