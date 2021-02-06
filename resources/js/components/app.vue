@@ -110,9 +110,9 @@
                                         <tbody class="text-center">
                                         <tr v-for="product in selectedProducts">
                                             <td class="align-middle">
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                        @click="onRemoveProduct(selectedProducts.indexOf(product))">
-                                                    <i class="fas fa-trash"></i></button>
+                                                <div type="button" class="btn btn-danger btn-sm"
+                                                     @click="() => onRemoveProduct(product.id)">
+                                                    <i class="fas fa-trash"></i></div>
                                             </td>
                                             <td>{{ product.code }}</td>
                                             <td class="text-left">{{ product.name }}</td>
@@ -205,7 +205,7 @@ export default {
                         name: product.name,
                         price: (product.price.amount / 100),
                         code: product.code,
-                        total: this.quantity * (product.price.amount / 100)
+                        total: (this.quantity * (product.price.amount / 100)).toFixed(2)
                     });
                 }
 
@@ -231,11 +231,9 @@ export default {
             }
 
         },
-        // onRemoveProduct(index) {
-        //     console.log(index);
-        //     this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
-        //
-        // },
+        onRemoveProduct(index) {
+            this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
+        },
         async onSubmit() {
             const body = {
                 fullName: this.fullName,

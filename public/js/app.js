@@ -2174,7 +2174,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             name: product.name,
             price: product.price.amount / 100,
             code: product.code,
-            total: this.quantity * (product.price.amount / 100)
+            total: (this.quantity * (product.price.amount / 100)).toFixed(2)
           });
         }
 
@@ -2210,11 +2210,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, 3000);
       }
     },
-    // onRemoveProduct(index) {
-    //     console.log(index);
-    //     this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
-    //
-    // },
+    onRemoveProduct: function onRemoveProduct(index) {
+      this.selectedProducts = this.selectedProducts.filter(function (selectedProducts) {
+        return selectedProducts.id !== index;
+      });
+    },
     onSubmit: function onSubmit() {
       var _this4 = this;
 
@@ -39051,17 +39051,13 @@ var render = function() {
                               return _c("tr", [
                                 _c("td", { staticClass: "align-middle" }, [
                                   _c(
-                                    "button",
+                                    "div",
                                     {
                                       staticClass: "btn btn-danger btn-sm",
                                       attrs: { type: "button" },
                                       on: {
-                                        click: function($event) {
-                                          _vm.onRemoveProduct(
-                                            _vm.selectedProducts.indexOf(
-                                              product
-                                            )
-                                          )
+                                        click: function() {
+                                          return _vm.onRemoveProduct(product.id)
                                         }
                                       }
                                     },
