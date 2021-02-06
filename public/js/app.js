@@ -2240,6 +2240,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 response = _context2.sent;
+                console.log(response);
 
                 if (response) {
                   _this4.message = 'El producto se ha cargado correctamente';
@@ -2249,7 +2250,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }, 3000);
                 }
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -38641,9 +38642,9 @@ var render = function() {
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "form-group-sm" }, [
             _c(
-              "div",
+              "form",
               {
-                attrs: { id: "form" },
+                attrs: { id: "form", method: "POST" },
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -38673,6 +38674,7 @@ var render = function() {
                           max: "20",
                           maxlength: "20",
                           placeholder: "Nombre y apellido",
+                          name: "fullName",
                           required: ""
                         },
                         domProps: { value: _vm.fullName },
@@ -38705,6 +38707,7 @@ var render = function() {
                           minlength: "7",
                           maxlength: "15",
                           placeholder: "DNI",
+                          name: "dni",
                           required: ""
                         },
                         domProps: { value: _vm.dni },
@@ -38739,6 +38742,7 @@ var render = function() {
                           max: "30",
                           maxlength: "30",
                           placeholder: "Dirección",
+                          name: "address",
                           required: ""
                         },
                         domProps: { value: _vm.address },
@@ -38773,7 +38777,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control select2-blue col-md-",
-                          attrs: { required: "" },
+                          attrs: { name: "billType", required: "" },
                           on: {
                             change: function($event) {
                               var $$selectedVal = Array.prototype.filter
@@ -38829,6 +38833,7 @@ var render = function() {
                           max: "10",
                           maxlength: "10",
                           placeholder: "Serie de comprobante",
+                          name: "billSerie",
                           required: ""
                         },
                         domProps: { value: _vm.billSerie },
@@ -38862,6 +38867,7 @@ var render = function() {
                           max: "15",
                           maxlength: "15",
                           placeholder: "número de comprobante",
+                          name: "billNumber",
                           required: ""
                         },
                         domProps: { value: _vm.billNumber },
@@ -38896,6 +38902,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control select2-blue",
+                          attrs: { name: "selectedProducts" },
                           on: {
                             change: [
                               function($event) {
@@ -38977,7 +38984,12 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control text-center",
-                        attrs: { type: "number", min: "0", placeholder: "" },
+                        attrs: {
+                          type: "number",
+                          min: "0",
+                          name: "quantity",
+                          placeholder: ""
+                        },
                         domProps: { value: _vm.quantity },
                         on: {
                           input: function($event) {
@@ -39100,7 +39112,7 @@ var render = function() {
                   _c("input", {
                     staticClass: "btn btn-success btn-block col-md-2",
                     attrs: { type: "submit", value: "Registrar venta" },
-                    on: { click: _vm.onSubmit }
+                    on: { submit: _vm.onSubmit }
                   })
                 ])
               ]

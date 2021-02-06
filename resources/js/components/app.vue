@@ -11,28 +11,28 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group-sm">
-                        <div id="form" @submit.prevent="onSubmit">
+                        <form id="form" @submit.prevent="onSubmit" method="POST">
                             <div class="form-group-lg">
                                 <div class="input-group">
                                     <div class="col-md-4">
                                         <label>Nombre y apellido del cliente</label>
                                         <input type="text" class="form-control" min="1" max="20"
                                                maxlength="20"
-                                               placeholder="Nombre y apellido"
+                                               placeholder="Nombre y apellido" name="fullName"
                                                v-model="fullName" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dni del cliente </label>
                                         <input type="number" class="form-control" minlength="7"
                                                maxlength="15"
-                                               placeholder="DNI"
+                                               placeholder="DNI" name="dni"
                                                v-model="dni" required><br>
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dirección del cliente </label>
                                         <input type="text" class="form-control" min="7" max="30"
                                                maxlength="30"
-                                               placeholder="Dirección"
+                                               placeholder="Dirección" name="address"
                                                v-model="address" required><br>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
                                     <div class="col-md-4">
                                         <label>Tipo comprobante</label>
                                         <select class="form-control select2-blue col-md-"
-                                                v-model="billType" required>
+                                                v-model="billType" name="billType" required>
                                             <option value="">Seleccione una opción...</option>
                                             <option value="FCC">Factura cuenta corriente</option>
                                             <option value="FCE">Factura contado efectivo</option>
@@ -53,14 +53,14 @@
                                         <input type="text" class="form-control" v-model="billSerie"
                                                min="4" max="10"
                                                maxlength="10"
-                                               placeholder="Serie de comprobante" required>
+                                               placeholder="Serie de comprobante" name="billSerie" required>
                                     </div>
                                     <div class="col-md-5">
                                         <label>Número de comprobante</label>
                                         <input type="text" class="form-control" v-model="billNumber"
                                                min="5" max="15"
                                                maxlength="15"
-                                               placeholder="número de comprobante"
+                                               placeholder="número de comprobante" name="billNumber"
                                                required><br>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                 <div class="input-group col-md-12">
                                     <div class="col-md-4">
                                         <label>Artículo</label>
-                                        <select class="form-control select2-blue" v-model="selectedProduct"
+                                        <select class="form-control select2-blue" v-model="selectedProduct" name="selectedProducts"
                                                 @change="onSelectProduct">
                                             <option value="">Seleccione un artículo...</option>
                                             <option v-for="product in products" :value="product.id">
@@ -84,7 +84,7 @@
                                     <div class="col-md-2">
                                         <label>Cantidad</label>
                                         <input type="number" class="form-control text-center" min="0"
-                                               v-model="quantity" placeholder="">
+                                               v-model="quantity" name="quantity" placeholder="">
                                         <label class="small" style="color: red">{{ quantityError }}</label>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-center align-items-center">
@@ -133,9 +133,9 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <input type="submit" class="btn btn-success btn-block col-md-2" @click="onSubmit" value="Registrar venta">
+                                <input type="submit" class="btn btn-success btn-block col-md-2" @submit="onSubmit" value="Registrar venta">
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -234,6 +234,7 @@ export default {
         onRemoveProduct(index) {
             console.log(index);
             this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
+
         },
         async onSubmit() {
             const body = {
@@ -247,6 +248,8 @@ export default {
                 total: this.total
             };
             const response = await this.client.post('sale/new', body);
+
+            console.log(response);
 
             if (response) {
                 this.message = 'El producto se ha cargado correctamente';

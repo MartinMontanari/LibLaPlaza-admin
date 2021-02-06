@@ -15,6 +15,8 @@ class StoreNewSaleAction
 
     public function __invoke(Request  $request)
     {
-         return 'hola';
+        dd($request);
+//        $errors = 'Hola';
+//        return redirect()->back()->withErrors($errors);
     }
 }
