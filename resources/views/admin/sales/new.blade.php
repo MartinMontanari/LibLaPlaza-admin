@@ -26,7 +26,7 @@
         @if(session('status'))
             <div class="card col-md-6 alert alert-success">
                 <div class="row justify-content-center" data-dismiss="alert">
-                    Producto actualizado correctamente.
+                    Venta registrada correctamente
                 </div>
             </div>
         @endif
