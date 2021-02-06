@@ -82,7 +82,7 @@ class Product extends Model
     }
 
     /**
-     * @param int $price
+     * @param Money $price
      */
     public function setPrice(Money $price): void
     {
@@ -145,5 +145,4 @@ class Product extends Model
     {
         return $this->hasMany(ProductSale::class);
     }
-
 }

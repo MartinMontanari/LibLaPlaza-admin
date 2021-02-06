@@ -99,4 +99,12 @@ class Customer
         return $this->dni;
     }
 
+    /**
+     * @param Sale $sale
+     */
+    public function setSale(Sale $sale)
+    {
+        $this->sale()->associate($sale);
+    }
+
 }
