@@ -15,8 +15,7 @@ class CustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('lastName')->nullable();
+            $table->string('fullName')->nullable();
             $table->string('address')->nullable();
             $table->unsignedBigInteger('dni')->nullable();
             $table->timestamps();

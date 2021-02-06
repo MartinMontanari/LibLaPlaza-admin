@@ -4,9 +4,25 @@
 namespace App\Domain\Interfaces;
 
 
+use App\Domain\Entities\Customer;
+
 interface CustomerRepository
 {
-    public function getCustomerById();
-    public function getCustomerByFullName();
-    public function getCustomerBy();
+    /**
+     * @param int $id
+     * @return Customer|null
+     */
+    public function getCustomerById(int $id) : ?Customer;
+
+    /**
+     * @param string $fullName
+     * @return Customer|null
+     */
+    public function getCustomerByFullName(string $fullName) : ?Customer;
+
+    /**
+     * @param Customer $customer
+     * @return mixed
+     */
+    public function persist(Customer $customer);
 }

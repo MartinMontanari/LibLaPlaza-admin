@@ -44,6 +44,7 @@ class MysqlProductRepository implements ProductRepository
          ->firstOrFail();
     }
 
+
     /**
      * @param string $code
      * @return Product|null

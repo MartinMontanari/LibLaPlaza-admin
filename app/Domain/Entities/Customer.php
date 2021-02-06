@@ -19,36 +19,13 @@ class Customer
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
 
     /**
-     * @param string $name
+     * @param string $fullName
      */
-    public function setName(string $name): void
+    public function setFullName(string $fullName): void
     {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     */
-    public function setLastName(string $lastName): void
-    {
-        $this->lastName = $lastName;
+        $this->fullName = $fullName;
     }
 
     /**
