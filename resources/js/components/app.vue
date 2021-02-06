@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dni del cliente </label>
-                                        <input type="number" class="form-control" minlength="7"
+                                        <input type="number" class="form-control" step="none" minlength="7"
                                                maxlength="15"
                                                placeholder="DNI" name="dni"
                                                v-model="dni" required><br>

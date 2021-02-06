@@ -38704,6 +38704,7 @@ var render = function() {
                         staticClass: "form-control",
                         attrs: {
                           type: "number",
+                          step: "none",
                           minlength: "7",
                           maxlength: "15",
                           placeholder: "DNI",
