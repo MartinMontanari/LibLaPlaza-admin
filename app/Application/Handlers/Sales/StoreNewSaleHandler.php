@@ -13,6 +13,7 @@ use App\Domain\Interfaces\ProductRepository;
 use App\Domain\Interfaces\SaleRepository;
 use App\Domain\Interfaces\StockRepository;
 use App\Exceptions\UnprocessableEntityException;
+use Illuminate\Support\Facades\DB;
 
 class StoreNewSaleHandler
 {
@@ -42,41 +43,47 @@ class StoreNewSaleHandler
      */
     public function handle(StoreNewSaleCommand $command)
     {
+        DB::beginTransaction();
+        try {
+            $sale = new Sale();
 
-        $sale = new Sale();
+            $sale->setBillSerieAndBillNumber($command->getBillSerie() . '-' . $command->getBillNumber());
+            $sale->setBillType($command->getBillType());
 
-        $sale->setBillSerieAndBillNumber($command->getBillSerie() . '-' . $command->getBillNumber());
-        $sale->setBillType($command->getBillType());
+            if (!is_null($customer = $this->customerRepository->getCustomerByDni($command->getDni()))) {
+                $sale->setCustomer($customer);
+            } else {
+                $customer = new Customer();
+                $customer->setFullName($command->getFullName());
+                $customer->setDni($command->getDni());
+                $customer->setAddress($command->getAddress());
 
-        if (!is_null($customer = $this->customerRepository->getCustomerByDni($command->getDni()))) {
-            $sale->setCustomer($customer);
-        } else {
-            $customer = new Customer();
-            $customer->setFullName($command->getFullName());
-            $customer->setDni($command->getDni());
-            $customer->setAddress($command->getAddress());
-
-            $this->customerRepository->persist($customer);
-            $sale->setCustomer($customer);
-        }
-
-        $products = $command->getProducts();
-
-        foreach ($products as $item) {
-            $product = $this->productRepository->getOneByIdOrFail($item['id']);
-            $stock = $product->getStock();
-            if (!$stock->hasStock()) {
-                throw new UnprocessableEntityException('El producto no tiene stock.');
+                $this->customerRepository->persist($customer);
+                $sale->setCustomer($customer);
             }
-            $stock->decreaseQuantity(intval($item['quantity']));
 
-            $productSale = new ProductSale();
+            $products = $command->getProducts();
 
-            $productSale->setProduct($product);
-            $productSale->setSale($sale);
-            $productSale->save();
+            foreach ($products as $item) {
+                $product = $this->productRepository->getOneByIdOrFail($item['id']);
+                $stock = $product->getStock();
+                if (!$stock->hasStock()) {
+                    throw new UnprocessableEntityException('El producto no tiene stock.');
+                }
+                $stock->decreaseQuantity(intval($item['quantity']));
 
-            $stock->save();
+                $productSale = new ProductSale();
+
+                $productSale->setProduct($product);
+                $productSale->setSale($sale);
+                $productSale->save();
+
+                $stock->save();
+            }
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            throw $exception;
         }
     }
 }

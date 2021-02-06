@@ -6,7 +6,10 @@ namespace App\Http\Controllers\Sales;
 
 use App\Application\Handlers\Sales\StoreNewSaleHandler;
 use App\Exceptions\InvalidBodyException;
+use App\Exceptions\UnprocessableEntityException;
 use App\Http\Adapters\Sales\StoreNewSaleAdapter;
+use App\Http\Enums\HttpCodes;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -27,20 +30,23 @@ class StoreNewSaleAction
 
     /**
      * @param Request $request
-     * @return RedirectResponse
+     * @return JsonResponse
      */
     public function __invoke(Request  $request)
     {
-        dd($request);
-//        try{
-//            $command = $this->storeNewSaleAdapter->adapt($request->all());
-//            $this->storeNewSaleHandler->handle($command);
-//
-////            TODO retornar un json response OK manito GG IZI WP
-//        } catch (InvalidBodyException $errors){
-//            //TODO VOLARLO AL PINGO y hacer un jsonresponse con los mensajes
-//            return redirect()->back()->withErrors($errors->getMessages());
-//        }
+        try{
+            $command = $this->storeNewSaleAdapter->adapt($request);
+            $this->storeNewSaleHandler->handle($command);
 
+            return new JsonResponse(['Venta concretada correctamente.', HttpCodes::OK]);
+        } catch (InvalidBodyException $errors){
+            return new JsonResponse([$errors->getMessages(), $errors->getCode()]);
+        }
+        catch (UnprocessableEntityException $errors){
+            return new JsonResponse([$errors->getMessages(), $errors->getCode()]);
+        }
+        catch (\Exception $errors){
+            return new JsonResponse([$errors->getMessage(), $errors->getCode()]);
+        }
     }
 }
