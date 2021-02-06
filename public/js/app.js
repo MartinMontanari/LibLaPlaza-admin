@@ -2210,12 +2210,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, 3000);
       }
     },
-    onRemoveProduct: function onRemoveProduct(index) {
-      console.log(index);
-      this.selectedProducts = this.selectedProducts.filter(function (selectedProducts) {
-        return selectedProducts.id !== index;
-      });
-    },
+    // onRemoveProduct(index) {
+    //     console.log(index);
+    //     this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
+    //
+    // },
     onSubmit: function onSubmit() {
       var _this4 = this;
 
@@ -2236,7 +2235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   total: _this4.total
                 };
                 _context2.next = 3;
-                return _this4.client.post('sale/new', body);
+                return _this4.client.post('/sale/new', body);
 
               case 3:
                 response = _context2.sent;
@@ -39017,7 +39016,7 @@ var render = function() {
                       },
                       [
                         _c(
-                          "button",
+                          "div",
                           {
                             staticClass: "btn btn-outline-info",
                             on: { click: _vm.onAddProduct }

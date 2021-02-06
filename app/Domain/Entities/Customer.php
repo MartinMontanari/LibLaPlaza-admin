@@ -4,12 +4,12 @@
 namespace App\Domain\Entities;
 
 
-class Client
+class Customer
 {
     /**
      * @var string
      */
-    protected $table = 'clients';
+    protected $table = 'customers';
 
     /**
      * @return int

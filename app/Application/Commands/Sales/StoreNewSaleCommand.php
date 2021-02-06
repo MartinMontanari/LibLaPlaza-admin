@@ -11,7 +11,7 @@ class StoreNewSaleCommand
     private string $address;
     private string $billType;
     private string $billSerie;
-    private array $selectedProducts;
+    private array $products;
     private int $total;
 
     /**
@@ -21,17 +21,17 @@ class StoreNewSaleCommand
      * @param string $address
      * @param string $billType
      * @param string $billSerie
-     * @param array $selectedProducts
+     * @param array $products
      * @param int $total
      */
-    public function __construct(string $fullName, int $dni, string $address, string $billType, string $billSerie, array $selectedProducts, int $total)
+    public function __construct(string $fullName, int $dni, string $address, string $billType, string $billSerie, array $products, int $total)
     {
         $this->fullName = $fullName;
         $this->dni = $dni;
         $this->address = $address;
         $this->billType = $billType;
         $this->billSerie = $billSerie;
-        $this->selectedProducts = $selectedProducts;
+        $this->products = $products;
         $this->total = $total;
     }
 
@@ -78,9 +78,9 @@ class StoreNewSaleCommand
     /**
      * @return array
      */
-    public function getSelectedProducts(): array
+    public function getProducts(): array
     {
-        return $this->selectedProducts;
+        return $this->products;
     }
 
     /**

@@ -88,7 +88,7 @@
                                         <label class="small" style="color: red">{{ quantityError }}</label>
                                     </div>
                                     <div class="col-md-2 d-flex justify-content-center align-items-center">
-                                        <button @click="onAddProduct" class="btn btn-outline-info">Agregar</button>
+                                        <div @click="onAddProduct" class="btn btn-outline-info">Agregar</div>
                                     </div>
                                 </div>
                                 <hr>
@@ -231,11 +231,11 @@ export default {
             }
 
         },
-        onRemoveProduct(index) {
-            console.log(index);
-            this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
-
-        },
+        // onRemoveProduct(index) {
+        //     console.log(index);
+        //     this.selectedProducts = this.selectedProducts.filter(selectedProducts => selectedProducts.id !== index);
+        //
+        // },
         async onSubmit() {
             const body = {
                 fullName: this.fullName,
@@ -247,9 +247,10 @@ export default {
                 products: this.selectedProducts,
                 total: this.total
             };
-            const response = await this.client.post('sale/new', body);
+            const response = await this.client.post('/sale/new', body);
 
             console.log(response);
+
 
             if (response) {
                 this.message = 'El producto se ha cargado correctamente';

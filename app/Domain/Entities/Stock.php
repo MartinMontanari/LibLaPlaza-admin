@@ -37,7 +37,7 @@ class Stock extends Model
     /**
      * @return int
      */
-    public function getQuantity()
+    public function getQuantity() : int
     {
         return $this->quantity;
     }
