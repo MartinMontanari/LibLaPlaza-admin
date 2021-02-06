@@ -24,7 +24,6 @@ class NewSaleViewDataAction
     {
         try {
             $result = $this->newSaleViewDataHandler->handle();
-
             $data = [];
             foreach ($result as $item) {
                 $data[] = [
