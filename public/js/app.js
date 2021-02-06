@@ -2210,13 +2210,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onSubmit: function onSubmit() {
       var _this4 = this;
 
-      //TODO: add call to api
-      console.log('hola');
-      this.message = 'El producto se ah cargado correctamente';
-      this.showModal = true;
-      setTimeout(function () {
-        _this4.showModal = false;
-      }, 3000);
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var body, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                body = {
+                  fullName: _this4.fullName,
+                  products: _this4.selectedProducts
+                };
+                _context2.next = 3;
+                return _this4.client.post('', body);
+
+              case 3:
+                response = _context2.sent;
+
+                if (isError(response.status)) {//TODO: error handler
+                } //TODO: add call to api
+
+
+                console.log('hola');
+                _this4.message = 'El producto se ah cargado correctamente';
+                _this4.showModal = true;
+                setTimeout(function () {
+                  _this4.showModal = false;
+                }, 3000);
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });

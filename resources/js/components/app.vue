@@ -228,7 +228,17 @@ export default {
             }
 
         },
-        onSubmit() {
+        async onSubmit() {
+            const body = {
+                fullName: this.fullName,
+                products: this.selectedProducts,
+            };
+            const response = await this.client.post('', body);
+
+            if (isError(response.status)) {
+                //TODO: error handler
+            }
+
             //TODO: add call to api
             console.log('hola');
             this.message = 'El producto se ah cargado correctamente';
