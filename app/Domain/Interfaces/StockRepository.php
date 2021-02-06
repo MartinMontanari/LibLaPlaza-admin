@@ -31,4 +31,5 @@ interface StockRepository
      * @return mixed
      */
     public function fetchStockOfAllActiveProducts();
+
 }

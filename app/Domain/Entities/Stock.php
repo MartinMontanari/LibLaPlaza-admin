@@ -37,9 +37,32 @@ class Stock extends Model
     /**
      * @return int
      */
-    public function getQuantity() : int
+    public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasStock(): bool
+    {
+        if ($this->getQuantity() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param int $quantity
+     */
+    public function decreaseQuantity(int $quantity)
+    {
+        if ($this->getQuantity() >= $quantity) {
+            throw new \InvalidArgumentException('El stock no es valido');
+        }
+        $this->setQuantity($this->getQuantity() - $quantity);
     }
 
     /**

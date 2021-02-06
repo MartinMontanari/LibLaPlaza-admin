@@ -93,7 +93,7 @@ class Product extends Model
     /**
      * @return Provider
      */
-    public function getProvider() : Provider
+    public function getProvider(): Provider
     {
         return $this->provider;
     }
@@ -120,6 +120,16 @@ class Product extends Model
     public function setCategoryId(int $category_id): void
     {
         $this->category_id = $category_id;
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
+    }
+
+    public function getStock(): Stock
+    {
+        return $this->stock;
     }
 
     /**

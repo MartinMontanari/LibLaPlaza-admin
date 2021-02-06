@@ -205,7 +205,7 @@ export default {
                         name: product.name,
                         price: (product.price.amount / 100),
                         code: product.code,
-                        total: (this.quantity * (product.price.amount / 100)).toFixed(2)
+                        total: this.quantity * (product.price.amount / 100)
                     });
                 }
 

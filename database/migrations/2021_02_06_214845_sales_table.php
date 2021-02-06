@@ -16,6 +16,7 @@ class SalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
             $table->string('billSerieAndBillNumber');
+            $table->string('billType');
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->timestamps();
         });

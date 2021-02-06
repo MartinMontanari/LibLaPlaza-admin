@@ -15,6 +15,12 @@ interface CustomerRepository
     public function getCustomerById(int $id) : ?Customer;
 
     /**
+     * @param int $id
+     * @return Customer|null
+     */
+    public function getCustomerByDni(int $dni) : ?Customer;
+
+    /**
      * @param string $fullName
      * @return Customer|null
      */

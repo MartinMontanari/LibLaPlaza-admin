@@ -34,6 +34,17 @@ class MysqlCustomerRepository implements CustomerRepository
     }
 
     /**
+     * @param int $dni
+     * @return Customer|null
+     */
+    public function getCustomerByDni(int $dni) : ?Customer
+    {
+        return Customer::query()
+            ->where('dni','=',$dni)
+            ->first();
+    }
+
+    /**
      * @param Customer $customer
      * @return mixed|void
      */

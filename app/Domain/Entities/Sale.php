@@ -32,19 +32,43 @@ class Sale extends Model
     }
 
     /**
+     * @param string $billType
+     */
+    public function setBillType(string $billType): void
+    {
+        $this->billType = $billType;
+    }
+
+    /**
+     *
+     */
+    public function getBillType(): string
+    {
+        return $this->billType;
+    }
+
+    /**
      * @param string $billSerieAndBillNumber
      */
-    public function setCode(string $billSerieAndBillNumber): void
+    public function setBillSerieAndBillNumber(string $billSerieAndBillNumber): void
     {
         $this->billSerieAndBillNumber = $billSerieAndBillNumber;
     }
-    
+
     /**
      * @return BelongsTo
      */
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer(Customer $customer)
+    {
+        $this->customer()->associate($customer);
     }
 
     /**
