@@ -19,7 +19,7 @@
                                         <input type="text" class="form-control" name="fullName" min="1" max="20"
                                                maxlength="20"
                                                placeholder="Nombre y apellido"
-                                               v-model="fullName">
+                                               v-model="fullName" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label>Dni del cliente </label>
@@ -32,7 +32,7 @@
                                         <label>Dirección del cliente </label>
                                         <input type="text" class="form-control" name="dni" min="7" max="30"
                                                maxlength="30"
-                                               placeholder="Direción"
+                                               placeholder="Dirección"
                                                v-model="address" required><br>
                                     </div>
                                 </div>
@@ -111,9 +111,9 @@
                                         </thead>
                                         <tbody class="text-center">
                                         <tr v-for="product in selectedProducts">
-                                            <td>{{ selectedProducts.indexOf(product) }}</td>
+                                            <td class="align-middle"><button type="button" class="btn btn-danger btn-sm" onclick="destroy(selectedProducts.indexOf(product))"><i class="fas fa-trash"></i></button></td>
                                             <td>{{ product.code }}</td>
-                                            <td>{{ product.name }}</td>
+                                            <td class="text-left">{{ product.name }}</td>
                                             <td>{{ product.price }}</td>
                                             <td>{{ product.quantity }}</td>
                                             <td>{{ product.total }}</td>
@@ -130,7 +130,6 @@
                                         <span class="input-group-text">$ {{ total }}</span>
                                     </div>
                                 </div>
-                                <br>
                                 <hr>
                                 <input type="submit" class="btn btn-success btn-block col-md-2" id="submitSale"
                                        value="Registrar venta">
@@ -244,7 +243,7 @@ export default {
             this.message = 'El producto se ha cargado correctamente';
             this.showModal = true;
             setTimeout(() => {
-                this.showModal = true;
+                this.showModal = false;
             }, 3000);
         },
     }

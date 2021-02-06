@@ -2084,7 +2084,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
@@ -2231,7 +2230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
                 console.log('hola');
-                _this4.message = 'El producto se ah cargado correctamente';
+                _this4.message = 'El producto se ha cargado correctamente';
                 _this4.showModal = true;
                 setTimeout(function () {
                   _this4.showModal = false;
@@ -38661,7 +38660,8 @@ var render = function() {
                           min: "1",
                           max: "20",
                           maxlength: "20",
-                          placeholder: "Nombre y apellido"
+                          placeholder: "Nombre y apellido",
+                          required: ""
                         },
                         domProps: { value: _vm.fullName },
                         on: {
@@ -38728,7 +38728,7 @@ var render = function() {
                           min: "7",
                           max: "30",
                           maxlength: "30",
-                          placeholder: "Direción",
+                          placeholder: "Dirección",
                           required: ""
                         },
                         domProps: { value: _vm.address },
@@ -39042,17 +39042,13 @@ var render = function() {
                             { staticClass: "text-center" },
                             _vm._l(_vm.selectedProducts, function(product) {
                               return _c("tr", [
-                                _c("td", [
-                                  _vm._v(
-                                    _vm._s(
-                                      _vm.selectedProducts.indexOf(product)
-                                    )
-                                  )
-                                ]),
+                                _vm._m(2, true),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(product.code))]),
                                 _vm._v(" "),
-                                _c("td", [_vm._v(_vm._s(product.name))]),
+                                _c("td", { staticClass: "text-left" }, [
+                                  _vm._v(_vm._s(product.name))
+                                ]),
                                 _vm._v(" "),
                                 _c("td", [_vm._v(_vm._s(product.price))]),
                                 _vm._v(" "),
@@ -39076,7 +39072,7 @@ var render = function() {
                       staticClass: "col-md-12 input-group justify-content-end"
                     },
                     [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group-prepend" }, [
                         _c("span", { staticClass: "input-group-text" }, [
@@ -39085,8 +39081,6 @@ var render = function() {
                       ])
                     ]
                   ),
-                  _vm._v(" "),
-                  _c("br"),
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
@@ -39134,6 +39128,24 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticStyle: { width: "10%" } }, [_vm._v("Total")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "align-middle" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger btn-sm",
+          attrs: {
+            type: "button",
+            onclick: "destroy(selectedProducts.indexOf(product))"
+          }
+        },
+        [_c("i", { staticClass: "fas fa-trash" })]
+      )
     ])
   },
   function() {
@@ -51786,8 +51798,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/cristian/Documents/Extra/TrabajoFinal-LabIII/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/cristian/Documents/Extra/TrabajoFinal-LabIII/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/martin/Proyectos/Tecnicatura/TrabajoFinal-LabIII/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/martin/Proyectos/Tecnicatura/TrabajoFinal-LabIII/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
