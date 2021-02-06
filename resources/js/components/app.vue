@@ -244,7 +244,7 @@ export default {
             this.message = 'El producto se ah cargado correctamente';
             this.showModal = true;
             setTimeout(() => {
-                this.showModal = false;
+                this.showModal = true;
             }, 3000);
         },
     }

@@ -67,7 +67,6 @@ Route::middleware('auth')->prefix('dashboard')->group(
 
         //sales routes
         Route::get('sale/new', [\App\Http\Controllers\Sales\NewSaleViewDataAction::class,'__invoke']);
-
         Route::view('/sales','admin.sales.new')->name('new-sale');
         Route::post('sales/sale',[\App\Http\Controllers\Sales\StoreNewSaleAction::class,'__invoke'])->name('store-sale');
     }
