@@ -250,7 +250,6 @@ export default {
 
             console.log(response);
 
-
             if (response) {
                 this.message = 'El producto se ha cargado correctamente';
                 this.showModal = true;

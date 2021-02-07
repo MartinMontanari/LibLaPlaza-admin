@@ -30,7 +30,7 @@ class StoreNewSaleAdapter
             $request->input('billSerie'),
             $request->input('billNumber'),
             $request->input('products'),
-            $request->input('total'),
+            (float)$request->input('total'),
         );
     }
 }

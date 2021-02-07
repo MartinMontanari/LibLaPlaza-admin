@@ -14,6 +14,7 @@ use App\Domain\Interfaces\SaleRepository;
 use App\Domain\Interfaces\StockRepository;
 use App\Exceptions\UnprocessableEntityException;
 use Illuminate\Support\Facades\DB;
+use Money\Money;
 
 class StoreNewSaleHandler
 {
@@ -79,7 +80,10 @@ class StoreNewSaleHandler
                 $productSale->save();
 
                 $this->stockRepository->persist($stock);
+                $amount = Money::ARS($command->getTotal() * 100);
+                $sale->setTotalAmount($amount);
             }
+
             $this->saleRepository->persist($sale);
 
             DB::commit();
