@@ -39,7 +39,17 @@ class MysqlStockRepository implements StockRepository
     public function filterProductsByStock(int $min)
     {
         return Stock::query()
-            ->where('quantity','<=',$min)
+            ->where('quantity', '<=', $min)
             ->paginate(10);
+    }
+
+    /**
+     * @return Builder[]|Collection|mixed
+     */
+    public function fetchStockOfAllActiveProducts()
+    {
+        return Stock::query()
+            ->where('quantity','>',0)
+            ->get();
     }
 }

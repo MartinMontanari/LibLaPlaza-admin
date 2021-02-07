@@ -11,7 +11,7 @@
         <div class="row justify-content-md-center">
             @if($errors->any())
                 <div class="card col-md-6 alert alert-danger">
-                    <div class="row justify-content-center text-wrap">
+                    <div class="row justify-content-center text-wrap" data-dismiss="alert">
                         <ul>
                             @foreach($errors->all() as $error)
                                 {{ $error }}
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             @else
-                <table class="table table-hover table-striped">
+                <table class="table table-responsive-sm table-hover table-striped">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">Nombre del producto</th>

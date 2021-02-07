@@ -16,12 +16,12 @@
             @else
                 @if(session('status'))
                     <div class="card col-md-6 alert alert-success">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" data-dismiss="alert">
                             Proveedor eliminado correctamente.
                         </div>
                     </div>
                 @endif
-                <table class="table col-md-12 col-sm-12 table-hover table-striped">
+                <table class="table table-responsive-sm col-md-12 col-sm-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Codigo</th>
@@ -38,13 +38,13 @@
                             <th class="row-cols-md-5"> {{$provider->getDescription()}}</th>
                             <th class="row-cols-md-3 text-center align-middle">
                                 <a href="{{route('edit-provider',['id' => $provider->getId()])}}"
-                                   class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
+                                   class="btn btn-warning btn-sm d-inline-block" role="button"><i class="fas fa-pen"></i></a>
                                 <form class="form d-inline-block" method="post"
                                       action="{{route('delete-provider', ['id'=>$provider->getId()]) }}">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
                                             onclick="return confirm('¿Está seguro que desea borrar el proveedor {{$provider->getName()}}?');">
-                                        Eliminar
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </th>

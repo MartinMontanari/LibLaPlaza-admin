@@ -19,15 +19,15 @@
                         <form id="form" action="{{route('update-product',['id' => $product->getId()])}}" method="POST">
                             @csrf @method('PUT')
                             <div class="form-group-lg">
-                                <label>Código:</label>
+                                <label>Código</label>
                                 <input type="text" class="form-control" name="code" min="6" max="30" maxlength="30"
                                        placeholder="Código"
                                        value="{{$product->getCode()}}" required><br>
-                                <label>Nombre:</label>
+                                <label>Nombre</label>
                                 <input type="text" class="form-control" name="name" min="1" max="45" maxlength="45"
                                        placeholder="Nombre"
                                        value="{{$product->getName()}}" required><br>
-                                <label>Descripción:</label>
+                                <label>Descripción</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90"
                                           maxlength="90"
                                           placeholder="Descripción">{{$product->getDescription()}}</textarea><br>
@@ -40,7 +40,7 @@
                                                value="{{strval($productPrice)}}" required>
                                     </div>
                                 </div>
-                                <br> <label>Proveedor:
+                                <br> <label>Proveedor
                                     <select class="form-control select2-blue" name="provider_id" required>
                                         <option value="">Asignar proveedor...</option>
                                         <option value="{{$product->getProvider()->getId()}}" selected>{{$product->getProvider()->getName()}}</option>
@@ -50,7 +50,7 @@
                                         @endforeach
                                     </select>
                                 </label>
-                                <label>Categoría:
+                                <label>Categoría
                                     <select class="form-control select2-blue" name="category_id" required>
                                         <option value="">Asignar categoría...</option>
                                         <option value={{$product->getCategory()->getId()}} selected>{{$product->getCategory()->getName()}}</option>
@@ -70,7 +70,7 @@
         <div class="row justify-content-md-center">
             @if($errors->any())
                 <div class="card col-md-6 alert alert-danger">
-                    <div class="row justify-content-center text-wrap">
+                    <div class="row justify-content-center text-wrap" data-dismiss="alert">
                         <ul>
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -81,7 +81,7 @@
             @endif
             @if(session('status'))
                 <div class="card col-md-6 alert alert-success">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-dismiss="alert">
                         Producto actualizado correctamente.
                     </div>
                 </div>

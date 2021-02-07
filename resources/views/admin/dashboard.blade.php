@@ -19,14 +19,14 @@
         <div class="row">
             @foreach($queryResult as $product)
                 <div class="col-md-4 col-xs-12">
-                    <div class="card" style="width: auto; height: 90%">
+                    <div class="card-block alert-dark" style="width: auto; height: 95%; ">
                         <div class="card-body">
                             <h5 class="card-title col-12">{{$product->getName()}}</h5>
                             <h6 class="card-subtitle col-6 mb-2 text-muted">{{$product->getCode()}}</h6>
                             <p class="card-text">{{$product->getDescription()}}</p>
                             <form action="{{route('stock-report',['product_id' => $product->getId()])}}" method="POST">
                                 @csrf
-                                <input type="submit" class="btn btn-outline-info btn-sm d-inline-block" role="button"
+                                <input type="submit" class="btn btn-outline-warning btn-sm d-inline-block" role="button"
                                        value="Detalles">
                             </form>
                         </div>
@@ -38,7 +38,7 @@
     <div class="row justify-content-md-center">
         @if($errors->any())
             <div class="card col-md-6 alert alert-warning">
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" data-dismiss="alert">
                     <ul>
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>

@@ -18,15 +18,15 @@
                         <form id="form" action="{{route('store-provider')}}" method="POST">
                             @csrf
                             <div class="form-group-sm">
-                                <label>Código:</label>
+                                <label>Código</label>
                                 <input type="text" class="form-control" name="code" min="1" max="6" maxlength="6"
                                        placeholder="Código"
                                        value="{{old('code')}}" required><br>
-                                <label>Nombre:</label>
+                                <label>Nombre</label>
                                 <input type="text" class="form-control" name="name" min="3" max="30" maxlength="30"
                                        placeholder="Nombre"
                                        value="{{old('name')}}" required><br>
-                                <label>Descripción:</label>
+                                <label>Descripción</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90" maxlength="90"
                                           placeholder="Descripción"
                                           >{{old('description')}}</textarea><br>
@@ -40,7 +40,7 @@
         <div class="row justify-content-md-center">
             @if($errors->any())
                 <div class="card col-md-6 alert alert-danger">
-                    <div class="row justify-content-center text-wrap">
+                    <div class="row justify-content-center text-wrap" data-dismiss="alert">
                         <ul>
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -49,9 +49,9 @@
                     </div>
                 </div>
             @endif
-            @if(session('status'))s
+            @if(session('status'))
                 <div class="card col-md-6 alert alert-success">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-dismiss="alert">
                         Proveedor registrado correctamente.
                     </div>
                 </div>

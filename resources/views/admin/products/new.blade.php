@@ -19,29 +19,29 @@
                         <form id="form" action="{{route('store-product')}}" method="POST">
                             @csrf
                             <div class="form-group-lg">
-                                <label>Código:</label>
+                                <label>Código</label>
                                 <input type="text" class="form-control" name="code" min="1" max="30" maxlength="30"
                                        placeholder="Código"
                                        value="{{old('code')}}" required><br>
-                                <label>Nombre:</label>
+                                <label>Nombre</label>
                                 <input type="text" class="form-control" name="name" min="15" max="45" maxlength="45"
                                        placeholder="Nombre"
                                        value="{{old('name')}}" required><br>
-                                <label>Descripción:</label>
+                                <label>Descripción</label>
                                 <textarea type="text" rows="2" class="form-control" name="description" min="15" max="90"
                                           maxlength="90"
                                           placeholder="Descripción"
                                 >{{old('description')}}</textarea><br>
                                 <div class="container-sm row justify-content-start d-inline-block">
                                     <div class="row justify-content-start">
-                                        <label class="col-4">Precio en $ (pesos):</label>
+                                        <label class="col-4">Precio en $ (pesos)</label>
                                         <p class="col-1"><strong>$</strong></p>
                                         <input type="number" step="any" class="form-control col-5" name="price" min="1"
                                                placeholder="Precio"
                                                value="{{old('price')}}" required>
                                     </div>
                                 </div>
-                                <br> <label>Proveedor:
+                                <br> <label>Proveedor
                                     <select class="form-control select2-blue" name="provider_id" required>
                                         <option value="">Asignar proveedor...</option>
                                         @foreach($providers as $provider)
@@ -50,7 +50,7 @@
                                         @endforeach
                                     </select>
                                 </label>
-                                <label>Categoría:
+                                <label>Categoría
                                     <select class="form-control select2-blue" name="category_id" required>
                                         <option value="">Asignar categoría...</option>
                                         @foreach($categories as $category)
@@ -69,7 +69,7 @@
         <div class="row justify-content-md-center">
             @if($errors->any())
                 <div class="card col-md-6 alert alert-danger">
-                    <div class="row justify-content-center text-wrap">
+                    <div class="row justify-content-center text-wrap" data-dismiss="alert">
                         <ul>
                             @foreach($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -80,7 +80,7 @@
             @endif
             @if(session('status'))
                 <div class="card col-md-6 alert alert-success">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center" data-dismiss="alert">
                         Producto cargado correctamente.
                     </div>
                 </div>

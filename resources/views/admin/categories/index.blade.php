@@ -16,12 +16,12 @@
             @else
                 @if(session('status'))
                     <div class="card col-md-6 alert alert-success">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" data-dismiss="alert">
                             Categoría eliminada correctamente.
                         </div>
                     </div>
                 @endif
-                <table class="table col-sm-12 col-md-12 table-hover table-striped">
+                <table class="table table-responsive-sm col-sm-12 col-md-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -36,13 +36,13 @@
                             <th class="row-cols-md-6"> {{$category->getDescription()}}</th>
                             <th class="row-cols-md-2 text-center align-middle">
                                 <a href="{{route('edit-category',['id' => $category->getId()])}}"
-                                   class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
+                                   class="btn btn-warning btn-sm d-inline-block" role="button"><i class="fas fa-pen"></i></a>
                                 <form class="form d-inline-block" method="post"
                                       action="{{route('delete-category', ['id'=>$category->getId()]) }}">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
                                             onclick="return confirm('¿Está seguro que desea borrar la categoría {{$category->getName()}}?');">
-                                        Eliminar
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </th>

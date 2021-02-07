@@ -16,12 +16,12 @@
             @else
                 @if(session('status'))
                     <div class="card col-md-6 alert alert-success">
-                        <div class="row justify-content-center">
+                        <div class="row justify-content-center" data-dismiss="alert">
                             Producto eliminado correctamente.
                         </div>
                     </div>
                 @endif
-                <table class="table col-md-12 col-sm-12 table-hover table-striped">
+                <table class="table table-responsive-sm col-md-12 col-sm-12 table-hover table-striped">
                     <thead class="thead-dark text-center">
                     <tr>
                         <th scope="col">Nombre</th>
@@ -30,7 +30,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>
-                    <tbody class="table-bordered">
+                    <tbody class="table-bordered  border-white">
                     @foreach($products as $product)
                         <tr>
                             <th class="row-cols-md-2"> {{$product->getName()}}</th>
@@ -38,13 +38,13 @@
                             <th class="row-cols-md-4"> ${{$product->getPrice()->getAmount()/100}}</th>
                             <th class="row-cols-md-4 text-center align-middle">
                                 <a href="{{route('edit-product',['id' => $product->getId()])}}"
-                                   class="btn btn-warning btn-sm d-inline-block" role="button">Editar</a>
+                                   class="btn btn-warning btn-sm d-inline-block" role="button"><i class="fas fa-pen"></i></a>
                                 <form class="form d-inline-block" method="post"
                                       action="{{route('delete-product', ['id'=>$product->getId()]) }}">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-danger btn-sm d-inline-block" role="button"
                                             onclick="return confirm('¿Está seguro que desea borrar el producto {{$product->getName()}}?');">
-                                        Eliminar
+                                        <i class="fas fa-trash"></i>
                                     </button>
                                 </form>
                             </th>
@@ -59,7 +59,7 @@
     <div class="row justify-content-md-center">
         @if($errors->any())
             <div class="card col-6 alert alert-danger">
-                <div class="row justify-content-center text-wrap">
+                <div class="row justify-content-center text-wrap" data-dismiss="alert">
                     <ul>
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>

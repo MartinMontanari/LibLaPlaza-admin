@@ -1,3 +1,4 @@
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -154,9 +155,9 @@ MAIL_FROM_ADDRESS="mail de gmail"
 
 1. Ya podemos entrar al sitio `localhost` pero aún falta instalar y compilar las dependencias necesarias para una correcta visualización de los componentes de las vistas.
 
-2. Para ello, dentro de la carpeta raíz `TrabajoFinal-LabIII/` ejecutar los comandos `npm install` y `npm run prod`
+2. Para ello, dentro de la carpeta raíz `TrabajoFinal-LabIII/` ejecutar los comandos `npm install` y `npm run prod`, además ejecutar `yarn install` y `yarn dev`.
 
-2. Deberíamos visualizar correctamente la página de inicio.
+3. Deberíamos visualizar correctamente la página de inicio.
 
 
 # Arquitectura del Sistema
