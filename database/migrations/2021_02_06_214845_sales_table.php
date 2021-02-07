@@ -17,6 +17,8 @@ class SalesTable extends Migration
             $table->id();
             $table->string('billSerieAndBillNumber');
             $table->string('billType');
+            $table->unsignedBigInteger('amount_value')->nullable();
+            $table->string('amount_currency')->nullable();
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->timestamps();
         });

@@ -22,10 +22,11 @@ class StoreNewSaleCommand
      * @param string $address
      * @param string $billType
      * @param string $billSerie
+     * @param string $billNumber
      * @param array $products
-     * @param int $total
+     * @param float $total
      */
-    public function __construct(string $fullName, int $dni, string $address, string $billType, string $billSerie, string $billNumber, array $products, int $total)
+    public function __construct(string $fullName, int $dni, string $address, string $billType, string $billSerie, string $billNumber, array $products, float $total)
     {
         $this->fullName = $fullName;
         $this->dni = $dni;
@@ -95,9 +96,9 @@ class StoreNewSaleCommand
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getTotal(): int
+    public function getTotal(): float
     {
         return $this->total;
     }
