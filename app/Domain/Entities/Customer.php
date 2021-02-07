@@ -4,7 +4,9 @@
 namespace App\Domain\Entities;
 
 
-class Customer
+use Illuminate\Database\Eloquent\Model;
+
+class Customer extends Model
 {
     /**
      * @var string

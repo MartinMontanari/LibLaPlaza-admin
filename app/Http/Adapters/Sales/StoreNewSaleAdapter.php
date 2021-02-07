@@ -28,6 +28,7 @@ class StoreNewSaleAdapter
             $request->input('address'),
             $request->input('billType'),
             $request->input('billSerie'),
+            $request->input('billNumber'),
             $request->input('products'),
             $request->input('total'),
         );

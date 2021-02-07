@@ -59,7 +59,7 @@ class Stock extends Model
      */
     public function decreaseQuantity(int $quantity)
     {
-        if ($this->getQuantity() >= $quantity) {
+        if ($this->getQuantity() < $quantity) {
             throw new \InvalidArgumentException('El stock no es valido');
         }
         $this->setQuantity($this->getQuantity() - $quantity);

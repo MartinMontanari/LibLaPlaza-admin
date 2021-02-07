@@ -2235,7 +2235,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   total: _this4.total
                 };
                 _context2.next = 3;
-                return _this4.client.post('dashboard/sale/new', body);
+                return _this4.client.post('/dashboard/sale/new', body);
 
               case 3:
                 response = _context2.sent;

@@ -246,7 +246,7 @@ export default {
                 total: this.total
             };
 
-            const response = await this.client.post('dashboard/sale/new', body);
+            const response = await this.client.post('/dashboard/sale/new', body);
 
             console.log(response);
 

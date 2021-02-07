@@ -68,18 +68,20 @@ class StoreNewSaleHandler
                 $product = $this->productRepository->getOneByIdOrFail($item['id']);
                 $stock = $product->getStock();
                 if (!$stock->hasStock()) {
-                    throw new UnprocessableEntityException('El producto no tiene stock.');
+                    throw new UnprocessableEntityException(['El producto no tiene stock.']);
                 }
                 $stock->decreaseQuantity(intval($item['quantity']));
 
                 $productSale = new ProductSale();
-
                 $productSale->setProduct($product);
                 $productSale->setSale($sale);
+
                 $productSale->save();
 
-                $stock->save();
+                $this->stockRepository->persist($stock);
             }
+            $this->saleRepository->persist($sale);
+
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
