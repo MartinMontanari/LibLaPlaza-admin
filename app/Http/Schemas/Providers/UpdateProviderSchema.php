@@ -22,8 +22,8 @@ class UpdateProviderSchema
             'id.integer' => 'El formato del id para eliminar el proveedor no es correcto.',
             'id.min' => 'El proveedor seleccionado no es correcto.',
             'code.required' => 'Debe ingresar el código del proveedor.',
-            'code.alpha_num' => 'El código del proveedor solo debe contener números y letras',
-            'code.between' => 'El código del proveedor dete tener 6 carácteres como máximo',
+            'code.alpha_num' => 'El código del proveedor solo debe contener números y letras.',
+            'code.between' => 'El código del proveedor dete tener 6 carácteres como máximo.',
             'name.required' => 'Debe ingresar el nombre del proveedor',
         ];
     }

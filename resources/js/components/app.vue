@@ -57,9 +57,7 @@
                                     </div>
                                     <div class="col-md-5">
                                         <label>Número de comprobante</label>
-                                        <input type="text" class="form-control" v-model="billNumber"
-                                               min="5" max="15"
-                                               maxlength="15"
+                                        <input type="number" class="form-control" v-model="billNumber"
                                                placeholder="número de comprobante" name="billNumber"
                                                required><br>
                                     </div>

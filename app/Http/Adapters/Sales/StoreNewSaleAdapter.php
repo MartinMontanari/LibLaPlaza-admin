@@ -4,6 +4,7 @@ namespace App\Http\Adapters\Sales;
 
 use App\Application\Commands\Sales\StoreNewSaleCommand;
 use App\Exceptions\InvalidBodyException;
+use App\Http\Schemas\Sales\StoreNewSaleSchema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,9 +18,9 @@ class StoreNewSaleAdapter
     public function adapt(Request $request)
     {
         //TODO Hacer rules y messages -> schema
-        $validate = Validator::make($request->all(), []);
+        $validate = Validator::make($request->all(), StoreNewSaleSchema::getRules(),StoreNewSaleSchema::getMessages());
         if ($validate->fails()) {
-            throw new InvalidBodyException(['Ocurrió un error. El producto seleccionado no es correcto.']);
+            throw new InvalidBodyException($validate->errors()->getMessages());
         }
         return new StoreNewSaleCommand
         (

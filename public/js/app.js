@@ -2083,8 +2083,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
@@ -38862,10 +38860,7 @@ var render = function() {
                         ],
                         staticClass: "form-control",
                         attrs: {
-                          type: "text",
-                          min: "5",
-                          max: "15",
-                          maxlength: "15",
+                          type: "number",
                           placeholder: "número de comprobante",
                           name: "billNumber",
                           required: ""
