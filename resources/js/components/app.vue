@@ -1,9 +1,5 @@
 <template>
     <div class="container">
-        <div class="modal" v-if="showModal">
-            {{ message }}
-        </div>
-
         <div class="row justify-content-md-center">
             <div class="card col-md-12 col-sm-12 block">
                 <div class="card-header">
@@ -142,13 +138,13 @@
 </template>
 <script>
 import ApiFetch from "../apiclient";
+import {requestJson} from "../../../public/vendor/fullcalendar/main.esm";
+import {isError} from "../isError";
 
 export default {
     name: 'app',
     data() {
         return {
-            message: '',
-            showModal: false,
             products: [],
             selectedProducts: [],
             selectedProduct: '',
@@ -244,16 +240,33 @@ export default {
                 total: this.total
             };
 
-            const response = await this.client.post('/dashboard/sale/new', body);
+            let response;
 
+            try {
+                response = await this.client.post('/dashboard/sale/new', body);
+            } catch (e) {
+                response = e;
+            }
             console.log(response);
 
-            if (response) {
-                this.message = 'El producto se ha cargado correctamente';
-                this.showModal = true;
-                setTimeout(() => {
-                    this.showModal = false;
-                }, 3000);
+            const {status, data} = response;
+
+            console.log(data);
+
+            if (isError(status)) {
+                Swal.fire({
+                    type: "error",
+                    title: "La venta no se ha registrado",
+                    confirmButtonText: "Cerrar",
+                    timer: 3000
+                })
+            } else {
+                Swal.fire({
+                    type: "success",
+                    title: "Venta registrada correctamente",
+                    confirmButtonText: "Cerrar",
+                    timer: 3000
+                })
             }
         },
     }
