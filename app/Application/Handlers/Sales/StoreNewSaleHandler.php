@@ -74,8 +74,10 @@ class StoreNewSaleHandler
                 $stock->decreaseQuantity(intval($item['quantity']));
 
                 $productSale = new ProductSale();
+
                 $productSale->setProduct($product);
                 $productSale->setSale($sale);
+//                dd($productSale);
 
                 $productSale->save();
 
