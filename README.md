@@ -8,8 +8,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Trabajo práctico final - Laboratorio III
+# Trabajo práctico final - Práctica Profesional Supervisada
+## Tecnicatura Universitaria en Programación
+#### Autor: Martín Rubén Montanari
 
+--------------
 # Instrucciones de Instalación
 
 Este documento describe los pasos necesarios para configurar el entorno de desarrollo en la PC local bajo sistemas operativos Linux utilizando Docker.
@@ -23,7 +26,7 @@ Este documento describe los pasos necesarios para configurar el entorno de desar
 ### Clonar Repositorio de GitHub.
 
 ``` 
-git@github.com:MartinMontanari/TrabajoFinal-LabIII.git
+git@github.com:MartinMontanari/LibLaPlaza-admin.git
 ```
 
 ### Realizar la instalación de composer en el proyecto.
@@ -36,14 +39,14 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === 'c31c1e292ad7be5f49291
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 ```
-PD: Si bien aquí se brinda el hash en su última versión al día 19/10/2020 tener en cuenta que el hash de arriba siempre se actualiza por lo que es mejor entrar a la página de composer.
+PD: Si bien aquí se brinda el hash en su última versión al día 19/10/2024 tener en cuenta que el hash de arriba siempre se actualiza por lo que es mejor entrar a la página de composer.
 
-#### Copiamos el `composer.phar` de instalación que nos proveen los comandos anteriores en la carpeta raíz del proyecto (`TrabajoFinal-LabIII/`)
+#### Copiamos el `composer.phar` de instalación que nos proveen los comandos anteriores en la carpeta raíz del proyecto (`LibLaPlaza-admin/`)
 
 ### Instalación de los contenedores de Docker.
 * Primeramente tener `docker` y `docker-compose` instalados (utilizar las guías de Digital Ocean estan bien documentadas).
 
-1. Entrar a la carpeta de docker del proyecto. (`TrabajoFinal-LabIII/docker`)
+1. Entrar a la carpeta de docker del proyecto. (`LibLaPlaza-admin/docker`)
 
 2. Realizar un `docker-compose pull`
 
@@ -127,7 +130,7 @@ MAIL_USERNAME="mail de gmail"
 MAIL_PASSWORD="pass de gmail"
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="mail de gmail"
-MAIL_FROM_NAME="TP-Final-Lab III"
+MAIL_FROM_NAME="Libreria de La Plaza"
 ```
 - *Esta parte no es fundamental para el funcionamiento del sistema, pero si desea poder recuperar su contraseña en caso de habérsela olvidado puede hacerlo configurando las credenciales para el envío del correo de recuperación.*
 - Reemplazar los campos por las credenciales de una cuenta de gmail válida.
@@ -139,7 +142,7 @@ MAIL_FROM_ADDRESS="mail de gmail"
 ```
 - Ejecutaremos las migraciones y los seeders para tener datos para realizar las pruebas necesarias.
 
-1. Entramos al `bash nginx` del Lord Commander ubicados en `TrabajoFinal-LabIII/docker/` ejecutar: `./webapp`.
+1. Entramos al `bash nginx` del Lord Commander ubicados en `LibLaPlaza-admin/docker/` ejecutar: `./webapp`.
 
 2. Ejecutamos dentro del bash `php artisan migrate` -> esto corre las migraciones y crea las tablas en la bdd.
 
@@ -155,7 +158,7 @@ MAIL_FROM_ADDRESS="mail de gmail"
 
 1. Ya podemos entrar al sitio `localhost` pero aún falta instalar y compilar las dependencias necesarias para una correcta visualización de los componentes de las vistas.
 
-2. Para ello, dentro de la carpeta raíz `TrabajoFinal-LabIII/` ejecutar los comandos `npm install` y `npm run prod`, además ejecutar `yarn install` y `yarn dev`.
+2. Para ello, dentro de la carpeta raíz `LibLaPlaza-admin/` ejecutar los comandos `npm install` y `npm run prod`, además ejecutar `yarn install` y `yarn dev`.
 
 3. Deberíamos visualizar correctamente la página de inicio.
 
