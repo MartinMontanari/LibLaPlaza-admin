@@ -15,8 +15,8 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'TP Final lab III | ',
-    'title_postfix' => '',
+    'title_prefix' => 'LibreriaDeLaPlaza | ',
+    'title_postfix' => 'Admin Panel |',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Práctico Final Lab III</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/utn.png',
+    'logo' => '<b style="color: black;">Librería de La Plaza</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/lib_logo.jpg',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'UTN logo',
+    'logo_img_alt' => 'Lib logo',
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     'usermenu_header' => false,
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
-    'usermenu_desc' => false,
+    'usermenu_desc' => true,
     'usermenu_profile_url' => false,
 
     /*
@@ -128,7 +128,7 @@ return [
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-warning elevation-4',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-white navbar-light',
+    'classes_topnav' => 'navbar-warning navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
