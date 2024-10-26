@@ -305,6 +305,11 @@ return [
                     'text' => 'Bajo stock',
                     'route' => 'low-stock-report',
                     'icon' => 'far fa-file',
+                ],
+                [
+                    'text' => 'Listado de ventas',
+                    'route' => 'sales-report',
+                    'icon' => 'far fa-file',
                 ]
             ],
         ],

@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
 
         DB::table('users')->insert([
             'name'=> 'Administrador',
-            'email'=> 'admin.test@email.com',
+            'email'=> '     ',
             'password'=> bcrypt('admin@12345'),
             'created_at' => now(),
             'updated_at' => now(),

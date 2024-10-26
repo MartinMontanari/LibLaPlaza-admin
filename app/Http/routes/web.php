@@ -64,6 +64,7 @@ Route::middleware('auth')->prefix('dashboard')->group(
 
         //Reports routes
         Route::get('report/lower-stock',[\App\Http\Controllers\Reports\LowerStockReportAction::class,'__invoke'])->name('low-stock-report');
+        Route::get('report/sales',[\App\Http\Controllers\Reports\SalesReportAction::class,'__invoke'])->name('sales-report');
 
         //sales routes
         Route::get('sale/new', [\App\Http\Controllers\Sales\NewSaleViewDataAction::class,'__invoke']);
